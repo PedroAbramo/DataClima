@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora Financeira</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      padding: 20px;
+    }
+
+    .calculadora {
+      background: white;
+      max-width: 480px;
+      margin: auto;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ccc;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    p {
+      margin: 10px 0 5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+    }
+
+    .resultado {
+      background: #eef;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    .descricao {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .aviso {
+      background-color: #fff3cd;
+      color: #856404;
+      border: 1px solid #ffeeba;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 13px;
+    }
+
+    .texto-menor {
+      font-size: 0.8em;
+      color: #555;
+      margin-top: 10px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="calculadora">
+    <h2>Calculadora de Benefícios</h2>
+
+    <div class="aviso">
+      <b>Simulação estimativa:</b> esta calculadora tem fins informativos e visa demonstrar os <b>prejuízos
+        potenciais</b> que sua empresa pode evitar com o uso do nosso sistema de monitoramento. Os valores são baseados
+      em dados de mercado.
+    </div>
+
+    <div class="descricao">
+      Segundo um estudo da Vertiv (2011), uma parada de 90 minutos em um data center pode gerar prejuízos de até <b>R$
+        2,9 milhões</b>, considerando perda de dados, danos a equipamentos e impacto na reputação.
+      <br><br>
+      Estima-se que 15% dessas falhas sejam causadas por problemas em sistemas de refrigeração e umidade — algo que
+      nosso sistema monitora e ajuda a prevenir.
+      <br><br>
+      Além disso, o ar-condicionado representa cerca de <b>40% do consumo total de energia</b> em data centers. Com um
+      sistema de monitoramento eficiente, é possível otimizar esse consumo e gerar <b>economia significativa</b>.
+      <br><br>
+      <b>Preencha os dados abaixo e descubra quanto sua empresa pode evitar em prejuízos:</b>
+    </div>
+
+
+    <p>Quantas paradas o data center sofre por ano?</p>
+    <input type="number" id="ipt_paradas" placeholder="Ex: 2" />
+
+    <p>Gasto mensal com energia (R$)</p>
+    <input type="number" id="ipt_energia" placeholder="Ex: 5000" />
+
+    <p>Valor total dos equipamentos (R$)</p>
+    <input type="number" id="ipt_equip" placeholder="Ex: 300000" />
+
+    <button onclick="calcular()">Calcular</button>
+
+    <div id="resultadoDiv" class="resultado" style="display: none;"></div>
+
+    <p class="texto-menor">Os valores apresentados são apenas estimativas baseadas em médias de mercado. Para uma
+      análise personalizada, entre em contato com nossa equipe.</p>
+  </div>
+
+</body>
+
+</html>
+<script>
+  function calcular() {
+    var paradas = Number(ipt_paradas.value);
+    var energiaMensal = Number(ipt_energia.value);
+    var valorEquip = Number(ipt_equip.value);
+
+    var prejuizoPorParada = 2900000;
+    var economiaDowntime = paradas * prejuizoPorParada * 0.80;
+
+    // Ar-condicionado representa 40% do consumo; economia estimada de 15% sobre esse valor
+    var proporcaoArCondicionado = 0.40;
+    var taxaEconomiaAr = 0.15;
+
+    var economiaEnergiaAnual = energiaMensal * 12 * proporcaoArCondicionado * taxaEconomiaAr;
+
+    var economiaEquip = valorEquip * 0.20;
+
+    var custoSistema = 2400;
+    var economiaTotal = economiaDowntime + economiaEnergiaAnual + economiaEquip;
+    var retorno = economiaTotal - custoSistema;
+
+    var exibir = resultadoDiv;
+    exibir.style.display = "block";
+    exibir.innerHTML = `
+          <b>Resultados estimados:</b><br><br>
+          💸 Economia com prevenção de falhas: <b>R$ ${economiaDowntime.toFixed(2)}</b><br>
+          ❄️ Economia anual com refrigeração otimizada: <b>R$ ${economiaEnergiaAnual.toFixed(2)}</b><br>
+          🛠️ Aumento da vida útil dos equipamentos: <b>R$ ${economiaEquip.toFixed(2)}</b><br><br>
+          💰 <b>Investimento no sistema: R$ ${custoSistema.toFixed(2)}</b><br><br>
+          ✅ <b>Retorno líquido estimado: R$ ${retorno.toFixed(2)}</b>
+        `
+  }
+</script>
