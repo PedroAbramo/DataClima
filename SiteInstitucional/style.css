@@ -128,10 +128,63 @@ nav a {
 }
 
 /*Divisor*/
-.bar-divisor{
+.banner-dataclima .bar-divisor{
     width: 100%;
     height: 30px;
     background: #fff;
+}
+
+/*Sobre Nós*/
+.hero {
+    display: flex;
+    flex-direction: column;
+    row-gap: 25px;
+    color: white;
+    padding: 200px 5% 0px 5%;
+    text-align: left;
+    height: calc(100vh - 88px);
+}
+
+/* Background Index */
+.principal {
+    background-image: url(images/background_principal.png);
+    background-position: center;
+}
+
+.hero h1 {
+    font-size: 70px;
+    margin-bottom: 10px;
+    font-weight: 400;
+    line-height: 75px;
+    width: 820px;
+}
+
+.hero p {
+    width: 820px;
+    font-size: 25px;
+}
+
+.hero #negrito {
+    font-weight: 750;
+}
+
+.cta-button {
+    font-size: 17px;
+    background-color: white;
+    color: #1a3b6d;
+    padding: 12px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    transition: all 0.3s ease;
+    margin-top: 25px;
+    width: fit-content;
+}
+
+.cta-button:hover {
+    background-color: #ffffff;
+    transform: translateY(-3px);
 }
 
 
