@@ -82,49 +82,6 @@
             <p>© 2025 DataClima Todos os direitos reservados</p>
         </div>
     </footer>
-
-    <script>
-        // JavaScript para interatividade
-        document.addEventListener('DOMContentLoaded', function () {
-            // Navegação suave
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 70,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-
-            // Botão "Simule agora" - Poderia abrir um modal com a calculadora
-            const simularButton = document.querySelector('a[href="#simular"]');
-            if (simularButton) {
-                simularButton.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    alert("Funcionalidade de simulação em desenvolvimento!");
-                    // Aqui poderia abrir um modal com a calculadora
-                });
-            }
-
-            // Botão "Junte-se a nós" - poderia abrir um formulário de contato
-            const contatoButton = document.querySelector('a[href="#contato"]');
-            if (contatoButton) {
-                contatoButton.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    alert("Entre em contato conosco através do e-mail: dataclima@sptech.school");
-                    // Aqui poderia abrir um modal com formulário de contato
-                });
-            }
-        });
-    </script>
 </body>
 
 </html>
