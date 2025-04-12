@@ -26,27 +26,25 @@
         </nav>
     </header>
 
-<!-- Hero Section -->
-<div class="principal">
-        <div class="hero">
+    <!-- Banner-container -->
+    <div class="banner-container">
+        <div class="banner-dataclima">
             <h1>Monitoramento de <br /><span id="negrito">Temperatura</span> e <span id="negrito">Umidade</span><br />em
                 Data Centers</h1>
             <p>Garanta a segurança do seu datacenter com nosso monitoramento em tempo real de temperatura e umidade.</p>
             <a href="#contato" class="cta-button">Junte-se a nós</a>
         </div>
-
-    <!-- Parceiros -->
-    <div class="parceiros">
-        <p>Empresas líderes escolhem a DataClima</p>
-        <div class="logos-parceiros">
-            <img src="images/logo_google_cloud (1).png" alt="Google Cloud">
-            <img src="images/logo_aws (1).png" alt="AWS">
-            <img src="images/logo_zoom (1).png" alt="Zoom">
-            <img src="images/logo_netflix_@2x (1).png" alt="Netflix">
-        </div>
-    </div>
-</div>
     
+
+    <!-- Divisão -->
+    <div class="bar-divisor"></div>
+
+    <!-- conteudo -->
+    <div class="conteudo">
+        <p>Empresas líderes escolhem a DataClima</p>
+    </div>
+    </div>
+
     <!-- Footer -->
     <footer>
         <div class="footer-container">
@@ -82,49 +80,5 @@
             <p>© 2025 DataClima Todos os direitos reservados</p>
         </div>
     </footer>
-
-    <script>
-        // JavaScript para interatividade
-        document.addEventListener('DOMContentLoaded', function () {
-            // Navegação suave
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 70,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-
-            // Botão "Simule agora" - Poderia abrir um modal com a calculadora
-            const simularButton = document.querySelector('a[href="#simular"]');
-            if (simularButton) {
-                simularButton.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    alert("Funcionalidade de simulação em desenvolvimento!");
-                    // Aqui poderia abrir um modal com a calculadora
-                });
-            }
-
-            // Botão "Junte-se a nós" - poderia abrir um formulário de contato
-            const contatoButton = document.querySelector('a[href="#contato"]');
-            if (contatoButton) {
-                contatoButton.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    alert("Entre em contato conosco através do e-mail: dataclima@sptech.school");
-                    // Aqui poderia abrir um modal com formulário de contato
-                });
-            }
-        });
-    </script>
 </body>
-
 </html>
