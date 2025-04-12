@@ -170,25 +170,6 @@ nav a {
     font-weight: 750;
 }
 
-.cta-button {
-    font-size: 17px;
-    background-color: white;
-    color: #1a3b6d;
-    padding: 12px 25px;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: bold;
-    display: inline-block;
-    transition: all 0.3s ease;
-    margin-top: 25px;
-    width: fit-content;
-}
-
-.cta-button:hover {
-    background-color: #ffffff;
-    transform: translateY(-3px);
-}
-
 /* Footer */
 footer {
     background-color: #222;
