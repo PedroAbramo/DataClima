@@ -35,6 +35,7 @@ header #Dataclima_Nome {
 .logo {
     width: 90px;
 }
+
 /* Nav Bar */
 nav {
     display: flex;
@@ -81,8 +82,6 @@ nav a {
     font-weight: 750;
 }
 
-
-
 .cta-button {
     font-size: 17px;
     background-color: white;
@@ -126,6 +125,22 @@ nav a {
     height: 57px;
     margin: 10px;
     filter: brightness(0) invert(1);
+}
+
+/*Divisor*/
+.bar-divisor{
+    width: 100%;
+    height: 30px;
+    background: #fff;
+}
+
+/*Conteudo*/
+.conteudo{
+    display: flex;
+    padding: 0 5%;
+}
+.calculadora{
+    width: 100%;
 }
 
 
