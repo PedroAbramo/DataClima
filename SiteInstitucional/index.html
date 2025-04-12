@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,35 +13,26 @@
     </style>
 
 </head>
+
 <body>
     <!-- Header e navegação -->
     <header>
         <img src="images/DataClima_Logo.png" class="logo">
         <p id="Dataclima_Nome">DataClima</p>
         <nav>
-                <a href="#servicos">Serviços</a>
-                <a href="#sobre">Sobre Nós</a>
-                <a href="#cliente">Área do cliente</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#sobre">Sobre Nós</a>
+            <a href="#cliente">Área do cliente</a>
         </nav>
     </header>
 
     <!-- Hero Section -->
-<div class="principal">
-    <section class="hero">
-        <h1>Monitoramento de <br/><span id="negrito">Temperatura</span> e <span id="negrito">Umidade</span><br/>em Data Centers</h1>
-        <p>Garanta a segurança do seu datacenter com nosso monitoramento em tempo real de temperatura e umidade.</p>
-        <a href="#contato" class="cta-button">Junte-se a nós</a>
-    </section>
-
-                <!-- Parceiros -->
-    
-    <section class="parceiros">
-        <p>Empresas líderes escolhem a DataClima</p>
-        <div class="logos-parceiros">
-            <img src="images/logo_google_cloud (1).png" alt="Google Cloud">
-            <img src="images/logo_aws (1).png" alt="AWS">
-            <img src="images/logo_zoom (1).png" alt="Zoom">
-            <img src="images/logo_netflix_@2x (1).png" alt="Netflix">
+    <div class="principal">
+        <div class="hero">
+            <h1>Monitoramento de <br /><span id="negrito">Temperatura</span> e <span id="negrito">Umidade</span><br />em
+                Data Centers</h1>
+            <p>Garanta a segurança do seu datacenter com nosso monitoramento em tempo real de temperatura e umidade.</p>
+            <a href="#contato" class="cta-button">Junte-se a nós</a>
         </div>
     </section>
     
@@ -60,6 +52,20 @@
         </div>
     </section>
 </div>
+
+        <!-- Parceiros -->
+        <div class="parceiros">
+            <p>Empresas líderes escolhem a DataClima</p>
+            <div class="logos-parceiros">
+                <img src="images/logo_google_cloud (1).png" alt="Google Cloud">
+                <img src="images/logo_aws (1).png" alt="AWS">
+                <img src="images/logo_zoom (1).png" alt="Zoom">
+                <img src="images/logo_netflix_@2x (1).png" alt="Netflix">
+            </div>
+        </div>
+    </div>
+    
+    <div class="barra"></div>
 
     <!-- Footer -->
     <footer>
@@ -99,15 +105,15 @@
 
     <script>
         // JavaScript para interatividade
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Navegação suave
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
-                    
+
                     const targetId = this.getAttribute('href');
                     if (targetId === '#') return;
-                    
+
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
                         window.scrollTo({
@@ -121,7 +127,7 @@
             // Botão "Simule agora" - Poderia abrir um modal com a calculadora
             const simularButton = document.querySelector('a[href="#simular"]');
             if (simularButton) {
-                simularButton.addEventListener('click', function(e) {
+                simularButton.addEventListener('click', function (e) {
                     e.preventDefault();
                     alert("Funcionalidade de simulação em desenvolvimento!");
                     // Aqui poderia abrir um modal com a calculadora
@@ -131,7 +137,7 @@
             // Botão "Junte-se a nós" - poderia abrir um formulário de contato
             const contatoButton = document.querySelector('a[href="#contato"]');
             if (contatoButton) {
-                contatoButton.addEventListener('click', function(e) {
+                contatoButton.addEventListener('click', function (e) {
                     e.preventDefault();
                     alert("Entre em contato conosco através do e-mail: dataclima@sptech.school");
                     // Aqui poderia abrir um modal com formulário de contato
@@ -140,4 +146,5 @@
         });
     </script>
 </body>
+
 </html>
