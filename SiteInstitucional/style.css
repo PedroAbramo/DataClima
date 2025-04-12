@@ -1,0 +1,179 @@
+
+/* Reset e estilos gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+body {
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Header e Navegação */
+header {
+    background-color: #ffffff;
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    color: rgb(0, 0, 0);
+    position: relative;
+}
+
+header #Dataclima_Nome {
+    color: #1554B2 !important;
+    position: absolute;
+    left: 159px;
+    font-weight: bolder;
+    font-size: 32px;
+    bottom: 1px;
+}
+
+.logo {
+    width: 90px;
+}
+/* Nav Bar */
+nav {
+    display: flex;
+    font-size: 20px;
+    gap: 60px;
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    flex-direction: column;
+    row-gap: 25px;
+    color: white;
+    padding: 200px 5% 0px 5%;
+    text-align: left;
+    height: calc(100vh - 88px);
+}
+
+/* Background Index */
+.principal {
+    background-image: url(images/background_principal.png);
+    background-position: center;
+}
+
+.hero h1 {
+    font-size: 70px;
+    margin-bottom: 10px;
+    font-weight: 400;
+    line-height: 75px;
+    width: 820px;
+}
+
+.hero p {
+    width: 820px;
+    font-size: 25px;
+}
+
+.hero #negrito {
+    font-weight: 750;
+}
+
+
+
+.cta-button {
+    font-size: 17px;
+    background-color: white;
+    color: #1a3b6d;
+    padding: 12px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    transition: all 0.3s ease;
+    margin-top: 25px;
+    width: fit-content;
+}
+
+.cta-button:hover {
+    background-color: #ffffff;
+    transform: translateY(-3px);
+}
+
+/* Parceiros */
+.parceiros {
+    padding: 20px 5%;
+    color: white;
+    text-align: center;
+}
+
+.parceiros p {
+    margin-bottom: 20px;
+    font-size: 32px;
+    font-weight: 500;
+}
+
+.logos-parceiros {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logos-parceiros img {
+    height: 57px;
+    margin: 10px;
+    filter: brightness(0) invert(1);
+}
+
+
+/* Footer */
+footer {
+    background-color: #222;
+    color: white;
+    padding: 40px 5%;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer-col {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 20px;
+}
+
+.footer-col h3 {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li {
+    margin-bottom: 8px;
+}
+
+.footer-col ul li a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+.footer-col ul li a:hover {
+    color: white;
+}
+
+.copyright {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #444;
+    font-size: 0.9rem;
+}

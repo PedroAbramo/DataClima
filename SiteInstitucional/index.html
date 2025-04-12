@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataClima - Monitoramento de Temperatura e Umidade em Data Centers</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Importando a fonte -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+    </style>
+
+</head>
+<body>
+    <!-- Header e navegação -->
+    <header>
+        <img src="images/DataClima_Logo.png" class="logo">
+        <p id="Dataclima_Nome">DataClima</p>
+        <nav>
+                <a href="#servicos">Serviços</a>
+                <a href="#sobre">Sobre Nós</a>
+                <a href="#cliente">Área do cliente</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+<div class="principal">
+    <section class="hero">
+        <h1>Monitoramento de <br/><span id="negrito">Temperatura</span> e <span id="negrito">Umidade</span><br/>em Data Centers</h1>
+        <p>Garanta a segurança do seu datacenter com nosso monitoramento em tempo real de temperatura e umidade.</p>
+        <a href="#contato" class="cta-button">Junte-se a nós</a>
+    </section>
+
+                <!-- Parceiros -->
+    
+    <section class="parceiros">
+        <p>Empresas líderes escolhem a DataClima</p>
+        <div class="logos-parceiros">
+            <img src="images/logo_google_cloud (1).png" alt="Google Cloud">
+            <img src="images/logo_aws (1).png" alt="AWS">
+            <img src="images/logo_zoom (1).png" alt="Zoom">
+            <img src="images/logo_netflix_@2x (1).png" alt="Netflix">
+        </div>
+    </section>
+</div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>DataClima</h3>
+                <p>A DataClima é uma empresa focada no monitoramento de data centers</p>
+            </div>
+            <div class="footer-col">
+                <h3>Navegue</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#sobre">Sobre nós</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Área do Cliente</h3>
+                <ul>
+                    <li><a href="#entrar">Entrar</a></li>
+                    <li><a href="#cadastrar">Cadastre-se</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contato</h3>
+                <ul>
+                    <li>Telefone: +55(11) 1234-5678</li>
+                    <li>E-mail: dataclima@iptech.school</li>
+                    <li>Endereço: Rua Haddock Lobo, 595 - Cerqueira César, São Paulo - SP, 01414-001</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2025 DataClima Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript para interatividade
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navegação suave
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Botão "Simule agora" - Poderia abrir um modal com a calculadora
+            const simularButton = document.querySelector('a[href="#simular"]');
+            if (simularButton) {
+                simularButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert("Funcionalidade de simulação em desenvolvimento!");
+                    // Aqui poderia abrir um modal com a calculadora
+                });
+            }
+
+            // Botão "Junte-se a nós" - poderia abrir um formulário de contato
+            const contatoButton = document.querySelector('a[href="#contato"]');
+            if (contatoButton) {
+                contatoButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert("Entre em contato conosco através do e-mail: dataclima@iptech.school");
+                    // Aqui poderia abrir um modal com formulário de contato
+                });
+            }
+        });
+    </script>
+</body>
+</html>
