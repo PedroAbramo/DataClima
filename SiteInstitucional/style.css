@@ -128,43 +128,45 @@ nav a {
 }
 
 /*Divisor*/
-.banner-dataclima .bar-divisor{
+.bar-divisor{
     width: 100%;
-    height: 30px;
-    background: #fff;
+    height: 10px;
+    background: #1554B2;
 }
 
 /*Sobre Nós*/
-.hero {
+.banner-dataclima {
     display: flex;
     flex-direction: column;
     row-gap: 25px;
     color: white;
     padding: 200px 5% 0px 5%;
     text-align: left;
-    height: calc(100vh - 88px);
+    height: calc(44vh - 88px);
+    justify-content: center;
+    align-items: center;
 }
 
 /* Background Index */
-.principal {
-    background-image: url(images/background_principal.png);
+.banner-container {
+    background-image: url(images/HistDataClima.png);
     background-position: center;
 }
 
-.hero h1 {
+.banner-dataclima h1 {
     font-size: 70px;
     margin-bottom: 10px;
-    font-weight: 400;
+    font-weight: bold;
     line-height: 75px;
     width: 820px;
 }
 
-.hero p {
+.banner-dataclima p {
     width: 820px;
     font-size: 25px;
 }
 
-.hero #negrito {
+.banner-dataclima #negrito {
     font-weight: 750;
 }
 
@@ -186,8 +188,6 @@ nav a {
     background-color: #ffffff;
     transform: translateY(-3px);
 }
-
-
 
 /* Footer */
 footer {
