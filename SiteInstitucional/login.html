@@ -23,12 +23,7 @@
 </html>
 <script>
 
-    var tentativa = 1;
-    var maxTentativas = 3;
-
     function login() {
-
-        while (tentativa <= maxTentativas) {
 
             var email = ipt_email.value;
             var senha = ipt_senha.value;
@@ -38,20 +33,13 @@
 
             if (validacao) {
                 while (validacao) {
-                    alert(`E-mail ou senha incorretos! Tentativa ${tentativa} de ${maxTentativas}`);
+                    alert(`E-mail ou senha incorretos!`);
                     tentativa++;
                     break;
                 }
             } else {
                 window.location.href = "index.html";
             }
-
-            if (tentativa > maxTentativas) {
-                    alert("Número máximo de tentativas atingido!");
-            }
-
-            break;
-        }
 
     }
 </script>
