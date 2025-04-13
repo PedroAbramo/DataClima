@@ -62,7 +62,7 @@ nav a {
 
 /* Background Index */
 .principal {
-    background-image: url(images/background_principal.png);
+    background-image: url(../images/background_principal.png);
     background-position: center;
 }
 
@@ -138,7 +138,7 @@ nav a {
 /*Sobre Nós*/
 .banner-container.historia {
     height: calc(100vh - 88px - 227px);
-    background-image: url(images/HistDataClima.png);
+    background-image: url(../images/HistDataClima.png);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -302,7 +302,7 @@ button:hover {
 
 .imagem-login {
     width: 60%;
-    background-image: url(images/background_login.jpeg); 
+    background-image: url(../images/background_login.jpeg); 
     background-size: cover;
     background-position: center;
 }
