@@ -20,9 +20,9 @@ const serial = async (
     let poolBancoDados = mysql.createPool(
         {
             host: '127.0.0.1',
-            user: 'dataclima',
+            user: 'insert_dataclima',
             password: 'Sptech#2024',
-            database: 'data_clima',
+            database: 'dataclima',
             port: 3307
         }
     ).promise();
@@ -51,8 +51,8 @@ const serial = async (
     arduino.pipe(new serialport.ReadlineParser({ delimiter: '\r\n' })).on('data', async (data) => {
         console.log(data);
         const valores = data.split(';');
-        const sensorDigital = parseInt(valores[0]);
-        const sensorAnalogico = parseFloat(valores[1]);
+        const sensorDigital = parseFloat(valores[0]);
+        const sensorAnalogico = parseInt(valores[1]);
 
         // armazena os valores dos sensores nos arrays correspondentes
         valoresSensorAnalogico.push(sensorAnalogico);
@@ -63,7 +63,7 @@ const serial = async (
 
             // este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(
-                'INSERT INTO teste (temperatura, umidade) VALUES (?, ?)',
+                'INSERT INTO registro (fksensor, temperatura, umidade) VALUES (1, ?, ?)',
                 [sensorDigital, sensorAnalogico ]
             );
             console.log("valores inseridos no banco: ", sensorAnalogico + ", " + sensorDigital);
