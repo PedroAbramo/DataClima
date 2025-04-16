@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DataClima</title>
+  <link rel="stylesheet" href="Estilos/style.css">
+  <link rel="stylesheet" href="Estilos/index.css">
+</head>
+
+<body>
+
+  <!-- Header e navegação -->
+  <header>
+    <img src="images/DataClima_Logo.png" class="logo">
+    <p id="Dataclima_Nome">DataClima</p>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="sobre.html">Sobre Nós</a>
+        <a href="login.html">Área do cliente</a>
+    </nav>
+</header>
+
+<!-- Calculadora-->
+  <div class="container">
+
+    <div class="main-content">
+      <div class="content-left">
+        <h1>Você pode estar<br>perdendo milhões!!</h1>
+        <p>
+          Com a <span class="highlight">nossa calculadora</span> você poderá entender melhor o
+          <strong>Lucro</strong> que o <strong>DataClima</strong> poderá ter sobre o seu <strong>Data Center</strong>!
+        </p>
+        <p style="color: red;">
+          Ou seja, você poderá simular os prejuízos que você está<br>
+          sofrendo sem o nosso sistema. <strong>(COLOCAR ALGUM VALOR, COMO %)</strong>
+        </p>
+        <button class="btn">Simule agora</button>
+      </div>
+
+      <div class="content-right">
+        <div class="calculator-title">Calculadora de Benefícios</div>
+
+        <div class="calculator-warning">
+          Simulações estimadas são calculadas com base em informações do site do mercado de energia.
+        </div>
+
+        <p>Usando um estudo da Valor (2017), uma parada de 30 minutos em um data center gera prejuízos de até R$ 2
+          milhões. Este valor foi usado como base para a construção da nossa simulação de prejuízo.</p>
+
+        <p>Além disso, cerca de 10% desses danos (ligados à reputação) podem afetar seus negócios no longo prazo. Isso
+          não está incluso nos cálculos abaixo.</p>
+
+        <p>Usando as 4 oscilações semanais que ocorrem com 40% dos sistemas de energia de data centers, fizemos a
+          simulação de impacto financeiro baseado em estimativas de energia em SP. Os valores podem mudar de acordo com
+          o tipo de empresa e porte.</p>
+
+        <div class="form-group">
+          <label for="ipt_paradas">Quantas paradas o data center sofre por ano?</label>
+          <input type="number" id="ipt_paradas" />
+        </div>
+
+        <div class="form-group">
+          <label for="ipt_gasto">Gasto mensal com energia (R$)</label>
+          <input type="number" id="ipt_gasto" />
+        </div>
+
+        <div class="form-group">
+          <label for="ipt_valor">Valor total dos equipamentos (R$)</label>
+          <input type="number" id="ipt_valor" />
+        </div>
+
+        <button onclick="calcular()">Calcular</button>
+
+        <div class="calculator-footer" id="resultado">
+          Os valores apresentados são apenas estimativas baseadas em médias de mercado. Para uma análise personalizada,
+          entre em contato com nossa equipe.
+        </div>
+      </div>
+    </div>
+
+
+    <footer>
+      <div class="footer-container">
+          <div class="footer-col">
+              <h3>DataClima</h3>
+              <p>A DataClima é uma empresa focada<br>no monitoramento de data centers</p>
+          </div>
+          <div class="footer-col">
+              <h3>Navegue</h3>
+              <ul>
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="sobre.html">Sobre nós</a></li>
+              </ul>
+          </div>
+          <div class="footer-col">
+              <h3>Área do Cliente</h3>
+              <ul>
+                  <li><a href="login.html">Entrar</a></li>
+              </ul>
+          </div>
+          <div class="footer-col">
+              <h3>Contato</h3>
+              <ul>
+                  <li>Telefone: +55(11) 4436-5673</li>
+                  <li>E-mail: dataclima@sptech.school</li>
+                  <li>Endereço: Rua Haddock Lobo, 595 - Cerqueira César, São Paulo - SP, 01414-001</li>
+              </ul>
+          </div>
+      </div>
+  </footer>
+  <div class="copyright">
+      <p>© 2025 DataClima Todos os direitos reservados</p>
+  </div>
+  <div id="div_mensagem"></div>
+
+
+  <script>
+    function calcular() {
+      let paradas = Number(ipt_paradas.value);
+      let gasto = Number(ipt_gasto.value);
+      let valor = Number(ipt_valor.value);
+      let prejuizo = valor + paradas + valor;
+
+      div_mensagem.innerHTML =
+        `Seu prejuízo estimado é de <strong>R$ ${prejuizo.toFixed(2)}</strong> por ano.`;
+    }
+  </script>
+
+</body>
+
+</html>
