@@ -117,6 +117,7 @@ footer {
     font-size: 28px;
     margin-bottom: 40px;
     color: #333;
+    text-align: start;
 }
 
 .input-login {
@@ -127,9 +128,10 @@ footer {
     border-bottom: 2px solid #ccc;
     font-size: 16px;
     outline: none;
+    transition: border-color 0.3s;
 }
 
-input:focus {
+.input-login:focus {
     border-bottom: 2px solid #1554B2;
 }
 
@@ -150,6 +152,17 @@ button:hover {
     background-color: #0d3a7a;
 }
 
+.botao_cadastro {
+    margin-top: 10px; 
+    background-color: #6c757d;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.botao_cadastro:hover {
+    background-color: #4b5257;
+}
+
 .voltar {
     position: absolute;
     top: 20px;
@@ -164,4 +177,18 @@ button:hover {
     background-image: url(../images/background_login.jpeg); 
     background-size: cover;
     background-position: center;
+}
+
+.login-link {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.login-link a {
+    color: #333;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
 }

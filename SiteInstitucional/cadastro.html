@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - DataClima</title>
+    <link rel="stylesheet" href="Estilos/style.css">
+</head>
+<body>
+    <div class="container-login">
+        <div class="div-login">
+            <a href="index.html" class="voltar">⟵ Voltar</a>
+            <h2>Cadastro de Usuário</h2>
+            <input class="input-login" type="text" id="ipt_nome" placeholder="Nome">
+            <input class="input-login" type="text" id="ipt_telefone" placeholder="Telefone">
+            <input class="input-login" type="email" id="ipt_email" placeholder="E-mail">
+            <input class="input-login" type="password" id="ipt_senha" placeholder="Senha">
+            <input class="input-login" type="password" id="ipt_ConfSenha" placeholder="Confirmar senha">
+
+            <button onclick="cadastrar()">Cadastrar</button>
+
+            <div class="login-link">
+                Já tem uma conta? <a href="login.html">Faça login</a>
+            </div>
+        </div>
+        <div class="imagem-login"></div>
+    </div>
+</body>
+</html>
+<script>
+    function cadastrar() {
+        var nome = ipt_nome.value;
+        var telefone = ipt_telefone.value;
+        var email = ipt_email.value;
+        var senha = ipt_senha.value;
+        var confSenha = ipt_ConfSenha.value;
+
+        while (nome === "" || telefone === "" || email === "" || senha === "" || confSenha === "") {
+            alert("Por favor, preencha todos os campos!");
+            return;
+        }
+
+        while (senha != confSenha) {
+            alert("As senhas não coincidem! Digite novamente.");
+            return;
+        }
+
+        alert("Cadastro realizado com sucesso!");
+        window.location.href = "login.html";
+    }
+</script>
