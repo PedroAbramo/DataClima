@@ -12,6 +12,7 @@
             <a href="index.html" class="voltar">⟵ Voltar</a>
             <h2>Cadastro de Usuário</h2>
             <input class="input-login" type="text" id="ipt_nome" placeholder="Nome">
+            <input class="input-login" type="text" id="ipt_sobrenome" placeholder="sobrenome">
             <input class="input-login" type="text" id="ipt_telefone" placeholder="Telefone">
             <input class="input-login" type="email" id="ipt_email" placeholder="E-mail">
             <input class="input-login" type="password" id="ipt_senha" placeholder="Senha">
@@ -30,12 +31,13 @@
 <script>
     function cadastrar() {
         var nome = ipt_nome.value;
+        var sobrenome = ipt_sobrenome.value;
         var telefone = ipt_telefone.value;
         var email = ipt_email.value;
         var senha = ipt_senha.value;
         var confSenha = ipt_ConfSenha.value;
 
-        while (nome === "" || telefone === "" || email === "" || senha === "" || confSenha === "") {
+        while (nome == "" || sobrenome == "" ||telefone == "" || email == "" || senha == "" || confSenha == "") {
             alert("Por favor, preencha todos os campos!");
             return;
         }

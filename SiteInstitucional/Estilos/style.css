@@ -152,15 +152,18 @@ button:hover {
     background-color: #0d3a7a;
 }
 
-.botao_cadastro {
-    margin-top: 10px; 
-    background-color: #6c757d;
-    color: white;
-    transition: background-color 0.3s ease;
+.cadastro-link {
+    margin-top: 15px;
+    text-align: start;
 }
 
-.botao_cadastro:hover {
-    background-color: #4b5257;
+.cadastro-link a {
+    color: #333;
+    text-decoration: none;
+}
+
+.cadastro-link a:hover {
+    text-decoration: underline;
 }
 
 .voltar {
@@ -181,7 +184,7 @@ button:hover {
 
 .login-link {
     margin-top: 15px;
-    text-align: center;
+    text-align: start;
 }
 
 .login-link a {
