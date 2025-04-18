@@ -140,6 +140,54 @@
 
 }
 
+/*Sobre nós - Equipe*/
+.equipe-container {
+    text-align: center;
+    padding: 50px 5%;
+    background-color: #f5f5f5;
+}
+
+.equipe-container h2 {
+    font-size: 36px;
+    color: #1554B2;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.cards-equipe {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px; /* Essa propriedade define o espaço entre os itens de um container com display: flex ou grid. Nesse caso, criando um espaço entre os cards da equipe na horizontal e vertical. (Substitui a necessidade de usar o margin em cada card)*/
+}
+
+.card-membro {
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Nesse caso estou definindo a cor como preto com transparência. Os tres primeiro definem a cor e o ultimo a transparência da seguinte forma: Quanto maior o ultimo numero menos transparência tem e vice versa*/
+    padding: 20px;
+    width: 180px;
+    text-align: center;
+    transition: transform 0.3s ease; /* Essa propriedade é um complemento do hover abaixo, onde ao invez do movimento do eixo Y ser instantâneo ele define como e quanto tempo o efeito vai durar quando o transform mudar: A logica é que referêncio o transform e defino um tempo de duração que seria 0.3s e o ease define como seria esse movimento, no caso o seria ele faz começar lento, acelerar no meio e por fim terminar devagar de novo dentro do tempo definido, é assim que funciona o ease nesse caso. */
+}
+
+.card-membro:hover {
+    transform: translateY(-5px); /* Essa propriedade move o elemento 5 pixels no eixo Y, ou seja, para cima ou para baixo*/
+}
+
+.card-membro img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover; /* Essa tag ajusta a imagem para caber no círculo permitindo que a imagem seja cortada para caber dentro do tamanho definido sem distorcer */
+    margin-bottom: 15px;
+}
+
+.card-membro p {
+    font-weight: 600;
+    color: #333;
+}
+
 /* Calculadora do home */
 .container {
     display: flex;
