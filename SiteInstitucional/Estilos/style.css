@@ -50,8 +50,6 @@ nav a {
     position: relative;
     padding-bottom: 3px;
     
-<<<<<<< HEAD
-=======
 }
 nav a::after {
     content: '';
@@ -66,7 +64,6 @@ nav a::after {
 
 nav a:hover::after {
     width: 100%;
->>>>>>> 54fd09e53ab332de74c4e5ed90a268906829d82d
 }
 nav a::after {
     content: '';
@@ -205,7 +202,6 @@ button {
 button:hover {
     background-color: #4970c4;
     color: #F2F4F8;
-<<<<<<< HEAD
 }
 
 .cadastro-link {
@@ -220,8 +216,6 @@ button:hover {
 
 .cadastro-link a:hover {
     text-decoration: underline;
-=======
->>>>>>> 54fd09e53ab332de74c4e5ed90a268906829d82d
 }
 
 .voltar {
@@ -238,12 +232,6 @@ button:hover {
     background-image: url(../images/background_login.jpeg); 
     background-size: cover;
     background-position: center;
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-}
-=======
->>>>>>> 54fd09e53ab332de74c4e5ed90a268906829d82d
 }
 
 .login-link {
@@ -265,7 +253,3 @@ button:hover {
     background-color: #ffe5e5;
 }
 */
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
->>>>>>> 54fd09e53ab332de74c4e5ed90a268906829d82d
