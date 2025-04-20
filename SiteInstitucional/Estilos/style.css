@@ -62,9 +62,6 @@ nav a::after {
     transition: width 0.3s ease;
   }
 
-nav a:hover::after {
-    width: 100%;
-}
 nav a::after {
     content: '';
     position: absolute;
@@ -79,7 +76,6 @@ nav a::after {
 nav a:hover::after {
     width: 100%;
 }
-
 /* Footer */
 footer {
     background-color: #222;
@@ -176,6 +172,7 @@ footer {
     align-self: center;
     text-align: center;
 }
+
 .cadastro-link {
     align-self: center;
     text-align: center;
@@ -247,6 +244,7 @@ button:hover {
 .login-link a:hover {
     text-decoration: underline;
 }
+
 /* 
 .erro {
     border-bottom: 2px solid red;
