@@ -47,6 +47,23 @@ nav {
 nav a {
     text-decoration: none;
     color: black;
+    position: relative;
+    padding-bottom: 3px;
+    
+}
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    left: 0;
+    bottom: 0;
+    background-color: black;
+    transition: width 0.3s ease;
+  }
+
+nav a:hover::after {
+    width: 100%;
 }
 
 /* Hero Section */
@@ -261,6 +278,9 @@ footer {
     margin-bottom: 15px;
     font-size: 1.2rem;
 }
+.footer-col p {
+    width: 70%;
+}
 
 .footer-col ul {
     list-style: none;
@@ -317,6 +337,14 @@ footer {
     font-size: 16px;
     outline: none;
 }
+.login-link {
+    align-self: center;
+    text-align: center;
+}
+.cadastro-link {
+    align-self: center;
+    text-align: center;
+}
 
 input:focus {
     border-bottom: 2px solid #1554B2;
@@ -324,9 +352,10 @@ input:focus {
 
 button {
     background-color: #1554B2;
+    align-self: center;
     color: white;
     padding: 12px;
-    width: 100%;
+    width: 50%;
     border: none;
     border-radius: 8px;
     font-size: 16px;
@@ -336,7 +365,8 @@ button {
 }
 
 button:hover {
-    background-color: #0d3a7a;
+    background-color: #4970c4;
+    color: #F2F4F8;
 }
 
 .voltar {
@@ -353,4 +383,28 @@ button:hover {
     background-image: url(../images/background_login.jpeg); 
     background-size: cover;
     background-position: center;
+<<<<<<< Updated upstream
 }
+=======
+}
+
+.login-link {
+    margin-top: 15px;
+    text-align: start;
+}
+
+.login-link a {
+    color: #333;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+/* 
+.erro {
+    border-bottom: 2px solid red;
+    background-color: #ffe5e5;
+}
+*/
+>>>>>>> Stashed changes
