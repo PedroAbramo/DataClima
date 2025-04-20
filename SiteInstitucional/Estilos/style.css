@@ -47,6 +47,37 @@ nav {
 nav a {
     text-decoration: none;
     color: black;
+    position: relative;
+    padding-bottom: 3px;
+    
+}
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    left: 0;
+    bottom: 0;
+    background-color: black;
+    transition: width 0.3s ease;
+  }
+
+nav a:hover::after {
+    width: 100%;
+}
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    left: 0;
+    bottom: 0;
+    background-color: black;
+    transition: width 0.3s ease;
+  }
+
+nav a:hover::after {
+    width: 100%;
 }
 
 /* Footer */
@@ -71,6 +102,9 @@ footer {
 .footer-col h3 {
     margin-bottom: 15px;
     font-size: 1.2rem;
+}
+.footer-col p {
+    width: 70%;
 }
 
 .footer-col ul {
@@ -130,6 +164,22 @@ footer {
     outline: none;
     transition: border-color 0.3s;
 }
+.login-link {
+    align-self: center;
+    text-align: center;
+}
+.cadastro-link {
+    align-self: center;
+    text-align: center;
+}
+.login-link {
+    align-self: center;
+    text-align: center;
+}
+.cadastro-link {
+    align-self: center;
+    text-align: center;
+}
 
 .input-login:focus {
     border-bottom: 2px solid #1554B2;
@@ -137,9 +187,10 @@ footer {
 
 button {
     background-color: #1554B2;
+    align-self: center;
     color: white;
     padding: 12px;
-    width: 100%;
+    width: 50%;
     border: none;
     border-radius: 8px;
     font-size: 16px;
@@ -149,7 +200,8 @@ button {
 }
 
 button:hover {
-    background-color: #0d3a7a;
+    background-color: #4970c4;
+    color: #F2F4F8;
 }
 
 .cadastro-link {
@@ -195,3 +247,9 @@ button:hover {
 .login-link a:hover {
     text-decoration: underline;
 }
+/* 
+.erro {
+    border-bottom: 2px solid red;
+    background-color: #ffe5e5;
+}
+*/
