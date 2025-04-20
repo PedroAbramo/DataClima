@@ -2,141 +2,179 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DataClima - Monitoramento de Temperatura e Umidade em Data Centers</title>
-    <link rel="stylesheet" href="Estilos/style.css">
-    <link rel="stylesheet" href="Estilos/index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DataClima - Monitoramento de Data Centers</title>
+  <link rel="stylesheet" href="Estilos/style.css">
+  <link rel="stylesheet" href="Estilos/index.css">
 
-    <!-- Importando a fonte -->
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-    </style>
+  <!-- Importando a fonte -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+  </style>
 
 </head>
 
 <body>
-    <!-- Header e navegação -->
-    <header>
-        <a href="index.html">
-            <img src="images/DataClima_Logo.png" class="logo" style="width: auto;height: 70px;" >
-          </a>
-        
-        <nav>
-                <a href="calculadora.html">Calculadora Financeira</a>
-                <a href="sobre.html">Sobre Nós</a>
-                <a href="login.html">Área do cliente</a>
-        </nav>
-    </header>
+  <!-- Header e navegação -->
+  <header>
+    <a href="index.html">
+      <img src="images/DataClima_Logo.png" class="logo" style="width: auto;height: 70px;">
+    </a>
 
-    <!-- Hero Section -->
-    <div class="principal">
-            <div class="hero">
-                <h1>Monitoramento de <br /><span id="negrito">Temperatura</span> e <span id="negrito">Umidade</span><br />em
-                    Data Centers</h1>
-                <p>Garanta a segurança do seu datacenter com nosso monitoramento em tempo real de temperatura e umidade.</p>
-                <a href="#contato" class="cta-button">Junte-se a nós</a>
-            </div>
+    <nav>
+      <a href="calculadora.html">Calculadora Financeira</a>
+      <a href="sobre.html">Sobre Nós</a>
+      <a href="login.html">Área do cliente</a>
+    </nav>
+  </header>
 
-        <!-- Parceiros -->
-        <div class="parceiros">
-            <p>Empresas líderes escolhem a DataClima</p>
-            <div class="logos-parceiros">
-                <img src="images/logo_google_cloud (1).png" alt="Google Cloud">
-                <img src="images/logo_aws (1).png" alt="AWS">
-                <img src="images/logo_zoom (1).png" alt="Zoom">
-                <img src="images/logo_netflix_@2x (1).png" alt="Netflix">
-            </div>
-        </div>
+  <!-- Hero Section -->
+  <div class="principal">
+    <div class="hero">
+      <h1>Monitoramento de <br /><span id="negrito">Temperatura</span> e <span id="negrito">Umidade</span><br />em
+        Data Centers</h1>
+      <p>Garanta a segurança do seu datacenter com nosso monitoramento em tempo real de temperatura e umidade.</p>
+      <a href="login.html" class="cta-button">Junte-se a nós</a>
     </div>
-    <!-- Anúncio calculadora-->
-    
-    <div class="container">
 
-        <div class="main-content">
-          <div class="content-left">
-            <h1>Você pode estar<br>perdendo milhões!!</h1>
-            <p>
-              Com a <span class="highlight">nossa calculadora</span> você poderá entender melhor o
-              <strong>Lucro</strong> que o <strong>DataClima</strong> poderá ter sobre o seu <strong>Data Center</strong>!
-            </p>
-            <p style="color: red;">
-              Ou seja, você poderá simular os prejuízos que você está<br>
-              sofrendo sem o nosso sistema. <strong>(COLOCAR ALGUM VALOR, COMO %)</strong>
-            </p>
-            <button class="btn">Simule agora</button>
-          </div>
-    
-          <div class="content-right">
-            <div class="calculator-title">Calculadora de Benefícios</div>
-    
-            <div class="calculator-warning">
-              Simulações estimadas são calculadas com base em informações do site do mercado de energia.
-            </div>
-    
-            <p>Usando um estudo da Valor (2017), uma parada de 30 minutos em um data center gera prejuízos de até R$ 2 milhões. Este valor foi usado como base para a construção da nossa simulação de prejuízo.</p>
-    
-            <p>Além disso, cerca de 10% desses danos (ligados à reputação) podem afetar seus negócios no longo prazo. Isso não está incluso nos cálculos abaixo.</p>
-    
-            <p>Usando as 4 oscilações semanais que ocorrem com 40% dos sistemas de energia de data centers, fizemos a simulação de impacto financeiro baseado em estimativas de energia em SP. Os valores podem mudar de acordo com o tipo de empresa e porte.</p>
-    
-            <div class="form-group">
-              <label for="ipt_paradas">Quantas paradas o data center sofre por ano?</label>
-              <input type="number" id="ipt_paradas" />
-            </div>
-    
-            <div class="form-group">
-              <label for="ipt_gasto">Gasto mensal com energia (R$)</label>
-              <input type="number" id="ipt_gasto" />
-            </div>
-    
-            <div class="form-group">
-              <label for="ipt_valor">Valor total dos equipamentos (R$)</label>
-              <input type="number" id="ipt_valor" />
-            </div>
-    
-            <button onclick="calcular()">Calcular</button>
-    
-            <div class="calculator-footer" id="resultado">
-              Os valores apresentados são apenas estimativas baseadas em médias de mercado. Para uma análise personalizada, entre em contato com nossa equipe.
-            </div>
-          </div>
+    <!-- Parceiros -->
+    <div class="parceiros">
+      <p>Empresas líderes escolhem a DataClima</p>
+      <div class="logos-parceiros">
+        <img src="images/logo_google_cloud (1).png" alt="Google Cloud">
+        <img src="images/logo_aws (1).png" alt="AWS">
+        <img src="images/logo_zoom (1).png" alt="Zoom">
+        <img src="images/logo_netflix_@2x (1).png" alt="Netflix">
+      </div>
+    </div>
+  </div>
+
+  <!-- Divisão -->
+  <div class="bar-divisor"></div>
+
+
+  <!-- Benefícios -->
+  <div class="beneficios">
+    <h1> Benefícios de ter monitoramento DataClima </h1>
+    <div class="quadradinho">
+      
+      <div class="coluna borda">
+      <img src="images/24h.png" alt="Monitoramento">
+      <h2> Monitoramento 24h</h2>
+      <p> Com nosso serviço garantantimos 24h de monitoramento todos os dias da semana</p>
+      </div>
+      <div class="coluna borda">
+      <img src="images/segurança.png" alt="Segurança">
+      <h2> Segurança </h2>
+      <p> Monitoramento DataClima você terá DataCenters seguros de superaquecimento, curtos-circuitos e oxidação de componentes </p>
+      </div>
+      <div class="coluna">
+        <img src="images/praticidade.png" alt="Praticidade">
+        <h2> Praticidade</h2>
+        <p> Facilidade com acompanhamento de temperatura e umidade de seus servidores !</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Divisão -->
+  <div class="bar-divisor"></div>
+
+
+  <!-- Anúncio calculadora-->
+
+  <div class="container">
+
+    <div class="main-content">
+      <div class="content-left">
+        <h1>Você pode estar<br>perdendo milhões!!</h1>
+        <p>
+          Com a <span class="highlight">nossa calculadora</span> você poderá entender melhor o
+          <strong>Lucro</strong> que o <strong>DataClima</strong> poderá ter sobre o seu <strong>Data Center</strong>!
+        </p>
+        <p style="color: red;">
+          Ou seja, você poderá simular os prejuízos que você está<br>
+          sofrendo sem o nosso sistema. <strong>(COLOCAR ALGUM VALOR, COMO %)</strong>
+        </p>
+        <button class="btn">Simule agora</button>
+      </div>
+
+      <div class="content-right">
+        <div class="calculator-title">Calculadora de Benefícios</div>
+
+        <div class="calculator-warning">
+          Simulações estimadas são calculadas com base em informações do site do mercado de energia.
         </div>
-    
+
+        <p>Usando um estudo da Valor (2017), uma parada de 30 minutos em um data center gera prejuízos de até R$ 2
+          milhões. Este valor foi usado como base para a construção da nossa simulação de prejuízo.</p>
+
+        <p>Além disso, cerca de 10% desses danos (ligados à reputação) podem afetar seus negócios no longo prazo. Isso
+          não está incluso nos cálculos abaixo.</p>
+
+        <p>Usando as 4 oscilações semanais que ocorrem com 40% dos sistemas de energia de data centers, fizemos a
+          simulação de impacto financeiro baseado em estimativas de energia em SP. Os valores podem mudar de acordo com
+          o tipo de empresa e porte.</p>
+
+        <div class="form-group">
+          <label for="ipt_paradas">Quantas paradas o data center sofre por ano?</label>
+          <input type="number" id="ipt_paradas" />
+        </div>
+
+        <div class="form-group">
+          <label for="ipt_gasto">Gasto mensal com energia (R$)</label>
+          <input type="number" id="ipt_gasto" />
+        </div>
+
+        <div class="form-group">
+          <label for="ipt_valor">Valor total dos equipamentos (R$)</label>
+          <input type="number" id="ipt_valor" />
+        </div>
+
+        <button onclick="calcular()">Calcular</button>
+
+        <div class="calculator-footer" id="resultado">
+          Os valores apresentados são apenas estimativas baseadas em médias de mercado. Para uma análise personalizada,
+          entre em contato com nossa equipe.
+        </div>
+      </div>
+    </div>
+
     <!-- Footer -->
     <footer>
-        <div class="footer-container">
-            <div class="footer-col">
-                <h3>DataClima</h3>
-                <p>A DataClima é uma empresa focada no monitoramento de Data Centers.</p>
-            </div>
-            <div class="footer-col">
-                <h3>Navegue</h3>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="calculadora.html">Calculadora Financeira</a></li>
-                    <li><a href="sobre.html">Sobre nós</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3>Área do Cliente</h3>
-                <ul>
-                    <li><a href="login.html">Entrar</a></li>
-                    <li><a href="cadastro.html">Cadastre-se</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3>Contato</h3>
-                <ul>
-                    <li><b>Telefone:</b> +55(11) 4436-5673</li>
-                    <li><b>E-mail:</b> dataclima@sptech.school</li>
-                    <li><b>Endereço:</b> Rua Haddock Lobo, 595 - Cerqueira César, São Paulo - SP, 01414-001</li>
-                </ul>
-            </div>
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3>DataClima</h3>
+          <p>A DataClima é uma empresa focada no monitoramento de Data Centers.</p>
         </div>
+        <div class="footer-col">
+          <h3>Navegue</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="calculadora.html">Calculadora Financeira</a></li>
+            <li><a href="sobre.html">Sobre nós</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Área do Cliente</h3>
+          <ul>
+            <li><a href="login.html">Entrar</a></li>
+            <li><a href="cadastro.html">Cadastre-se</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Contato</h3>
+          <ul>
+            <li><b>Telefone:</b> +55(11) 4436-5673</li>
+            <li><b>E-mail:</b> dataclima@sptech.school</li>
+            <li><b>Endereço:</b> Rua Haddock Lobo, 595 - Cerqueira César, São Paulo - SP, 01414-001</li>
+          </ul>
+        </div>
+      </div>
     </footer>
     <div class="copyright">
-        <p>© 2025 DataClima Todos os direitos reservados</p>
+      <p>© 2025 DataClima Todos os direitos reservados</p>
     </div>
 </body>
+
 </html>
