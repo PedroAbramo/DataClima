@@ -28,26 +28,4 @@
     </div>
 </body>
 </html>
-<script>
-    function cadastrar() {
-        var nome = ipt_nome.value;
-        var sobrenome = ipt_sobrenome.value;
-        var telefone = ipt_telefone.value;
-        var email = ipt_email.value;
-        var senha = ipt_senha.value;
-        var confSenha = ipt_ConfSenha.value;
-
-        while (nome == "" || sobrenome == "" ||telefone == "" || email == "" || senha == "" || confSenha == "") {
-            alert("Por favor, preencha todos os campos!");
-            return;
-        }
-
-        while (senha != confSenha) {
-            alert("As senhas não coincidem! Digite novamente.");
-            return;
-        }
-
-        alert("Cadastro realizado com sucesso!");
-        window.location.href = "login.html";
-    }
-</script>
+<script src="Script/script.js"></script>

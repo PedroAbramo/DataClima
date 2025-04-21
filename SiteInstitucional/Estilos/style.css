@@ -127,6 +127,9 @@ footer {
     color: #999;
 }
 
+
+/* Pagina de login e cadastro */
+
 .container-login {
     display: flex;
     height: 100vh;
