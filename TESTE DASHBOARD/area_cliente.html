@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataClima - Monitoramento de Temperatura e Umidade em Data Centers</title>
+    <link rel="stylesheet" href="style/dashboard.css">
+    <link rel="stylesheet" href="style/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Importando a fonte -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+    </style>
+
+</head>
+<body>
+    <nav class="side-nav">
+        <div class="logo">
+            <img src="img/DataClima_Logo.png" class="logo" style="width: 100px;" >
+        </div>
+        <ul class="navbar">
+            <li class="usuario">usuario-nome</li>
+            <li class="usuario">datacenter-nome</li>
+            <li class="item-menu ativo">Visão Geral</li>
+            <li class="item-menu">Visão Personalizada</li>
+        </ul>
+        <div class="item-menu sair">
+            Sair
+        </div>
+    </nav>
+
+
+    <div class="tela">
+        <div class="titulo">
+            <h1>Visão Geral</h1>
+        </div>
+        <div class="info">
+            <div class="resumo">
+                <div id="status" class="lista-status">
+                    <p>Status: Normal</p>
+                <ul>
+                    <li>sala 1</li>
+                </ul>
+                </div>
+                <div class="valores">
+                    <p>Temperatura Média</p>
+                </div>
+                <div class="valores">
+                    <p>Umidade Média</p>
+                </div>
+            </div>
+            <div class="temperatura">
+                <div class="dashboard">
+                    <canvas id="sensorTemperatura"></canvas>
+                </div>
+                <div class="dados-indiv">
+                    <div class="valores">
+                        <p>Temperatura Máxima</p>
+                    </div>
+                    <div class="valores">
+                        <p>Temperatura Mínima</p>
+                    </div>
+                </div>
+            </div>
+            <div class="umidade">
+                <div class="dashboard">
+                    <canvas id="sensorUmidade"></canvas>
+                </div>
+                <div class="dados-indiv">
+                    <div class="valores">
+                        <p>Umidade Máxima</p>
+                    </div>
+                    <div class="valores">
+                        <p>Umidade Mínima</p>  
+                    </div>
+                </div>
+            </div>
+            </div>
+
+
+
+            <div id="temp-media">
+
+            </div>
+            <div id="umidade-media">
+
+            </div>
+
+
+
+            </div>
+        </div>
+
+
+</body>
+<script>
+    var sensorUmidade = new Chart(document.getElementById('sensorUmidade').getContext('2d'), {
+        type: 'line',
+        data: {
+            datasets: [{
+                label: 'Umidade',
+                borderColor: '#63B1BC',
+                backgroundColor: '#ED145B'
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    beginAtZero: true
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: '(%)'
+                    },
+                    beginAtZero: true,
+                },
+            },
+        }
+    });
+
+    var sensorTemperatura = new Chart(document.getElementById('sensorTemperatura').getContext('2d'), {
+        type: 'line',
+        data: {
+            datasets: [{
+                label: 'Temperatura',
+                borderColor: '#63B1BC',
+                backgroundColor: '#0762C8'
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    beginAtZero: true
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: '(0-1)'
+                    },
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    var paginacao = {};
+    var tempo = {};
+
+    function obterDados(grafico, endpoint) {
+        fetch('http://localhost:3300/sensores/' + endpoint)
+            .then(response => response.json())
+            .then(valores => {
+                if (paginacao[endpoint] == null) {
+                    paginacao[endpoint] = 0;
+                }
+                if (tempo[endpoint] == null) {
+                    tempo[endpoint] = 0;
+                }
+
+                var ultimaPaginacao = paginacao[endpoint];
+                paginacao[endpoint] = valores.length;
+                valores = valores.slice(ultimaPaginacao);
+
+                valores.forEach((valor) => {
+                    if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
+                        grafico.data.labels.shift();
+                        grafico.data.datasets[0].data.shift();
+                    }
+
+                    grafico.data.labels.push(tempo[endpoint]++);
+                    grafico.data.datasets[0].data.push(parseFloat(valor));
+                    grafico.update();
+                });
+            })
+            .catch(error => console.error('Erro ao obter dados:', error));
+    }
+
+    setInterval(() => {
+        obterDados(sensorUmidade, 'umidade');
+        obterDados(sensorTemperatura, 'temperatura');
+    }, 1000);
+
+</script>
+</body>
+
+</html>
+</html>

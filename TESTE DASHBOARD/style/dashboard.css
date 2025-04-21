@@ -1,0 +1,124 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+    list-style-type: none;
+}
+body {
+    height: 100vh;
+    line-height: 1.6;
+    color: #333;
+}
+.side-nav {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 10px 0px 0px 0px;
+    box-shadow: 0px 0px 2px 0.4px #a0a0a0;
+}
+.usuario {
+    color: #555555;
+    background-color: #d1d5db;
+    text-align: center;
+    padding: 3px 13px 3px 13px;
+    border-bottom: solid 1.2px #b0b0b0;
+    
+}
+.item-menu {
+    border-bottom: solid 1px #f0f0f0;
+    padding: 8px 13px 8px 13px;
+}
+.item-menu:hover {
+    background-color: #f0f0f0;
+}
+
+.sair {
+    margin-top: auto;
+    border-top: solid 1px  #f0f0f0;
+
+}
+.sair:hover {
+    background-color: #fc7979;
+    border-top: solid 3px#ff4e4e;
+    color: #000;
+}
+.ativo {
+    background-color: #f0f0f0;
+    border-left: solid 5px gray;
+}
+
+
+
+
+.tela {
+    margin-left: 300px;
+    display: flex;
+    height: 200vh;
+    padding: 20px;
+    padding-right: 50px;
+    flex-direction: column;
+    background-color: #e0e0e0;
+}
+.titulo {
+    
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+}
+.resumo, .temperatura, .umidade {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin: 20px;
+}
+.resumo {
+    background-color: #333;
+    border-radius: 15px;
+}
+
+.temperatura, .umidade {
+    margin: 20px;
+    padding: 50px;
+}
+.dados-indiv {
+    display: flex;
+    flex-direction: column;
+}
+.valores {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    width: 120px;
+    height: 120px;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+}
+.lista-status {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 100px;
+    padding: 5px;
+    border-radius: 10px;
+}
+.lista-status li {
+    border: solid 1px black;
+    border-radius: 15px;
+    padding: 0px 10px 0px 10px;
+}
+
+.dashboard {
+    display: flex;
+    width: 500px;
+}
