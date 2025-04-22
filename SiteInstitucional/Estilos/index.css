@@ -69,7 +69,7 @@
     color: #1F4E8C;
     padding: 2% 2% 0px 2%;
     text-align: left;
-    height: calc(60vh - 150px);
+    height: 400px;
 }
 
 .quadradinho{
@@ -186,7 +186,6 @@
 .logos-parceiros img {
     height: 57px;
     margin: 10px;
-    filter: brightness(0) invert(1);
 }
 
 /*Sobre Nós*/

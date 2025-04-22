@@ -4,7 +4,7 @@ function login() {
 
     var email = ipt_email.value;
     var senha = ipt_senha.value;
-    var emailC = 'admin';
+    var emailC = 'admin@sptech.school';
     var senhaC = '123';
     var validacao = (email != emailC || senha != senhaC);
 
