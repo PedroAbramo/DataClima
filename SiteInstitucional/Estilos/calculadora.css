@@ -11,12 +11,15 @@ body {
     align-items: center;
     justify-content: center;
     padding: 50px;
+    color:white;
+    margin: 2px;
 
   }
+
   .calculadora {
     background: white;
     max-width: 700px;
-    margin: auto;
+    margin: 40px 10px;
     padding: 25px;
     border-radius: 10px;
     box-shadow: 0 0 10px #ccc;
@@ -39,7 +42,7 @@ body {
   }
 
   .resultado {
-    background: #eef;
+    background: #2C6FC8;
     padding: 15px;
     border-radius: 8px;
     margin-top: 20px;

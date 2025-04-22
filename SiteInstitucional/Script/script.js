@@ -14,7 +14,7 @@ function login() {
             break;
         }
     } else {
-        window.location.href = "index.html";
+        window.location.href = "Dashboard.html";
     }
 
 }
