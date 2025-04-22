@@ -125,6 +125,10 @@
     min-height: 20vh;
     color: white;
 }
+.container img{
+    width: 100px;
+    margin: 1%;
+}
 
 .main-content {
 
@@ -136,6 +140,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+}
+.main-content p{
+    font-size: 1.5rem ;
 }
 
 .btn {
