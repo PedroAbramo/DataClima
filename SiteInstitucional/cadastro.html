@@ -28,4 +28,36 @@
     </div>
 </body>
 </html>
-<script src="Script/script.js"></script>
+<script>
+
+    function cadastrar() {
+        var nome = ipt_nome.value;
+        var sobrenome = ipt_sobrenome.value;
+        var telefone = ipt_telefone.value;
+        var email = ipt_email.value;
+        var senha = ipt_senha.value;
+        var confSenha = ipt_ConfSenha.value;
+        var nulo = (nome == "" || sobrenome == "" ||telefone == "" || email == "" || senha == "" || confSenha == "");
+        var emailValido = "admin@sptech.school"
+
+        while (nulo) {
+            alert("Por favor, preencha todos os campos!");
+            return;
+        }
+
+        while (!emailValido){
+            alert("Email inválido, por favor insira um email correto");
+            return;
+        }
+
+        while (senha != confSenha) {
+            alert("As senhas não coincidem! Digite novamente.");
+            return;
+        }
+
+
+        alert("Cadastro realizado com sucesso!");
+        window.location.href = "login.html";
+    }
+
+</script>
