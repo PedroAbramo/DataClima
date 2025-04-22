@@ -108,6 +108,7 @@ footer {
     color: white;
 }
 
+
 .copyright {
     text-align: center;
     background: #1a1a1a;
@@ -151,24 +152,6 @@ footer {
     outline: none;
     transition: border-color 0.3s;
 }
-.login-link {
-    align-self: center;
-    text-align: center;
-}
-.cadastro-link {
-    align-self: center;
-    text-align: center;
-}
-.login-link {
-    align-self: center;
-    text-align: center;
-}
-
-.cadastro-link {
-    align-self: center;
-    text-align: center;
-}
-
 .input-login:focus {
     border-bottom: 2px solid #1554B2;
 }
@@ -194,7 +177,8 @@ button:hover {
 
 .cadastro-link {
     margin-top: 15px;
-    text-align: start;
+    align-self: center;
+    text-align: center;
 }
 
 .cadastro-link a {
@@ -223,8 +207,9 @@ button:hover {
 }
 
 .login-link {
+    align-self: center;
+    text-align: center;
     margin-top: 15px;
-    text-align: start;
 }
 
 .login-link a {
