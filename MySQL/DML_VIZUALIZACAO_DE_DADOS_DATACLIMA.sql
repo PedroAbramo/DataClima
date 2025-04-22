@@ -41,7 +41,7 @@ WHERE
 sa.id = 1
 ORDER BY r.dataRegistro desc;
 
--- registro de um sensor (3)
+-- registro de um sensor
 SELECT 
 	r.id as 'ID do Registro',
 	s.nome as 'Nome do Sensor',

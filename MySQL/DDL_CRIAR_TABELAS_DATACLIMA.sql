@@ -15,6 +15,7 @@ CREATE TABLE usuario (
 	id INT NOT NULL auto_increment,
     fkEmpresa INT,
     nome VARCHAR(50) NOT NULL,
+    sobrenome VARCHAR(50) NOT NULL,
     telefone VARCHAR(11),
     email VARCHAR(100) NOT NULL,
     senha VARCHAR(20) NOT NULL,
