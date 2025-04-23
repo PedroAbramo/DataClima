@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataClima - Monitoramento de Temperatura e Umidade em Data Centers</title>
+    <link rel="stylesheet" href="Estilos/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+    </style>
+</head>
+
+<body>
+    <nav class="side-nav">
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/DataClima_Logo.png" class="logo" style="width: 250px;">
+            </a>
+        </div>
+        <ul class="navbar">
+            <li class="usuario">Admin</li>
+            <li class="usuario">DataCenter Teste</li>
+            <a href="PainelGeral.html">
+                <li class="item-menu ativo">Visão Geral</li>
+            </a>
+            <a href="PainelEspecifico.html">
+                <li class="item-menu">Painel Específico</li>
+            </a>
+        </ul>
+        <a href="login.html" class="item-menu sair">
+            <div>
+                Sair
+            </div>
+        </a>
+    </nav>
+
+    <div class="tela">
+        <div class="titulo">
+            <h1>Visão Geral do Data Center</h1>
+        </div>
+        <div class="info">
+            <div class="resumo">
+                <div id="status" class="valores">
+                    <p>Status: <span style="color: #e0e243;">Alerta</span></p>
+                </div>
+                <div class="valores">
+                    <p>Temperatura Máxima</p>
+                    <strong <span style="color: #6abc63;"></span>27°C</strong>
+                </div>
+                <div class="valores">
+                    <p>Temperatura Mínima</p>
+                    <strong <span style="color: #6abc63;"></span>18°C</strong>
+                </div>
+                <div class="valores">
+                    <p>Umidade Máxima</p>
+                    <strong <span style="color: #6abc63;"></span>55%</strong>
+                </div>
+                <div class="valores">
+                    <p>Umidade Mínima</p>
+                    <strong <span style="color: #e0e243;"></span>37%</strong>
+                </div>
+            </div>
+            
+
+             <div id="div_sensor"></div>
+<div class="painel-salas">
+        <div class="painel-status">
+            <p>Salas</p>
+            <div class="lista-status">
+                <a href="PainelEspecifico.html" class="salas">Sala 1<div class="status alerta"></div></a>
+            </div>
+        </div>
+</div>
+    <script>
+        sensorvar = sensorselect.value;
+        div_sensor.innerHTML = `<h2>${sensorvar}</h2>`;
+        function sensor() {
+            sensorvar = sensorselect.value;
+            div_sensor.innerHTML = `<h2>${sensorvar}</h2>`;
+        }
+        // Inicialização dos gráficos
+        const ctxTemperatura = document.getElementById('sensorTemperatura').getContext('2d');
+        const ctxUmidade = document.getElementById('sensorUmidade').getContext('2d');
+
+        let sensorTemperatura = new Chart(ctxTemperatura, {
+            type: 'line',
+            data: {
+                labels: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00'],
+                datasets: [{
+                    label: 'Temperatura',
+                    borderColor: '#004080', // Cor da linha (azul mais forte)
+                    backgroundColor: '#66B2FF', // Cor da bolinha da linha (azul mais claro)
+                    data: [22, 24, 27, 23, 20, 18],
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: '(°C)'
+                        },
+                        beginAtZero: true,
+                    }
+                }
+            }
+        });
+
+        let sensorUmidade = new Chart(ctxUmidade, {
+            type: 'line',
+            data: {
+                labels: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00'],
+                datasets: [{
+                    label: 'Umidade',
+                    borderColor: '#87CEEB',
+                    backgroundColor: '#0056b3', 
+                    data: [50, 42, 37, 55, 40, 43],
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: '(%)'
+                        },
+                        beginAtZero: true,
+                    },
+                },
+            }
+        });
+    </script>
+
+</body>
+</html>
