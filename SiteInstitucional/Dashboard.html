@@ -7,32 +7,29 @@
     <title>DataClima - Monitoramento de Temperatura e Umidade em Data Centers</title>
     <link rel="stylesheet" href="Estilos/dashboard.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Importando a fonte -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
     </style>
-
 </head>
+
 <body>
     <nav class="side-nav">
         <div class="logo">
-        <a href="index.html">
-            <img src="images/DataClima_Logo.png" class="logo" style="width: 250px;" >
-        </a>
+            <a href="index.html">
+                <img src="images/DataClima_Logo.png" class="logo" style="width: 250px;">
+            </a>
         </div>
         <ul class="navbar">
             <li class="usuario">Admin</li>
             <li class="usuario">DataCenter Teste</li>
             <li class="item-menu ativo">Visão Geral</li>
-            
         </ul>
-        <a href="login.html" class="item-menu sair" >
-            <div >
-            Sair
+        <a href="login.html" class="item-menu sair">
+            <div>
+                Sair
             </div>
         </a>
     </nav>
-
 
     <div class="tela">
         <div class="titulo">
@@ -42,126 +39,132 @@
             <div class="resumo">
                 <div id="status" class="lista-status">
                     <p>Status: Normal</p>
-                <ul>
-                    <li>sala 1</li>
-                </ul>
+                    <p>Selecione o Sensor:</p>
+                    <select id="sensor-select" name="sensor">
+                        <option value="sensor1">Sensor 1</option>
+                        <option value="sensor2">Sensor 2</option>
+                        <option value="sensor3">Sensor 3</option>
+                        <option value="sensor4">Sensor 4</option>
+                    </select>
                 </div>
                 <div class="valores">
                     <p>Temperatura Média</p>
+                    <strong <span style="color: #6abc63;"></span>22°C</strong>
                 </div>
                 <div class="valores">
                     <p>Umidade Média</p>
+                    <strong <span style="color: #6abc63;"></span>44%</strong>
                 </div>
             </div>
-            <div class="temperatura">
-                <div class="dashboard">
-                    <canvas id="sensorTemperatura"></canvas>
-                </div>
-                <div class="dados-indiv">
-                    <div class="valores">
-                        <p>Temperatura Máxima</p>
-                        <strong>27</strong>
-                    </div>
-                    <div class="valores">
-                        <p>Temperatura Mínima</p>
-                        <strong>18</strong>
-                    </div>
-                </div>
-            </div>
-            <div class="umidade">
-                <div class="dashboard">
-                    <canvas id="sensorUmidade"></canvas>
-                </div>
-                <div class="dados-indiv">
-                    <div class="valores">
-                        <p>Umidade Máxima</p>
-                        <strong>55</strong>
-                    </div>
-                    <div class="valores">
-                        <p>Umidade Mínima</p>
-                        <strong >40</strong>
-                    </div>
-                </div>
-            </div>
-            </div>
-
-
-
-            <div id="temp-media">
-
-            </div>
-            <div id="umidade-media">
-
-            </div>
-
-
-
-            </div>
+            <!-- Temperatura -->
+<div class="temperatura">
+    <div class="dados-indiv">
+        <div class="valores">
+            <p>Temperatura Máxima</p>
+            <strong id="temp-max" <span style="color: #6abc63;"></span>27°C</strong>
         </div>
+        <div class="valores">
+            <p>Temperatura Mínima</p>
+            <strong id="temp-min"<span style="color: #6abc63;"></span>18°C</strong>
+        </div>
+    </div>
+    <div class="dashboard">
+        <canvas id="sensorTemperatura"></canvas>
+    </div>
+    <div class="legenda">
+        <p><span style="color: #6abc63;">■</span> <b>Temperatura Normal</b> <br>Abaixo de 18°C ou acima de 27°C</p>
+            <br>
+        <p><span style="color: #cacc48;">■</span> <b>Temperatura Em Alerta</b> <br>Acima de 27°C</p>
+            <br>
+        <p><span style="color: #bc6363;">■</span> <b>Temperatura Crítica</b> <br>Acima de 32°C</p>
+    </div>
+</div>
 
+<!-- Umidade -->
+<div class="umidade">
+    <div class="dados-indiv">
+        <div class="valores">
+            <p>Umidade Máxima</p>
+            <strong id="umidade-max"<span style="color: #6abc63;"></span>55%</strong>
+        </div>
+        <div class="valores">
+            <p>Umidade Mínima</p>
+            <strong id="umidade-min"<span style="color: #cacc48;"></span>37%</strong>
+        </div>
+    </div>
+    <div class="dashboard">
+        <canvas id="sensorUmidade"></canvas>
+    </div>
+    <div class="legenda">
+        <p><span style="color: #6abc63;">■</span> <b>Umidade Normal</b> <br>Entre 40% e 55%</p>
+            <br>
+        <p><span style="color: #cacc48;">■</span> <b>Umidade Em Alerta</b> <br>Abaixo de 40% ou acima de 55%</p>
+            <br>
+        <p><span style="color: #bc6363;">■</span> <b>Umidade Crítica</b> <br>Menor que 20%</p>
+    </div>
+</div>
 
-</body>
-<script>
-    var sensorUmidade = new Chart(document.getElementById('sensorUmidade').getContext('2d'), {
-        type: 'line',
-        data: {
-            labels: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00'],
-            datasets: [{
-                label: 'Umidade',
-                borderColor: '#63B1BC',
-                backgroundColor: '#ED145B',
-                data: [50, 42, 40, 55, 40, 43],
-            }]
-        },
-        options: {
-            scales: {
-                x: {
-                    beginAtZero: true
-                },
-                y: {
-                    
-                    title: {
-                        display: true,
-                        text: '(%)'
-                    },
-                    beginAtZero: true,
-                },
+    <script>
+        // Inicialização dos gráficos
+        const ctxTemperatura = document.getElementById('sensorTemperatura').getContext('2d');
+        const ctxUmidade = document.getElementById('sensorUmidade').getContext('2d');
+
+        let sensorTemperatura = new Chart(ctxTemperatura, {
+            type: 'line',
+            data: {
+                labels: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00'],
+                datasets: [{
+                    label: 'Temperatura',
+                    borderColor: '#004080', // Cor da linha (azul mais forte)
+                    backgroundColor: '#66B2FF', // Cor da bolinha da linha (azul mais claro)
+                    data: [22, 24, 27, 23, 20, 18],
+                }]
             },
-        }
-    });
-
-
-    
-    var sensorTemperatura = new Chart(document.getElementById('sensorTemperatura').getContext('2d'), {
-        type: 'line',
-        data: {
-            labels: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00'],
-            datasets: [{
-                label: 'Temperatura',
-                borderColor: '#63B1BC',
-                backgroundColor: '#0762C8',
-                data: [22, 24, 27, 23, 20, 18],
-            }]
-        },
-        options: {
-            scales: {
-                x: {
-                    beginAtZero: true
-                },
-                y: {
-                    title: {
-                        display: true,
-                        text: '(0-1)'
+            options: {
+                scales: {
+                    x: {
+                        beginAtZero: true
                     },
-                    beginAtZero: true,
+                    y: {
+                        title: {
+                            display: true,
+                            text: '(°C)'
+                        },
+                        beginAtZero: true,
+                    }
                 }
             }
-        }
-    });
+        });
 
-    
+        let sensorUmidade = new Chart(ctxUmidade, {
+            type: 'line',
+            data: {
+                labels: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00'],
+                datasets: [{
+                    label: 'Umidade',
+                    borderColor: '#87CEEB',
+                    backgroundColor: '#0056b3', 
+                    data: [50, 42, 37, 55, 40, 43],
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: '(%)'
+                        },
+                        beginAtZero: true,
+                    },
+                },
+            }
+        });
+   
+    </script>
 
-</script>
+</body>
 
 </html>
-

@@ -41,6 +41,8 @@ body {
     margin-top: auto;
     border-top: solid 2px  #f0f0f0;
     background-color: #D1D5DB;
+    text-decoration: none;
+    color: #333;
 }
 .sair:hover {
     background-color: #fc7979;
@@ -76,16 +78,25 @@ body {
     justify-content: space-around;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
+
 .temperatura, .umidade {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     padding: 30px;
     background: #ffffff;
     border-radius: 15px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    
 }
+
 .dados-indiv {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    margin-right: 20px; /* Espaço entre os valores e o gráfico */
+    order: -1;
 }
 .valores {
     background-color: #f9f9f9;
@@ -125,3 +136,19 @@ body {
     max-width: 600px;
     margin: auto;
 }
+
+/* style do select de sensores */
+#sensor-select {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    color: #333;
+    background-color: #f9f9f9;
+    border: 2px solid #1F4E8C;
+    border-radius: 5px;
+    outline: none; /* Não altera a cor do da borda ao selecionar um sensor, mantendo o azul 100% do tempo*/
+    cursor: pointer;
+}
+
