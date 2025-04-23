@@ -34,7 +34,7 @@
         var nome = ipt_nome.value;
         var sobrenome = ipt_sobrenome.value;
         var telefone = ipt_telefone.value;
-        var email = ipt_email.value;
+        var email = ipt_email.value.includes('@');
         var senha = ipt_senha.value;
         var confSenha = ipt_ConfSenha.value;
         var nulo = (nome == "" || sobrenome == "" ||telefone == "" || email == "" || senha == "" || confSenha == "");
