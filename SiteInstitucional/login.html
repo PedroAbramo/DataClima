@@ -28,6 +28,9 @@
 
 <script>
 
+    var maxTentativas = 3;
+    var tentativa = 1;
+
 function login() {
 
     var email = ipt_email.value;
@@ -36,13 +39,21 @@ function login() {
     var senhaC = '123';
     var validacao = (email != emailC || senha != senhaC);
 
-    if (validacao) {
-        while (validacao) {
-            alert(`E-mail ou senha incorretos!`);
+    if (tentativa > 3) {
+        alert(`Maximo de tentativas atingidos! Tente novamente mais tarde.`);
+    }
+
+    while (tentativa <= maxTentativas) {
+        
+        if (validacao) {
+            alert(`E-mail ou senha incorretos! Tentativa ${tentativa} de ${maxTentativas}`);
+            tentativa++;    
+            break;
+        } else {
+            window.location.href = "Dashboard.html";
             break;
         }
-    } else {
-        window.location.href = "Dashboard.html";
+        
     }
 
 }
