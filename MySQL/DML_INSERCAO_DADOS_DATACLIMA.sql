@@ -2,24 +2,19 @@ USE dataclima;
 
 INSERT INTO empresa (nome, cnpj, telefone)
 	VALUES
-	('Tech Solutions', '12345678000199', '11999998888'),
-	('CloudCorp', '98765432000177', '11888887777');
+	('SPTECH', '12345678000199', '11999998888');
     
 INSERT INTO usuario (fkEmpresa, nome, sobrenome, telefone, email, senha)
 	VALUES
-	(1, 'Carlos', 'Silva', '11911112222', 'carlos@techsolutions.com', 'senha123'),
-	(2, 'Mariana', 'Souza', '11800001111', 'mariana@cloudcorp.com', 'senha456');
+	(1, 'Carlos', 'Silva', '11911112222', 'carlos@sptech.school', 'senha123');
     
 INSERT INTO datacenter (fkEmpresa, nome)
 	VALUES
-	(1, 'DataCenter Alpha'),
-	(2, 'Cloud Center West');
+	(1, 'DataCenter 1');
     
 INSERT INTO sala (fkDatacenter, nome)
 	VALUES
-	(1, 'Sala Servidores A'),
-	(1, 'Sala Backup B'),
-	(2, 'Sala Central');
+	(1, 'Sala 01');
 
 INSERT INTO sensor (fkSala, nome)
 	VALUES
