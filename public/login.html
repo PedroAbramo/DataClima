@@ -20,6 +20,9 @@
                 <div class="cadastro-link">
                     Não tem login? <a href="cadastro.html"><b>Cadastre-se</b></a>
                 </div>
+                <div id="mensagem">
+
+                </div>
             </div>
             <div class="imagem-login"></div>
         </div>
@@ -35,27 +38,55 @@ function login() {
 
     var email = ipt_email.value;
     var senha = ipt_senha.value;
-    var emailC = 'admin@sptech.school';
-    var senhaC = '123';
-    var validacao = (email != emailC || senha != senhaC);
 
-    if (tentativa > 3) {
-        alert(`Maximo de tentativas atingidos! Tente novamente mais tarde.`);
-    }
+        console.log("FORM LOGIN: ", email);
+        console.log("FORM SENHA: ", senha);
 
-    while (tentativa <= maxTentativas) {
-        
-        if (validacao) {
-            alert(`E-mail ou senha incorretos! Tentativa ${tentativa} de ${maxTentativas}`);
-            tentativa++;    
-            break;
-        } else {
-            window.location.href = "PainelGeral.html";
-            break;
-        }
-        
-    }
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: email,
+                senhaServer: senha
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
 
+            if (resposta.ok) {
+            mensagem.innerHTML =
+              "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+
+                    setTimeout(function () {
+                        window.location = "./PainelGeral.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+                mensagem.innerHTML =
+                    "Houve um erro ao tentar realizar o login!";
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
 }
-    
 </script>  
