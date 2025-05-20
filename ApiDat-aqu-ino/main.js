@@ -19,7 +19,7 @@ const serial = async (
     // conexão com o banco de dados MySQL
     let poolBancoDados = mysql.createPool(
         {
-            host: '127.0.0.1',
+            host: '10.18.36.36', // ip que deve ser alterado de acordo com a máquina que receberá os dados
             user: 'insert_dataclima',
             password: 'Sptech#2024',
             database: 'dataclima',
