@@ -1,0 +1,244 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+    list-style-type: none;
+}
+body {
+    height: 100vh;
+    line-height: 1.6;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+}
+
+.side-nav {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 10px 0px 0px 0px;
+    box-shadow: 0px 0px 2px 0.4px #a0a0a0;
+}
+
+.usuario {
+    color: #555555;
+    background-color: #d1d5db;
+    text-align: center;
+    padding: 3px 13px 3px 13px;
+    border-bottom: solid 1.2px #b0b0b0;
+}
+.item-menu {
+    color: #333;
+    border-bottom: solid 1px #d0d0d0;
+    padding: 8px 13px 8px 13px;
+}
+.item-menu:hover {
+    background-color: #f0f0f0;
+}
+.sair {
+    margin-top: auto;
+    border-top: solid 2px  #f0f0f0;
+    background-color: #D1D5DB;
+    text-decoration: none;
+    color: #333;
+}
+.sair:hover {
+    background-color: #fc7979;
+    border-top: solid 3px #ff4e4e;
+    color: #000;
+}
+.ativo {
+    background-color: #f0f0f0;
+    border-left: solid 5px gray;
+}
+.tela {
+    margin-left: 300px;
+    display: flex;
+    min-height: 100vh;
+    padding: 20px 50px;
+    flex-direction: column;
+    background-color: #e0e0e0;
+}
+.info {
+    display: flex;
+    flex-direction: column;
+}
+.resumo, .temperatura, .umidade {
+    display: flex;
+    width: 100%;
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+}
+.resumo {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 20px;
+    justify-content: space-around;
+}
+
+.painel-salas {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 15px;
+}
+
+.painel-salas p {
+    text-align: center;
+    font-weight: 700;
+    font-size: 20px;
+    padding: 10px 0px 10px 0px;
+    border-bottom: solid 1px;
+}
+.painel-status {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 530px;
+    margin: 20px 100px 20px 100px;
+    background-color: #f0f0f0;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+.lista-status {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 500px;
+    padding: 10px;
+}
+
+.salas {
+    color: black;
+    margin: 3px 0px 10px 10px;
+    border: solid 1px ;
+    border-radius: 40px;
+    width:115px;
+    padding: 3px 15px 3px 15px;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.status {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.normal {
+    background-color: #6abc63;
+}
+.alerta {
+    background-color: #e0e243;
+}
+
+.critico {
+    background-color: #bc6363;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* PAINEL ESPECIFICO */
+
+.temperatura, .umidade {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 15px;    
+}
+
+.dados-indiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;     
+}
+
+.dados-indiv #ultima-atualiza {
+    font-size: 15px;
+    margin-top: 15px;
+}
+
+.valores {
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    width: 140px;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 10px;
+    color: #333;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    margin: 10px 0;
+    text-align: center;
+    
+}
+.dashboard {
+    display: flex;
+    width: 100%;
+    max-width: 600px;
+    margin-right: 50px;
+}
+.side-nav p {
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* style do select de sensores */
+#sensorselect, #salaselect {
+    display: flex;
+    width: 80%;
+    max-width: 300px;
+    padding: 10px;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    color: #333;
+    background-color: #f9f9f9;
+    border: 4px solid #D9D9D9;
+    border-radius: 10px;
+    outline: none; /* Não altera a cor do da borda ao selecionar um sensor, mantendo o azul 100% do tempo*/
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    margin-left: 30px;
+    
+}
+
+/* Modificações */
+
+.titulo h1 {
+    display: flex;
+    justify-content: center;
+
+}
+
+
+
