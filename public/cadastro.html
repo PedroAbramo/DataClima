@@ -11,7 +11,7 @@
         <div class="div-login">
             <a href="index.html" class="voltar">⟵ Voltar</a>
             <h2>Cadastro de Usuário</h2>
-            <input class="input-login" type="text" id="ipt_idEmpresa" placeholder="Chave da Empresa">
+            <input class="input-login" type="text" id="ipt_codEmpresa" placeholder="Chave da Empresa">
             <input class="input-login" type="text" id="ipt_nome" placeholder="Nome">
             <input class="input-login" type="text" id="ipt_sobrenome" placeholder="Sobrenome">
             <input class="input-login" type="text" id="ipt_telefone" placeholder="Telefone">
@@ -30,42 +30,34 @@
 </body>
 </html>
 <script>
-
+listaEmpresasCadastradas = [1];
     function cadastrar() {
-        var nome = ipt_nome.value;
-        var sobrenome = ipt_sobrenome.value;
-        var telefone = ipt_telefone.value;
-        var idEmpresa = ipt_idEmpresa.value;
-        var email = ipt_email.value.includes('@');
-        var senha = ipt_senha.value;
+        var nomeipt = ipt_nome.value;
+        var sobrenomeipt = ipt_sobrenome.value;
+        var telefoneipt = ipt_telefone.value;
+        var codEmpresa = ipt_codEmpresa.value;
+        var emailipt = ipt_email.value;
+        var senhaipt = ipt_senha.value;
         var confSenha = ipt_ConfSenha.value;
+        var idEmpresaVincular;
 
 
-        var nulo = (nome == "" || sobrenome == "" || telefone == "" || idEmpresa== "" || email == "" || senha == "" || confSenha == "");
-        var emailValido = "admin@sptech.school"
-
+        var nulo = (nomeipt == "" || sobrenomeipt == "" || telefoneipt == "" || codEmpresa == "" || emailipt == "" || senhaipt == "" || confSenha == "");
         while (nulo) {
             alert("Por favor, preencha todos os campos!");
             return;
         }
 
-        while (!emailValido){
-            alert("Email inválido, por favor insira um email correto");
-            return;
-        }
-
-        while (senha != confSenha) {
+        while (senhaipt != confSenha) {
             alert("As senhas não coincidem! Digite novamente.");
             return;
         }
 
 
-        alert("Cadastro realizado com sucesso!");
-        window.location.href = "login.html";
 
     for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-      if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-        idEmpresaVincular = listaEmpresasCadastradas[i].id
+      if (listaEmpresasCadastradas[i] == codEmpresa) {
+        idEmpresaVincular = listaEmpresasCadastradas[i]
         console.log("Código de ativação válido.");
         break;
       } else {
@@ -82,12 +74,12 @@
         body: JSON.stringify({
           // crie um atributo que recebe o valor recuperado aqui
           // Agora vá para o arquivo routes/usuario.js
-          nomeServer: nome,
-          sobrenomeServer: sobrenome,
-          idEmpresaVincularServer: idEmpresa,
-          telefoneServer: telefone,
-          emailServer: email,
-          senhaServer: senha
+          nomeServer: nomeipt,
+          sobrenomeServer: sobrenomeipt,
+          idEmpresaVincularServer: idEmpresaVincular,
+          telefoneServer: telefoneipt,
+          emailServer: emailipt,
+          senhaServer: senhaipt
         }),
       })
         .then(function (resposta) {
@@ -123,7 +115,6 @@
             listaEmpresasCadastradas.push(empresa);
 
             console.log("listaEmpresasCadastradas")
-            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
           });
         });
       })
