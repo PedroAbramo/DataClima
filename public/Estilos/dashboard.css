@@ -117,6 +117,8 @@ a {
 .lista-status {
     display: flex;
     flex-direction: column;
+    justify-content: start;
+    align-items: center;
     flex-wrap: wrap;
     height: 500px;
     padding: 10px;
@@ -138,7 +140,7 @@ a {
     height: 12px;
     border-radius: 50%;
     display: inline-block;
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
 .normal {
