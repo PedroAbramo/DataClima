@@ -1,6 +1,6 @@
 var database = require("../database/config");
 
-function buscarUltimasMedidas(idSala, limite_linhas) {
+function buscarUltimosRegistros(idSala, limite_linhas) {
 
     var instrucaoSql = `SELECT 
         temperatura, 
@@ -15,13 +15,13 @@ function buscarUltimasMedidas(idSala, limite_linhas) {
     return database.executar(instrucaoSql);
 }
 
-function buscarMedidasEmTempoReal(idSala) {
+function buscarRegistrosEmTempoReal(idSala) {
 
     var instrucaoSql = `SELECT 
         temperatura, 
         umidade,
                         DATE_FORMAT(dataRegistro,'%H:%i:%s') as momento_grafico, 
-                        fk_aquario 
+                        fkSensor 
                         FROM registro WHERE fkSala = ${idSala} 
                     ORDER BY id DESC LIMIT 1`;
 
@@ -30,6 +30,6 @@ function buscarMedidasEmTempoReal(idSala) {
 }
 
 module.exports = {
-    buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
+    buscarUltimosRegistros,
+    buscarRegistrosEmTempoReal
 }
