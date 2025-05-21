@@ -49,7 +49,7 @@ CREATE TABLE sensor (
     fkSala INT NOT NULL,
     nome VARCHAR(50) NOT NULL, -- PODE SER OUTRA COISA ALEM DE NOME!
     dataInstalacao DATETIME DEFAULT CURRENT_TIMESTAMP(),
-    PRIMARY KEY (id),
+    PRIMARY KEY (fkSensor),
     CONSTRAINT fk_sala_sensor FOREIGN KEY (fkSala) REFERENCES sala(id),
     KEY ix_fkSala (fkSala)
 );
