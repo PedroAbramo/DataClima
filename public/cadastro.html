@@ -43,18 +43,62 @@ listaEmpresasCadastradas = [1];
         var idEmpresaVincular;
 
 
-        var nulo = (nomeipt == "" || sobrenomeipt == "" || telefoneipt == "" || codEmpresa == "" || emailipt == "" || senhaipt == "" || confSenha == "");
+        var nulo = (
+          nomeipt == "" ||
+          sobrenomeipt == "" ||
+          telefoneipt == "" ||
+          codEmpresa == "" ||
+          emailipt == "" ||
+          senhaipt == "" ||
+          confSenha == "");
+
+        var validacaoNome = (
+          nomeipt.length <= 1 
+        );
+        
+        var validacaoTelefone = (
+          telefoneipt.length < 10 ||
+          telefoneipt.length > 11 
+        );
+
+        var validacaoEmail = (
+          !emailipt.includes('@') || 
+          !emailipt.includes('.') 
+        );
+
+        var validacaoSenha = (
+          senhaipt.length <= 6
+        )
+
         while (nulo) {
             alert("Por favor, preencha todos os campos!");
             return;
+        }
+
+        while (validacaoNome) {
+          alert("Insira um nome válido!");
+          return;
+        }
+
+        while (validacaoTelefone) {
+          alert("Insira um telefone válido!");
+          return;
+        }
+
+        while (validacaoEmail) {
+          alert("Insira um email válido!");
+          return;
+        }
+
+        while (validacaoSenha) {
+          alert("Insira uma senha com mais de 6 dígitos");
+          return;
         }
 
         while (senhaipt != confSenha) {
             alert("As senhas não coincidem! Digite novamente.");
             return;
         }
-
-
 
     for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
       if (listaEmpresasCadastradas[i] == codEmpresa) {
