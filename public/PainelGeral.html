@@ -37,7 +37,7 @@
     </nav>
 
     <div class="tela">
-        
+
         <div class="info">
             <div class="resumo">
                 <div class="valores">
@@ -50,77 +50,54 @@
                     <p id="valor">50%</p>
                 </div>
             </div>
-            
 
-             <div id="div_sensor"></div>
-<div class="painel-salas">
-        
-</div>
-    <script>
-        sensorvar = sensorselect.value;
-        div_sensor.innerHTML = `<h2>${sensorvar}</h2>`;
-        function sensor() {
-            sensorvar = sensorselect.value;
-            div_sensor.innerHTML = `<h2>${sensorvar}</h2>`;
-        }
-        // Inicialização dos gráficos
-        const ctxTemperatura = document.getElementById('sensorTemperatura').getContext('2d');
-        const ctxUmidade = document.getElementById('sensorUmidade').getContext('2d');
 
-        let sensorTemperatura = new Chart(ctxTemperatura, {
-            type: 'line',
-            data: {
-                labels: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00'],
-                datasets: [{
-                    label: 'Temperatura',
-                    borderColor: '#004080', // Cor da linha (azul mais forte)
-                    backgroundColor: '#66B2FF', // Cor da bolinha da linha (azul mais claro)
-                    data: [22, 24, 27, 23, 20, 18],
-                }]
-            },
-            options: {
-                scales: {
-                    x: {
-                        beginAtZero: true
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: '(°C)'
-                        },
-                        beginAtZero: true,
-                    }
-                }
-            }
-        });
-
-        let sensorUmidade = new Chart(ctxUmidade, {
-            type: 'line',
-            data: {
-                labels: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00'],
-                datasets: [{
-                    label: 'Umidade',
-                    borderColor: '#87CEEB',
-                    backgroundColor: '#0056b3', 
-                    data: [50, 42, 37, 55, 40, 43],
-                }]
-            },
-            options: {
-                scales: {
-                    x: {
-                        beginAtZero: true
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: '(%)'
-                        },
-                        beginAtZero: true,
-                    },
-                },
-            }
-        });
-    </script>
-
+            <div id="div_sensor"></div>
+            <div class="painel-salas">
+                <div class="class-titulo">
+                    <div class="titulo">
+                        <h1>AWS - SP</h1>
+                    </div>
+                </div>
+                <div class="painel-status">
+                    <div class="lista-status">
+                        <a href="PainelEspecifico.html" class="salas">
+                            <div class="status alerta"></div>Sala 1
+                        </a>
+                    </div>
+                    <div class="lista-status">
+                        <a href="PainelEspecifico.html" class="salas">
+                            <div class="status alerta"></div>Sala 1
+                        </a>
+                    </div>
+                    <div class="lista-status">
+                        <a href="PainelEspecifico.html" class="salas">
+                            <div class="status alerta"></div>Sala 1
+                        </a>
+                    </div>
+                    <div class="lista-status">
+                        <a href="PainelEspecifico.html" class="salas">
+                            <div class="status alerta"></div>Sala 1
+                        </a>
+                    </div>
+                    <div class="lista-status">
+                        <a href="PainelEspecifico.html" class="salas">
+                            <div class="status alerta"></div>Sala 1
+                        </a>
+                    </div>
+                    <div class="lista-status">
+                        <a href="PainelEspecifico.html" class="salas">
+                            <div class="status alerta"></div>Sala 1
+                            <div class="icone-temp temp-critico"></div>
+                            <div class="valor-temp"></div>
+                        </a>                        
+                    </div>
+                </div>
+                <div class="ultima-att">
+                    <p>Ultima atualização:</p>
+                    <div class="div_dataHora"></div>
+                </div>
+            </div>
 </body>
+
 </html>
