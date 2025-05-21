@@ -45,7 +45,6 @@ CREATE TABLE sala (
 );
 
 CREATE TABLE sensor (
-	id INT NOT NULL auto_increment,
     fkSala INT NOT NULL,
     nome VARCHAR(50) NOT NULL, -- PODE SER OUTRA COISA ALEM DE NOME!
     dataInstalacao DATETIME DEFAULT CURRENT_TIMESTAMP(),
