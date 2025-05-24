@@ -1,0 +1,151 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+    list-style-type: none;
+}
+body {
+    height: 100vh;
+    line-height: 1.6;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+}
+
+.side-nav {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 10px 0px 0px 0px;
+    box-shadow: 0px 0px 2px 0.4px #a0a0a0;
+}
+
+.usuario {
+    color: #555555;
+    background-color: #d1d5db;
+    text-align: center;
+    padding: 3px 13px 3px 13px;
+    border-bottom: solid 1.2px #b0b0b0;
+}
+.item-menu {
+    color: #333;
+    border-bottom: solid 1px #d0d0d0;
+    padding: 8px 13px 8px 13px;
+}
+.item-menu:hover {
+    background-color: #f0f0f0;
+}
+.sair {
+    margin-top: auto;
+    border-top: solid 2px  #f0f0f0;
+    background-color: #D1D5DB;
+    text-decoration: none;
+    color: #333;
+}
+.sair:hover {
+    background-color: #fc7979;
+    border-top: solid 3px #ff4e4e;
+    color: #000;
+}
+.ativo {
+    background-color: #f0f0f0;
+    border-left: solid 5px gray;
+}
+
+
+.tela {
+    margin-left: 300px;
+    display: flex;
+    min-height: 100vh;
+    padding: 20px 50px;
+    flex-direction: column;
+    background-color: #e0e0e0;
+}
+
+.tela .class-titulo {
+    display: flex;
+    justify-content: center;
+    padding: 0px 0px 10px 0px;
+    width: 100%;
+    border-bottom: solid 2px #000;
+}
+
+.titulo h1 {
+    font-size: 32px !important;
+    font-weight: 400;
+}
+
+.painel-datacenter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.painel-status-datacenter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width:80%;
+    height: 530px;
+    margin: 20px 100px 20px 100px;
+    flex-direction: row;
+    border-radius: 10px;
+}
+
+.lista-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10%;
+    width: 30%;                                                                                                                                                                                                                                           ;
+    padding: 10px;
+}
+
+.salas {
+    text-align: center;
+    color: black;
+    margin: 3px 0px 10px 0px;
+    border: solid 4px #D9D9D9;
+    border-radius: 40px;
+    box-shadow: 20px #D9D9D9;
+    width:80%;
+    padding: 3px 0px 3px 0px;
+    font-size: 24px;
+    text-decoration: none;
+}
+
+.status {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.normal {
+    background-color: #6abc63;
+}
+.alerta {
+    background-color: #e0e243;
+}
+
+.critico {
+    background-color: #bc6363;
+}

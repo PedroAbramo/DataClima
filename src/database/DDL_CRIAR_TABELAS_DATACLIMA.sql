@@ -45,11 +45,10 @@ CREATE TABLE sala (
 );
 
 CREATE TABLE sensor (
-	id INT NOT NULL auto_increment,
     fkSala INT NOT NULL,
     nome VARCHAR(50) NOT NULL, -- PODE SER OUTRA COISA ALEM DE NOME!
     dataInstalacao DATETIME DEFAULT CURRENT_TIMESTAMP(),
-    PRIMARY KEY (id),
+    PRIMARY KEY (fkSala),
     CONSTRAINT fk_sala_sensor FOREIGN KEY (fkSala) REFERENCES sala(id),
     KEY ix_fkSala (fkSala)
 );
@@ -61,7 +60,7 @@ CREATE TABLE registro (
     umidade INT NOT NULL,
     dataRegistro DATETIME DEFAULT CURRENT_TIMESTAMP(),
     PRIMARY KEY (id),
-    CONSTRAINT fk_sensor_registro FOREIGN KEY (fkSensor) REFERENCES sensor(id),
+    CONSTRAINT fk_sensor_registro FOREIGN KEY (fkSensor) REFERENCES sensor(fkSala),
     KEY ix_fksensor_data (fkSensor,dataRegistro)
 );
 
@@ -79,3 +78,4 @@ CREATE TABLE alerta (
     KEY ix_fkregistro (fkRegistro)
 );
 
+INSERT INTO empresa VALUE (1,'Dataclima','1','1');

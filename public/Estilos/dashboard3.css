@@ -76,13 +76,13 @@ a {
     display: flex;
     width: 100%;
     margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
 }
 .resumo {
     background-color: #ffffff;
     border-radius: 15px;
     padding: 20px;
     justify-content: space-around;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .painel-salas {
@@ -93,7 +93,6 @@ a {
     padding: 30px;
     background: #ffffff;
     border-radius: 15px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .painel-salas p {
@@ -117,8 +116,6 @@ a {
 .lista-status {
     display: flex;
     flex-direction: column;
-    justify-content: start;
-    align-items: center;
     flex-wrap: wrap;
     height: 500px;
     padding: 10px;
@@ -140,7 +137,7 @@ a {
     height: 12px;
     border-radius: 50%;
     display: inline-block;
-    margin-left: 10px;
+    margin-left: 20px;
 }
 
 .normal {
@@ -172,18 +169,21 @@ a {
     align-items: center;
     padding: 30px;
     background: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    
+    border-radius: 15px;    
 }
 
 .dados-indiv {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    margin-right: 20px; /* Espaço entre os valores e o gráfico */
-    order: -1;
+    justify-content: center;
+    align-items: center;     
 }
+
+.dados-indiv #ultima-atualiza {
+    font-size: 15px;
+    margin-top: 15px;
+}
+
 .valores {
     background-color: #f9f9f9;
     display: flex;
@@ -205,7 +205,7 @@ a {
     display: flex;
     width: 100%;
     max-width: 600px;
-    margin: auto;
+    margin-right: 50px;
 }
 .side-nav p {
     text-align: center;
@@ -214,16 +214,31 @@ a {
 
 /* style do select de sensores */
 #sensorselect, #salaselect {
-    width: 100%;
+    display: flex;
+    width: 80%;
     max-width: 300px;
     padding: 10px;
     font-size: 16px;
     font-family: 'Inter', sans-serif;
     color: #333;
     background-color: #f9f9f9;
-    border: 2px solid #1F4E8C;
-    border-radius: 5px;
+    border: 4px solid #D9D9D9;
+    border-radius: 10px;
     outline: none; /* Não altera a cor do da borda ao selecionar um sensor, mantendo o azul 100% do tempo*/
     cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    margin-left: 30px;
+    
 }
+
+/* Modificações */
+
+.titulo h1 {
+    display: flex;
+    justify-content: center;
+
+}
+
+
 
