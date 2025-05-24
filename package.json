@@ -10,11 +10,18 @@
   "author": "Feito pelos desenvolvedores @ São Paulo Tech School / Bandtec Digital School",
   "license": "MIT",
   "dependencies": {
+    "@google/genai": "^1.0.1",
+    "@google/generative-ai": "^0.24.1",
     "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.17.1",
+    "dotenv": "^16.5.0",
+    "express": "^4.21.2",
     "mysql2": "^3.9.4",
     "nodemon": "^2.0.7",
     "path": "^0.12.7"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BandTec/BobIA.git"
+  },
+  "homepage": "https://github.com/BandTec/BobIA.git#readme"
 }
