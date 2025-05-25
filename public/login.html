@@ -38,9 +38,17 @@ function login() {
 
     var email = ipt_email.value;
     var senha = ipt_senha.value;
+    var emailAdm = "admin@sptech.school";
+    var senhaAdm = "admin123"
 
         console.log("FORM LOGIN: ", email);
         console.log("FORM SENHA: ", senha);
+
+        if (email == emailAdm && senha == senhaAdm) {
+            setTimeout(function () {
+                window.location = "./indexBob.html";
+            }, 1000);
+        }
 
         fetch("/usuarios/autenticar", {
             method: "POST",
@@ -68,7 +76,7 @@ function login() {
 
                     setTimeout(function () {
                         window.location = "./PainelGeral.html";
-                    }, 1000); // apenas para exibir o loading
+                    }, 1000); // apenas para exibir o loadinga
 
                 });
 
