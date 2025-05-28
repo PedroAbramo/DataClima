@@ -32,7 +32,7 @@
             <select id="salaselect" name="Sala" onchange="sala()">
                 <option value="Sala 1">Sala 1</option>
             </select>
-            
+
         </ul>
         <a href="login.html" class="item-menu sair">
             <div>
@@ -46,122 +46,124 @@
             <h1>SALA 1</h1>
         </div>
         <div class="info">
-            
+
             <!-- Temperatura -->
-             <div id="div_sensor"></div>
-<div class="temperatura">
-    <div class="dados-indiv">
-        <div class="valores">
-            <p>Temperatura Máxima</p>
-            <strong id="temp-max" <span style="color: #14EE00;"></span>27°C</strong>
-        </div>
-        <div class="valores">
-            <p>Temperatura Mínima</p>
-            <strong id="temp-min"<span style="color: #14EE00;"></span>18°C</strong>
-        </div>
-            <p id="ultima-atualiza">Ultima atualização: dd/mm/yyyy - hh:mm</p>
+            <div id="div_sensor"></div>
+            <div class="temperatura">
+                <div class="dados-indiv">
+                    <div class="valores">
+                        <p>Temperatura Máxima</p>
+                        <strong id="temp-max" <span id="valorTempMax">27°C</span></strong>
+                    </div>
+                    <div class="valores">
+                        <p>Temperatura Mínima</p>
+                        <strong id="temp-min" <span id="valorTempMin">18°C</span></strong>
+                    </div>
+                    <p id="ultima-atualiza">Ultima atualização: <span id="DataHora_select">dd/mm/yyyy - hh:mm</span></p>
 
-    </div>
-    <div class="dashboard">
-        <canvas id="sensorTemperatura"></canvas>
-    </div>
-    <div class="legenda">
-        <p><span style="color: #14EE00;">■</span> <b>Temperatura Normal</b> <br>Entre 18°C e 27°C</p>
-            <br>
-        <p><span style="color: #E6E600;">■</span> <b>Temperatura Em Alerta</b> <br>Abaixo de 18°C ou Acima de 27°C </p>
-            <br>
-        <p><span style="color: #bc6363;">■</span> <b>Temperatura Crítica</b> <br>Acima de 32°C</p>
-    </div>
-</div>
+                </div>
+                <div class="dashboard">
+                    <canvas id="sensorTemperatura"></canvas>
+                </div>
+                <div class="legenda">
+                    <p><span style="color: #14EE00;">■</span> <b>Temperatura Normal</b> <br>Entre 18°C e 27°C</p>
+                    <br>
+                    <p><span style="color: #E6E600;">■</span> <b>Temperatura Em Alerta</b> <br>Abaixo de 18°C ou Acima
+                        de 27°C </p>
+                    <br>
+                    <p><span style="color: #bc6363;">■</span> <b>Temperatura Crítica</b> <br>Acima de 32°C</p>
+                </div>
+            </div>
 
-<!-- Umidade -->
-<div class="umidade">
-    <div class="dados-indiv">
-        <div class="valores">
-            <p>Umidade Máxima</p>
-            <strong id="umidade-max"<span style="color: #14EE00;"></span>55%</strong>
-        </div>
-        <div class="valores">
-            <p>Umidade Mínima</p>
-            <strong id="umidade-min"<span style="color: #E6E600;"></span>37%</strong>
-        </div>
-        <p id="ultima-atualiza">Ultima atualização: dd/mm/yyyy - hh:mm</p>
-    </div>
+            <!-- Umidade -->
+            <div class="umidade">
+                <div class="dados-indiv">
+                    <div class="valores">
+                        <p>Umidade Máxima</p>
+                        <strong id="umidade-max" <span id="valorHumiMax">55%</span></strong>
+                    </div>
+                    <div class="valores">
+                        <p>Umidade Mínima</p>
+                        <strong id="umidade-min" <span id="valorHumiMin">37%</span></strong>
+                    </div>
+                    <p id="ultima-atualiza">Ultima atualização: <span id="DataHora_select">dd/mm/yyyy - hh:mm</span></p>
+                </div>
 
-    <div class="dashboard">
-        <canvas id="sensorUmidade"></canvas>
-    </div>
-    <div class="legenda">
-        <p><span style="color: #14EE00;">■</span> <b>Umidade Normal</b> <br>Entre 40% e 55%</p>
-            <br>
-        <p><span style="color: #E6E600;">■</span> <b>Umidade Em Alerta</b> <br>Abaixo de 40% ou acima de 55%</p>
-            <br>
-        <p><span style="color: #bc6363;">■</span> <b>Umidade Crítica</b> <br>Menor que 20%</p>
-    </div>
-</div>
+                <div class="dashboard">
+                    <canvas id="sensorUmidade"></canvas>
+                </div>
+                <div class="legenda">
+                    <p><span style="color: #14EE00;">■</span> <b>Umidade Normal</b> <br>Entre 40% e 55%</p>
+                    <br>
+                    <p><span style="color: #E6E600;">■</span> <b>Umidade Em Alerta</b> <br>Abaixo de 40% ou acima de 55%
+                    </p>
+                    <br>
+                    <p><span style="color: #bc6363;">■</span> <b>Umidade Crítica</b> <br>Menor que 20%</p>
+                </div>
+            </div>
 
-    <script>
-        sensorvar = 'Sensor 1';
-        
-        
-        // Inicialização dos gráficos
-        const ctxTemperatura = document.getElementById('sensorTemperatura').getContext('2d');
-        const ctxUmidade = document.getElementById('sensorUmidade').getContext('2d');
+            <script>
+                sensorvar = 'Sensor 1';
 
-        let sensorTemperatura = new Chart(ctxTemperatura, {
-            type: 'line',
-            data: {
-                labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
-                datasets: [{
-                    label: 'Temperatura',
-                    borderColor: '#004080', // Cor da linha (azul mais forte)
-                    backgroundColor: '#66B2FF', // Cor da bolinha da linha (azul mais claro)
-                    data: [22, 24, 27, 23, 20, 18],
-                }]
-            },
-            options: {
-                scales: {
-                    x: {
-                        beginAtZero: true
+                // Inicialização dos gráficos
+                const ctxTemperatura = document.getElementById('sensorTemperatura').getContext('2d');
+                const ctxUmidade = document.getElementById('sensorUmidade').getContext('2d');
+
+                let sensorTemperatura = new Chart(ctxTemperatura, {
+                    type: 'line',
+                    data: {
+                        labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
+                        datasets: [{
+                            label: 'Temperatura',
+                            borderColor: '#004080', // Cor da linha (azul mais forte)
+                            backgroundColor: '#66B2FF', // Cor da bolinha da linha (azul mais claro)
+                            data: [22, 24, 27, 23, 20, 18],
+                        }]
                     },
-                    y: {
-                        title: {
-                            display: true,
-                            text: '(°C)'
-                        },
-                        beginAtZero: true,
+                    options: {
+                        scales: {
+                            x: {
+                                beginAtZero: true
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: '(°C)'
+                                },
+                                beginAtZero: true,
+                            }
+                        }
                     }
-                }
-            }
-        });
+                });
 
-        let sensorUmidade = new Chart(ctxUmidade, {
-            type: 'line',
-            data: {
-                labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
-                datasets: [{
-                    label: 'Umidade',
-                    borderColor: '#87CEEB',
-                    backgroundColor: '#0056b3', 
-                    data: [50, 42, 37, 55, 40, 43],
-                }]
-            },
-            options: {
-                scales: {
-                    x: {
-                        beginAtZero: true
+                let sensorUmidade = new Chart(ctxUmidade, {
+                    type: 'line',
+                    data: {
+                        labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
+                        datasets: [{
+                            label: 'Umidade',
+                            borderColor: '#87CEEB',
+                            backgroundColor: '#0056b3',
+                            data: [50, 42, 37, 55, 40, 43],
+                        }]
                     },
-                    y: {
-                        title: {
-                            display: true,
-                            text: '(%)'
+                    options: {
+                        scales: {
+                            x: {
+                                beginAtZero: true
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: '(%)'
+                                },
+                                beginAtZero: true,
+                            },
                         },
-                        beginAtZero: true,
-                    },
-                },
-            }
-        });
-    </script>
+                    }
+                });
+            </script>
 
 </body>
+
 </html>
