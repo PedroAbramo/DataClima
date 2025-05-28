@@ -21,7 +21,7 @@ var usuarioRouter = require("./src/routes/usuarios");
 var registrosRouter = require("./src/routes/registros");
 var salasRouter = require("./src/routes/salas");
 var empresasRouter = require("./src/routes/empresas");
-//var sensoresRouter = require("./src/routes/sensores");
+var datacenterRouter = require("./src/routes/datacenters");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -35,7 +35,7 @@ app.use("/usuarios", usuarioRouter);
 app.use("/registros", registrosRouter);
 app.use("/salas", salasRouter);
 app.use("/empresas", empresasRouter);
-//app.use("/sensores", sensoresRouter);
+app.use("/datacenter", datacenterRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
