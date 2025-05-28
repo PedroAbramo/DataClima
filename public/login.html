@@ -38,7 +38,7 @@ function login() {
 
     var email = ipt_email.value;
     var senha = ipt_senha.value;
-    var emailAdm = "admin@sptech.school";
+    var emailAdm = "@dataclima";
     var senhaAdm = "admin123"
 
         console.log("FORM LOGIN: ", email);
@@ -48,6 +48,7 @@ function login() {
             setTimeout(function () {
                 window.location = "./indexBob.html";
             }, 1000);
+            return
         }
 
         
