@@ -3,16 +3,21 @@ body {
     background-color: #63B1BC;
     margin: 0;
     padding: 0;
+    background-image: url(../images/background_principal.png);
 }
 
 #container {
     width: 80%;
     margin: 50px auto;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 h1 {
-    color: #1F2A44;
+    color: #ffffff;
 }
 
 textarea[type="text"] {
