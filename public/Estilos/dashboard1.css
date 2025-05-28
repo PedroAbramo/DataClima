@@ -111,8 +111,8 @@ a {
 
 .lista-status {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: flex-start;
     height: 10%;
     width: 30%;                                                                                                                                                                                                                                           ;
     padding: 10px;
