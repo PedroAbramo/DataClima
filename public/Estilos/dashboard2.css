@@ -252,3 +252,24 @@ a {
 .ultima-att {
     text-align: center;
 }
+
+.final-form {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-voltar {
+    display: flex;
+    align-self: flex-end;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 25%;
+    margin: 4px #000;
+}
+
+.btn-voltar a{
+    align-self: center;
+    color: #000;
+}
