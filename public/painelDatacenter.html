@@ -13,7 +13,7 @@
     </style>
 </head>
 
-<body>
+<body onload="validarSessao()">
     <nav class="side-nav">
         <div class="logo">
             <a href="index.html">
@@ -21,14 +21,7 @@
             </a>
         </div>
         <ul class="navbar">
-            <li class="usuario">Admin</li>
-            <li class="usuario">DataCenter Teste</li>
-            <a href="PainelGeral.html">
-                <li class="item-menu ativo">Visão Geral</li>
-            </a>
-            <a href="PainelEspecifico.html">
-                <li class="item-menu">Painel Específico</li>
-            </a>
+            <li class="usuario"><span id="b_usuario">Admin</span></li>
         </ul>
         <a href="login.html" class="item-menu sair">
             <div>
@@ -47,31 +40,31 @@
                 </div>
                 <div class="painel-status-datacenter">
                     <div class="lista-status">
-                        <a href="PainelEspecifico.html" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">AWS</span></a>
+                        <a href="PainelGeral.html" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">AWS</span></a>
                     </div>
                     <div class="lista-status">
-                        <a href="PainelEspecifico.html" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">Gooogle</span></a>
+                        <a href="PainelGeral.html" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">Gooogle</span></a>
                     </div>
                     <div class="lista-status">
-                        <a href="PainelEspecifico.html" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">SPTECH</span></a>
+                        <a href="PainelGeral.html" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">SPTECH</span></a>
                     </div>
                     <div class="lista-status">
-                        <a href="PainelEspecifico.html" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">Netflix</span></a>
+                        <a href="PainelGeral.html" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">Netflix</span></a>
                     </div>
                     <div class="lista-status">
-                        <a href="PainelEspecifico.html" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">Youtube</span></a>
+                        <a href="PainelGeral.html" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">Youtube</span></a>
                     </div>
                     <div class="lista-status">
-                        <a href="PainelEspecifico.html" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">Amazon</span></a>
+                        <a href="PainelGeral.html" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">Amazon</span></a>
                     </div>
                     <div class="lista-status">
-                        <a href="PainelEspecifico.html" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">Instagram</span></a>
+                        <a href="PainelGeral.html" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">Instagram</span></a>
                     </div>
                     <div class="lista-status">
-                        <a href="PainelEspecifico.html" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">Facebook</span></a>
+                        <a href="PainelGeral.html" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">Facebook</span></a>
                     </div>
                     <div class="lista-status">
-                        <a href="PainelEspecifico.html" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">Tots</span></a>
+                        <a href="PainelGeral.html" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">Tots</span></a>
                     </div>
                 </div>
                 <div class="ultima-att">
@@ -83,3 +76,7 @@
 </body>
 
 </html>
+
+<script>
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+</script>

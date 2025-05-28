@@ -3,7 +3,7 @@ var router = express.Router();
 
 var SalaController = require("../controllers/salaController");
 
-router.get("/:empresaId", function (req, res) {
+router.get("/:datacenterId", function (req, res) {
   SalaController.buscarSalasPorDatacenter(req, res);
 });
 

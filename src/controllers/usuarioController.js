@@ -1,5 +1,5 @@
 var usuarioModel = require("../models/usuarioModel");
-var salaModel = require("../models/salaModel");
+var datacenterModel = require("../models/datacenterModel");
 
 function autenticar(req, res) {
     var email = req.body.emailServer;
@@ -20,12 +20,20 @@ function autenticar(req, res) {
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
 
+                         datacenterModel.buscarDatacentersPorEmpresa(resultadoAutenticar[0].empresaId)
+                            .then((resultadoDatacenters) => {
+                                if (resultadoDatacenters.length > 0) {
                                     res.json({
                                         id: resultadoAutenticar[0].id,
                                         email: resultadoAutenticar[0].email,
                                         nome: resultadoAutenticar[0].nome,
                                         senha: resultadoAutenticar[0].senha,
+                                        datacenters: resultadoDatacenters
                                     });
+                                } else {
+                                    res.status(204).json({ datacenters: [] });
+                                }
+                            })
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
                     } else {
