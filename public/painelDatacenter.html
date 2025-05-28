@@ -6,14 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DataClima - Monitoramento de Temperatura e Umidade em Data Centers</title>
     <link rel="stylesheet" href="Estilos/dashboard1.css">
-
+    <script src="script/sessao.js"></script>
+    <script src="script/dashboard.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
     </style>
 </head>
 
-<body onload="validarSessao() listarDatacenters()">
+<body onload="validarSessao(), listarDatacenters()">
     <nav class="side-nav">
         <div class="logo">
             <a href="index.html">
@@ -39,32 +40,8 @@
                     </div>
                 </div>
                 <div class="painel-status-datacenter">
-                    <div class="lista-status">
+                    <div class="lista-status" id="lista_status">
                         <a href="PainelGeral.html" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">AWS</span></a>
-                    </div>
-                    <div class="lista-status">
-                        <a href="PainelGeral.html" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">Gooogle</span></a>
-                    </div>
-                    <div class="lista-status">
-                        <a href="PainelGeral.html" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">SPTECH</span></a>
-                    </div>
-                    <div class="lista-status">
-                        <a href="PainelGeral.html" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">Netflix</span></a>
-                    </div>
-                    <div class="lista-status">
-                        <a href="PainelGeral.html" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">Youtube</span></a>
-                    </div>
-                    <div class="lista-status">
-                        <a href="PainelGeral.html" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">Amazon</span></a>
-                    </div>
-                    <div class="lista-status">
-                        <a href="PainelGeral.html" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">Instagram</span></a>
-                    </div>
-                    <div class="lista-status">
-                        <a href="PainelGeral.html" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">Facebook</span></a>
-                    </div>
-                    <div class="lista-status">
-                        <a href="PainelGeral.html" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">Tots</span></a>
                     </div>
                 </div>
                 <div class="ultima-att">
