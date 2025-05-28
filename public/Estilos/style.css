@@ -156,6 +156,10 @@ footer {
     border-bottom: 2px solid #1554B2;
 }
 
+.input-login-error {
+    border-bottom: 2px solid red;
+}
+
 button {
     background-color: #1554B2;
     align-self: center;
@@ -219,5 +223,12 @@ button:hover {
 
 .login-link a:hover {
     text-decoration: underline;
+}
+
+#div_mensagemErro {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color: red;
 }
 

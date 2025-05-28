@@ -18,6 +18,7 @@
             <input class="input-login" type="email" id="ipt_email" placeholder="E-mail">
             <input class="input-login" type="password" id="ipt_senha" placeholder="Senha">
             <input class="input-login" type="password" id="ipt_ConfSenha" placeholder="Confirmar senha">
+            <div id="div_mensagemErro"></div>
             <div id="botao" style="display: flex; align-items: center; justify-content: center;">
               <button onclick="cadastrar()">Cadastrar</button>
             </div>
@@ -42,6 +43,18 @@ listaEmpresasCadastradas = [1];
         var confSenha = ipt_ConfSenha.value;
         var idEmpresaVincular;
 
+        // Esconde a mensagem de erro ao iniciar o cadastro
+        div_mensagemErro.style.display = "none";
+        div_mensagemErro.innerText = "";
+
+        // Remove classe de erro de todos os campos ao iniciar
+        ipt_nome.classList.remove('input-login-error');
+        ipt_sobrenome.classList.remove('input-login-error');
+        ipt_telefone.classList.remove('input-login-error');
+        ipt_codEmpresa.classList.remove('input-login-error');
+        ipt_email.classList.remove('input-login-error');
+        ipt_senha.classList.remove('input-login-error');
+        ipt_ConfSenha.classList.remove('input-login-error');
 
         var nulo = (
           nomeipt == "" ||
@@ -70,33 +83,53 @@ listaEmpresasCadastradas = [1];
           senhaipt.length <= 6
         )
 
-        while (nulo) {
-            alert("Por favor, preencha todos os campos!");
+        if (nulo) {
+            div_mensagemErro.innerText = "Por favor, preencha todos os campos!";
+            div_mensagemErro.style.display = "flex";
+            // Destaca todos os campos vazios
+            if (nomeipt == "") ipt_nome.classList.add('input-login-error');
+            if (sobrenomeipt == "") ipt_sobrenome.classList.add('input-login-error');
+            if (telefoneipt == "") ipt_telefone.classList.add('input-login-error');
+            if (codEmpresa == "") ipt_codEmpresa.classList.add('input-login-error');
+            if (emailipt == "") ipt_email.classList.add('input-login-error');
+            if (senhaipt == "") ipt_senha.classList.add('input-login-error');
+            if (confSenha == "") ipt_ConfSenha.classList.add('input-login-error');
             return;
         }
 
-        while (validacaoNome) {
-          alert("Insira um nome válido!");
+        if (validacaoNome) {
+          div_mensagemErro.innerText = "Insira um nome válido!";
+          div_mensagemErro.style.display = "flex";
+          ipt_nome.classList.add('input-login-error');
           return;
         }
 
-        while (validacaoTelefone) {
-          alert("Insira um telefone válido!");
+        if (validacaoTelefone) {
+          div_mensagemErro.innerText = "Insira um telefone válido!";
+          div_mensagemErro.style.display = "flex";
+          ipt_telefone.classList.add('input-login-error');
           return;
         }
 
-        while (validacaoEmail) {
-          alert("Insira um email válido!");
+        if (validacaoEmail) {
+          div_mensagemErro.innerText = "Insira um email válido!";
+          div_mensagemErro.style.display = "flex";
+          ipt_email.classList.add('input-login-error');
           return;
         }
 
-        while (validacaoSenha) {
-          alert("Insira uma senha com mais de 6 dígitos");
+        if (validacaoSenha) {
+          div_mensagemErro.innerText = "Insira uma senha com mais de 6 dígitos";
+          div_mensagemErro.style.display = "flex";
+          ipt_senha.classList.add('input-login-error');
           return;
         }
 
-        while (senhaipt != confSenha) {
-            alert("As senhas não coincidem! Digite novamente.");
+        if (senhaipt != confSenha) {
+            div_mensagemErro.innerText = "As senhas não coincidem! Digite novamente.";
+            div_mensagemErro.style.display = "flex";
+            ipt_senha.classList.add('input-login-error');
+            ipt_ConfSenha.classList.add('input-login-error');
             return;
         }
 
@@ -106,7 +139,9 @@ listaEmpresasCadastradas = [1];
         console.log("Código de ativação válido.");
         break;
       } else {
-        botao.innerHTML = "(Mensagem de erro para código inválido)";
+        div_mensagemErro.innerText = "Código de empresa inválido.";
+        div_mensagemErro.style.display = "flex";
+        return;
       }
     }
 
@@ -117,8 +152,6 @@ listaEmpresasCadastradas = [1];
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          // crie um atributo que recebe o valor recuperado aqui
-          // Agora vá para o arquivo routes/usuario.js
           nomeServer: nomeipt,
           sobrenomeServer: sobrenomeipt,
           idEmpresaVincularServer: idEmpresaVincular,
@@ -140,10 +173,14 @@ listaEmpresasCadastradas = [1];
             }, "2000");
   
           } else {
+            div_mensagemErro.innerText = "Houve um erro ao tentar realizar o cadastro!";
+            div_mensagemErro.style.display = "flex";
             throw "Houve um erro ao tentar realizar o cadastro!";
           }
         })
         .catch(function (resposta) {
+          div_mensagemErro.innerText = "Erro de conexão com o servidor.";
+          div_mensagemErro.style.display = "flex";
           console.log(`#ERRO: ${resposta}`);
         });
   
