@@ -118,13 +118,12 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
     overflow-y: auto;
     width:80%;
     height: 530px;
     margin: 20px 100px 20px 100px;
-    flex-direction: row;
     border-radius: 10px;
 }
 
