@@ -106,7 +106,6 @@ a {
     width:80%;
     height: 530px;
     margin: 20px 100px 20px 100px;
-    flex-direction: row;
     border-radius: 10px;
 }
 
