@@ -120,6 +120,7 @@ a {
     align-items: center;
     flex-direction: column;
     flex-wrap: wrap;
+    overflow-y: auto;
     width:80%;
     height: 530px;
     margin: 20px 100px 20px 100px;
@@ -161,6 +162,7 @@ a {
 .normal {
     background-color: #6abc63;
 }
+
 .alerta {
     background-color: #e0e243;
 }
