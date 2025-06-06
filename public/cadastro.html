@@ -6,7 +6,7 @@
     <title>Cadastro - DataClima</title>
     <link rel="stylesheet" href="Estilos/style.css">
 </head>
-<body>
+<body onload="listar()">
     <div class="container-login">
         <div class="div-login">
             <a href="index.html" class="voltar">⟵ Voltar</a>
@@ -32,7 +32,9 @@
 </body>
 </html>
 <script>
-listaEmpresasCadastradas = [1];
+
+    let listaEmpresasCadastradas = [];
+    console.log(listaEmpresasCadastradas)
     function cadastrar() {
         var nomeipt = ipt_nome.value;
         var sobrenomeipt = ipt_sobrenome.value;
@@ -47,7 +49,7 @@ listaEmpresasCadastradas = [1];
         div_mensagemErro.style.display = "none";
         div_mensagemErro.innerText = "";
 
-        // Remove classe de erro de todos os campos ao iniciar
+        //Remove classe de erro de todos os campos ao iniciar
         ipt_nome.classList.remove('input-login-error');
         ipt_sobrenome.classList.remove('input-login-error');
         ipt_telefone.classList.remove('input-login-error');
@@ -133,19 +135,18 @@ listaEmpresasCadastradas = [1];
             return;
         }
 
-    for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-      if (listaEmpresasCadastradas[i] == codEmpresa) {
-        idEmpresaVincular = listaEmpresasCadastradas[i]
+        for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
+
+      if (listaEmpresasCadastradas[i].codigo_ativacao == codEmpresa) {
+        idEmpresaVincular = listaEmpresasCadastradas[i].id
         console.log("Código de ativação válido.");
         break;
       } else {
         div_mensagemErro.innerText = "Código de empresa inválido.";
         div_mensagemErro.style.display = "flex";
-        return;
       }
     }
 
-      // Enviando o valor da nova input
       fetch("/usuarios/cadastrar", {
         method: "POST",
         headers: {
@@ -188,11 +189,12 @@ listaEmpresasCadastradas = [1];
     }
 
       function listar() {
-    fetch("/empresas/listar", {
+     fetch("/empresas/listar", {
       method: "GET",
     })
       .then(function (resposta) {
         resposta.json().then((empresas) => {
+
           empresas.forEach((empresa) => {
             listaEmpresasCadastradas.push(empresa);
 
@@ -204,4 +206,5 @@ listaEmpresasCadastradas = [1];
         console.log(`#ERRO: ${resposta}`);
       });
   }
+
 </script>
