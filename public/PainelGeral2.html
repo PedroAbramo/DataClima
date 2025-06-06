@@ -93,62 +93,13 @@
         const quantidadeSalas = 8;
 
         for (let i = 1; i <= quantidadeSalas; i++) {
-            const divLista = document.createElement("div");
-            divLista.classList.add("lista-status");
-
-            const link = document.createElement("a");
-            link.href = "PainelEspecifico3.html";
-            link.classList.add("salas");
-
-            const statusDiv = document.createElement("div");
-            statusDiv.classList.add("status", "alerta");
-
-            const textoSala = document.createTextNode("Sala\u00A0"); 
-
-            const span = document.createElement("span");
-            span.classList.add("numeroSala");
-            span.textContent = i;
-
-            link.appendChild(statusDiv);
-            link.appendChild(textoSala);
-            link.appendChild(span);
-
-            divLista.appendChild(link);
-            painel.appendChild(divLista);
+            painel.innerHTML += `
+                <div class="lista-status" id="lista_status">
+                    <a href="PainelEspecifico3.html" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">Sala ${i}</span></a>
+                </div>
+            `
         }
 
     }
 
 </script>
-                    <!-- <div class="lista-status">
-                        <a href="PainelEspecifico3.html" class="salas">
-                            <div class="status alerta"></div>Sala&nbsp;<span id="numeroSala">1</span>
-                        </a>
-                    </div>
-                    <div class="lista-status">
-                        <a href="PainelEspecifico3.html" class="salas">
-                            <div class="status alerta"></div>Sala&nbsp;<span id="numeroSala">2</span>
-                        </a>
-                    </div>
-                    <div class="lista-status">
-                        <a href="PainelEspecifico3.html" class="salas">
-                            <div class="status alerta"></div>Sala&nbsp;<span id="numeroSala">3</span>
-                        </a>
-                    </div>
-                    <div class="lista-status">
-                        <a href="PainelEspecifico3.html" class="salas">
-                            <div class="status alerta"></div>Sala&nbsp;<span id="numeroSala">4</span>
-                        </a>
-                    </div>
-                    <div class="lista-status">
-                        <a href="PainelEspecifico3.html" class="salas">
-                            <div class="status alerta"></div>Sala&nbsp;<span id="numeroSala">5</span>
-                        </a>
-                    </div>
-                    <div class="lista-status">
-                        <a href="PainelEspecifico3.html" class="salas">
-                            <div class="status alerta"></div>Sala&nbsp;<span id="numeroSala">6</span>
-                            <div class="icone-temp temp-critico"></div>
-                            <div class="valor-temp"></div>
-                        </a>
-                    </div> -->
