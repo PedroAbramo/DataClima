@@ -7,6 +7,7 @@ CREATE TABLE empresa (
     nome VARCHAR(50) NOT NULL,
     cnpj VARCHAR(14) NOT NULL,
     telefone VARCHAR(11),
+    codigo_ativacao char(3),
     PRIMARY KEY (id),
     UNIQUE (cnpj)
 );
@@ -78,4 +79,6 @@ CREATE TABLE alerta (
     KEY ix_fkregistro (fkRegistro)
 );
 
-INSERT INTO empresa VALUE (1,'Dataclima','1','1');
+INSERT INTO empresa VALUE (1,'Dataclima','1','1','27');
+
+select*from empresa;
