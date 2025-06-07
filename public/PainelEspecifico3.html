@@ -22,10 +22,10 @@
         <ul class="navbar">
             <li class="usuario"><span id="b_usuario">Admin</span></li>
             <li class="usuario"><span id="b_datacenter">DataCenter Teste</span></li>
-            <a href="PainelGeral.html">
+            <a href="PainelGeral2.html">
                 <li class="item-menu">Visão Geral</li>
             </a>
-            <a href="PainelEspecifico.html">
+            <a href="PainelEspecifico3.html">
                 <li class="item-menu ativo">Painel Específico</li>
             </a>
             <p>Selecione a Sala:</p>
@@ -111,67 +111,79 @@
                 </div>
             </div>
 
-            <script>
-                sensorvar = 'Sensor 1';
+<script>
+    const datacenters = JSON.parse(sessionStorage.DATACENTERS)
+    console.log("Data Centers disponíveis:", datacenters)
 
-                // Inicialização dos gráficos
-                const ctxTemperatura = document.getElementById('sensorTemperatura').getContext('2d');
-                const ctxUmidade = document.getElementById('sensorUmidade').getContext('2d');
+    for (let i = 0; i < datacenters.length; i++) {
+        if (datacenters[i].id == sessionStorage.ID_DATACENTER) {
+            b_datacenter.innerHTML = datacenters[i].datacenter
+            console.log("Data Center selecionado:", datacenters[i].datacenter)
+            break
+        }
+    }
 
-                let sensorTemperatura = new Chart(ctxTemperatura, {
-                    type: 'line',
-                    data: {
-                        labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
-                        datasets: [{
-                            label: 'Temperatura',
-                            borderColor: '#004080', // Cor da linha (azul mais forte)
-                            backgroundColor: '#66B2FF', // Cor da bolinha da linha (azul mais claro)
-                            data: [22, 24, 27, 23, 20, 18],
-                        }]
+
+    sensorvar = 'Sensor 1';
+
+    // Inicialização dos gráficos
+    const ctxTemperatura = document.getElementById('sensorTemperatura').getContext('2d');
+    const ctxUmidade = document.getElementById('sensorUmidade').getContext('2d');
+
+    let sensorTemperatura = new Chart(ctxTemperatura, {
+        type: 'line',
+        data: {
+            labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
+            datasets: [{
+                label: 'Temperatura',
+                borderColor: '#004080', // Cor da linha (azul mais forte)
+                backgroundColor: '#66B2FF', // Cor da bolinha da linha (azul mais claro)
+                data: [22, 24, 27, 23, 20, 18],
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    beginAtZero: true
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: '(°C)'
                     },
-                    options: {
-                        scales: {
-                            x: {
-                                beginAtZero: true
-                            },
-                            y: {
-                                title: {
-                                    display: true,
-                                    text: '(°C)'
-                                },
-                                beginAtZero: true,
-                            }
-                        }
-                    }
-                });
+                    beginAtZero: true,
+                }
+            }
+        }
+    });
 
-                let sensorUmidade = new Chart(ctxUmidade, {
-                    type: 'line',
-                    data: {
-                        labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
-                        datasets: [{
-                            label: 'Umidade',
-                            borderColor: '#87CEEB',
-                            backgroundColor: '#0056b3',
-                            data: [50, 42, 37, 55, 40, 43],
-                        }]
+    let sensorUmidade = new Chart(ctxUmidade, {
+        type: 'line',
+        data: {
+            labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
+            datasets: [{
+                label: 'Umidade',
+                borderColor: '#87CEEB',
+                backgroundColor: '#0056b3',
+                data: [50, 42, 37, 55, 40, 43],
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    beginAtZero: true
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: '(%)'
                     },
-                    options: {
-                        scales: {
-                            x: {
-                                beginAtZero: true
-                            },
-                            y: {
-                                title: {
-                                    display: true,
-                                    text: '(%)'
-                                },
-                                beginAtZero: true,
-                            },
-                        },
-                    }
-                });
-            </script>
+                    beginAtZero: true,
+                },
+            },
+        }
+    });
+</script>
 
 </body>
 
