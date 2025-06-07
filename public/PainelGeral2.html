@@ -116,7 +116,24 @@
                 </div>
             `
         }
-
     }
+
+
+
+   
+
+
+
+const datacenters = JSON.parse(sessionStorage.DATACENTERS)
+console.log("Data Centers disponíveis:", datacenters)
+
+for (let i = 0; i < datacenters.length; i++) {
+    if (datacenters[i].id == sessionStorage.ID_DATACENTER) {
+        b_datacenter.innerHTML = datacenters[i].datacenter
+        console.log("Data Center selecionado:", datacenters[i].datacenter)
+        break
+    }
+}
+
 
 </script>
