@@ -145,7 +145,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    flex-direction: column;
+    flex-direction: row;
     height: auto;
     cursor: pointer;
 }
