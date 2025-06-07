@@ -10,7 +10,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
     </style>
-    <script src="script/dashboard.js"></script>
+    <script src="./script/dashboard.js"></script>
 </head>
 
 <body onload="validarSessao(), ultimaAtualizacao()">
@@ -69,7 +69,8 @@
                         <p>Temperatura Mínima</p>
                         <strong id="temp-min" <span id="valorTempMin">18°C</span></strong>
                     </div>
-                    <p id="ultima-atualiza">Ultima atualização: <span id="DataHora_select">dd/mm/yyyy - hh:mm</span></p>
+                    <p id="ultima-atualiza">Ultima atualização: <span class="DataHora_select">dd/mm/yyyy - hh:mm</span>
+                    </p>
 
                 </div>
                 <div class="dashboard">
@@ -96,8 +97,10 @@
                         <p>Umidade Mínima</p>
                         <strong id="umidade-min" <span id="valorHumiMin">37%</span></strong>
                     </div>
-                    <p id="ultima-atualiza">Ultima atualização: <span id="DataHora_select">dd/mm/yyyy - hh:mm</span></p>
-                </div>
+                    <div class="ultima-att">
+                        <p>Ultima atualização:</p>
+                        <div class="div_dataHora"><span class="DataHora_select">dd/mm/yyyy - hh:mm</span></div>
+                    </div>                </div>
 
                 <div class="dashboard">
                     <canvas id="sensorUmidade"></canvas>
