@@ -115,7 +115,7 @@
             console.log("Criando sala:", sala);
             painel.innerHTML += `
                 <div class="lista-status" id="lista_status">
-                    <a onclick="mudarPainel(${sala.id})" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">${sala.nome}</span></a>
+                    <a onclick="mudarPainel(${sala.id}, '${sala.nome}')" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">${sala.nome}</span></a>
                 </div>
             `
         }
@@ -132,8 +132,10 @@ for (let i = 0; i < datacenters.length; i++) {
     }
 }
 
-function mudarPainel(sala) {
+function mudarPainel(sala, nome) {
+    console.log("Mudando para o painel da sala:", sala, nome);
     sessionStorage.SALA = sala;
+    sessionStorage.NOME_SALA = nome;
     window.location.href = "PainelEspecifico3.html";
 }
 
