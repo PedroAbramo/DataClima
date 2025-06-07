@@ -1,8 +1,8 @@
 var database = require("../database/config");
 
-function buscarSalasPorDatacenter(empresaId) {
+function buscarSalasPorDatacenter(datacenterId) {
 
-  var instrucaoSql = `SELECT * FROM sala WHERE fkEmpresa = ${empresaId}`;
+  var instrucaoSql = `SELECT * FROM sala WHERE fkdatacenter = ${datacenterId}`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);

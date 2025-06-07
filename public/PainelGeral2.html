@@ -86,11 +86,28 @@
 
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    var datacenterId = sessionStorage.ID_DATACENTER;
 
-    function criarSalas() {
+    fetch(`/salas/${datacenterId}`, {
+        method: "GET",
+    })
+        .then(function (resposta) {
+            resposta.json().then((salas) => {
+                if(resposta.ok) {
+                    console.log("Salas recebidas:", salas);
+                    criarSalas(salas.length);
+                } else {
+                    console.error("Erro ao buscar salas:", resposta.statusText);
+                }
+            });
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+    function criarSalas(quantidadeSalas) {
 
         const painel = document.getElementById("painel");
-        const quantidadeSalas = 8;
 
         for (let i = 1; i <= quantidadeSalas; i++) {
             painel.innerHTML += `

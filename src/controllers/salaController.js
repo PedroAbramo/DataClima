@@ -1,9 +1,10 @@
 var salaModel = require("../models/salaModel");
 
 function buscarSalasPorDatacenter(req, res) {
-  var idDatacenter = req.params.idDatacenter;
+  var idData = req.params.idDatacenter;
+  console.log("Recuperando as salas do datacenter: ", idData);
 
-  salaModel.buscarSalasPorDatacenter(idDatacenter).then((resultado) => {
+  salaModel.buscarSalasPorDatacenter(idData).then((resultado) => {
     if (resultado.length > 0) {
       res.status(200).json(resultado);
     } else {
