@@ -1,5 +1,5 @@
 function listarDatacenters() {
-    cardDatacenter = document.getElementById("lista_status")
+    cardDatacenter = document.getElementById("painel-datacenter")
     JSON.parse(sessionStorage.DATACENTERS).forEach(item => {
         console.log('AAAAAAA')
         console.log(item.datacenter)
