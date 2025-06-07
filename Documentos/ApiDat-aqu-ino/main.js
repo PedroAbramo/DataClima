@@ -107,6 +107,7 @@ async function simularLeituraArduino(poolBancoDados, data) {
     const umidade = parseInt(valores[1]);
     const variacao = Number((Math.random() * 6) - 3);
     const temperatura2 = parseFloat(temperatura + variacao);
+    console.log(variacao);
     const umidade2 = parseInt(umidade + variacao);
     let motivo = [];
     let tipo = '';
@@ -133,14 +134,14 @@ async function simularLeituraArduino(poolBancoDados, data) {
 
         const [result] = await poolBancoDados.execute(
             'INSERT INTO registro (fksensor, temperatura, umidade) VALUES (1, ?, ?)',
-            [temperatura, umidade]
+            [temperatura2, umidade2]
         );
         const idRegistro = result.insertId;
         await poolBancoDados.execute(
             'INSERT INTO registro (fksensor, temperatura, umidade) VALUES (2, ?, ?)',
             [temperatura2, umidade2]
         );
-        console.log("valores inseridos no banco: ", umidade + ", " + temperatura);
+        console.log("valores inseridos no banco: ", umidade2 + ", " + temperatura2);
 
 
 
