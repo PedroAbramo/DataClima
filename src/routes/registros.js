@@ -11,4 +11,8 @@ router.get("/tempo-real/:idSala", function (req, res) {
     registroController.buscarRegistrosEmTempoReal(req, res);
 })
 
+router.get("/ultimaAtualizacao", function (req, res) {
+    registroController.ultimaAtualizacao(req, res);
+})
+
 module.exports = router;

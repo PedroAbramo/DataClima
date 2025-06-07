@@ -41,8 +41,17 @@ function buscarRegistrosEmTempoReal(req, res) {
     });
 }
 
+    function ultimaAtualizacao(req, res) {
+    registroModel.ultimaAtualizacao().then(function(resultado){
+        res.status(200).json(resultado);
+    }).catch(function(erro){
+        res.status(500).json(erro.sqlMessage);
+    })
+}
+
 module.exports = {
     buscarUltimosRegistros,
-    buscarRegistrosEmTempoReal
+    buscarRegistrosEmTempoReal,
+    ultimaAtualizacao
 
 }

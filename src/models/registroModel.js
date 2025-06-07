@@ -29,7 +29,17 @@ function buscarRegistrosEmTempoReal(idSala) {
     return database.executar(instrucaoSql);
 }
 
+function ultimaAtualizacao(){
+    var instrucao = `
+    select dataRegistro from registro order by dataregistro desc limit 1;
+`
+
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     buscarUltimosRegistros,
-    buscarRegistrosEmTempoReal
+    buscarRegistrosEmTempoReal,
+    ultimaAtualizacao
 }

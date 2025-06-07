@@ -10,3 +10,14 @@ function listarDatacenters() {
             `
     });
 }
+
+function ultimaAtualizacao(){
+        fetch(`/registros/ultimaAtualizacao`, {
+        method: "GET"
+    })
+        .then(res => {
+            res.json().then(json => {
+                const horario = json[0];
+            })
+        })
+}
