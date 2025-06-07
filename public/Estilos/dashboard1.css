@@ -97,7 +97,7 @@ a {
 
 
 .painel-status-datacenter {
-    display: flex;
+    /* display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
@@ -106,15 +106,28 @@ a {
     width:80%;
     height: 530px;
     margin: 20px 100px 20px 100px;
+    border-radius: 10px; */
+        display: grid;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    width:80%;
+    height: 530px;
+    margin: auto;
     border-radius: 10px;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 15px; 
+    padding: 20px;
 }
 
 .lista-status {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    height: 10%;
-    width: 30%;                                                                                                                                                                                                                                           ;
+    height: auto;
+    width: 100%;                                                                                                                                                                                                                                           ;
     padding: 10px;
 }
 
@@ -124,11 +137,17 @@ a {
     margin: 3px 0px 10px 0px;
     border: solid 4px #D9D9D9;
     border-radius: 40px;
-    box-shadow: 20px #D9D9D9;
-    width:80%;
-    padding: 3px 0px 3px 0px;
+    width:100%;
+    max-width: 200px;
+    padding: 15px 0;
     font-size: 24px;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    height: auto;
+    cursor: pointer;
 }
 
 .status {
