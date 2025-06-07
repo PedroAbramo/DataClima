@@ -15,4 +15,3 @@ function listar() {
 module.exports = {
   buscarPorId, listar
 };
-
