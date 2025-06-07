@@ -29,9 +29,13 @@ function buscarRegistrosEmTempoReal(idSala) {
     return database.executar(instrucaoSql);
 }
 
-function ultimaAtualizacao(){
+function ultimaAtualizacao(idDatacenter){
     var instrucao = `
-    select dataRegistro from registro order by dataregistro desc limit 1;
+    select dataRegistro from registro
+    inner join sala on fkSala = sala.id
+    inner join datacenter on sala.fkDatacenter = datacenter.id
+    where datacenter.id = ${idDatacenter}
+    order by dataregistro desc limit 1;
 `
 
     console.log("Executando a instrução SQL: \n" + instrucao);
