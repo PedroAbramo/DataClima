@@ -69,8 +69,10 @@
                         <p>Temperatura Mínima</p>
                         <strong id="temp-min" <span id="valorTempMin">18°C</span></strong>
                     </div>
-                    <p id="ultima-atualiza">Ultima atualização: <span class="DataHora_select">dd/mm/yyyy - hh:mm</span>
-                    </p>
+                    <div class="ultima-att">
+                        <p>Ultima atualização:</p>
+                        <div class="div_dataHora"><span class="DataHora_select">dd/mm/yyyy - hh:mm</span></div>
+                    </div>
 
                 </div>
                 <div class="dashboard">
@@ -100,7 +102,9 @@
                     <div class="ultima-att">
                         <p>Ultima atualização:</p>
                         <div class="div_dataHora"><span class="DataHora_select">dd/mm/yyyy - hh:mm</span></div>
-                    </div>                </div>
+                    </div>
+                                 
+                </div>
 
                 <div class="dashboard">
                     <canvas id="sensorUmidade"></canvas>
@@ -187,6 +191,16 @@
             },
         }
     });
+
+
+window.onload = function() {
+    ultimaAtualizacao();
+    
+    setInterval(function() {
+        ultimaAtualizacao();
+    }, 5000)
+}
+
 </script>
 
 </body>

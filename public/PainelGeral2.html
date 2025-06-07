@@ -13,7 +13,7 @@
     </style>
 </head>
 
-<body onload=" criarSalas(), ultimaAtualizacao()">
+<body>
     <nav class="side-nav">
         <div class="logo">
             <a href="index.html">
@@ -137,4 +137,12 @@ function mudarPainel(sala) {
     window.location.href = "PainelEspecifico3.html";
 }
 
+
+window.onload = function() {
+ultimaAtualizacao();
+
+setInterval(function() {
+    ultimaAtualizacao();
+}, 5000)
+}
 </script>

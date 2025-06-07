@@ -14,7 +14,7 @@
     </style>
 </head>
 
-<body onload="listarDatacenters(),ultimaAtualizacao()">
+<body>
     <nav class="side-nav">
         <div class="logo">
             <a href="index.html">
@@ -53,5 +53,15 @@
 
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+    window.onload = function() {
+    ultimaAtualizacao();
+    listarDatacenters();
+    
+    
+    setInterval(function() {
+        ultimaAtualizacao();
+    }, 5000)
+}
 
 </script>
