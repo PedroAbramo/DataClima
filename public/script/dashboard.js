@@ -25,7 +25,7 @@ function ultimaAtualizacao(){
                     let valor2 = data.split('T')[1];
                     let valor3 = valor2.split('.')[0];
                     const [hora, minuto, segundo] = valor3.split(':');
-                    DataHora.innerHTML = `${dia}/${mes}/${ano} - ${hora}:${minuto}:${segundo}`;
+                    DataHora.innerHTML = `${dia}/${mes}/${ano} - ${hora-3}:${minuto}:${segundo}`;
             })
         })
 
