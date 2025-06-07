@@ -139,6 +139,22 @@
     const ctxTemperatura = document.getElementById('sensorTemperatura').getContext('2d');
     const ctxUmidade = document.getElementById('sensorUmidade').getContext('2d');
 
+    fetch(`/datacenter/registros/${sessionStorage.SALA}`, {
+        method: "GET",
+    })
+        .then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json()
+                .then((dados) => {
+                    console.log("Dados recebidos:", dados);
+                });
+            }
+        })
+        
+
+    
+
+    // Gráfico de Temperatura
     let sensorTemperatura = new Chart(ctxTemperatura, {
         type: 'line',
         data: {
@@ -166,6 +182,7 @@
         }
     });
 
+    // Gráfico de Umidade
     let sensorUmidade = new Chart(ctxUmidade, {
         type: 'line',
         data: {
