@@ -115,7 +115,7 @@
             console.log("Criando sala:", sala);
             painel.innerHTML += `
                 <div class="lista-status" id="lista_status">
-                    <a onclick="mudarPainel(${sala})" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">${sala.nome}</span></a>
+                    <a onclick="mudarPainel(${sala.id})" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">${sala.nome}</span></a>
                 </div>
             `
         }
