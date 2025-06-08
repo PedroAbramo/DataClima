@@ -123,6 +123,9 @@ a {
     height: 500px;
     padding: 10px;
 }
+.lista-status:hover{
+    transform: scale(1.05);
+}
 
 .salas {
     color: black;
