@@ -43,8 +43,10 @@ a {
 .item-menu:hover {
     background-color: #f0f0f0;
 }
+
+
+
 .sair {
-    margin-top: auto;
     border-top: solid 2px  #f0f0f0;
     background-color: #D1D5DB;
     text-decoration: none;
@@ -55,6 +57,24 @@ a {
     border-top: solid 3px #ff4e4e;
     color: #000;
 }
+
+.Suporte{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-color: #D1D5DB;
+    text-decoration: none;
+    color: #333;
+    margin-top: auto;
+}
+
+.Suporte:hover {
+    background-color: #ffe601;
+    border-top: none;
+    color: #000;
+}
+
 .ativo {
     background-color: #f0f0f0;
     border-left: solid 5px gray;
