@@ -33,6 +33,11 @@ header #Dataclima_Nome {
     bottom: 1px;
 }
 
+header a:hover{
+    transform: scale(1.1);
+}
+
+
 .logo {
     width: 90px;
 }
@@ -51,19 +56,12 @@ nav a {
     padding-bottom: 3px;
     
 }
-nav a::after {
-    content: '';
-    position: absolute;
-    width: 0%;
-    height: 2px;
-    left: 0;
-    bottom: 0;
-  }
 
-
-nav a:hover::after {
-    width: 100%;
+nav a:hover{
+    transform: scale(1.1);
 }
+
+
 /* Footer */
 footer {
     background-color: #222;
