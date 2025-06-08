@@ -135,9 +135,6 @@ a {
     width: 50%;                                                                                                                                                                                                                                           ;
     padding: 10px;
 }
-.lista-status:hover{
-    transform: scale(1.05);
-}
 
 .salas {
     display: flex;
@@ -151,6 +148,10 @@ a {
     font-size: 24px;
     text-decoration: none;
     cursor: pointer;
+}
+
+.salas:hover{
+    transform: scale(1.05);
 }
 
 .status {
