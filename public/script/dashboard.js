@@ -18,14 +18,18 @@ function ultimaAtualizacao(){
     })
         .then(res => {
             res.json().then(json => {
-                console.log(json);
                 let data = json[0].dataRegistro;
                     let valor1 = data.split('T')[0];
-                    const [ano, mes, dia] = valor1.split('-');
+                    let [ano, mes, dia] = valor1.split('-');
                     let valor2 = data.split('T')[1];
                     let valor3 = valor2.split('.')[0];
-                    const [hora, minuto, segundo] = valor3.split(':');
+                    let [hora, minuto, segundo] = valor3.split(':');
+                    if (hora < 3) {
+                        hora += 24
+                        dia -= 1
+                    } 
                     DataHora.forEach(span => span.innerHTML = `${dia}/${mes}/${ano} - ${hora-3}:${minuto}:${segundo}`);
+
             })
         })
 

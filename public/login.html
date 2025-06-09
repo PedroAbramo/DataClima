@@ -20,7 +20,7 @@
                 <div class="cadastro-link">
                     Não tem login? <a href="cadastro.html"><b>Cadastre-se</b></a>
                 </div>
-                <div id="mensagem">
+                <div id="mensagem" class="cadastro-link">
 
                 </div>
             </div>
@@ -65,7 +65,7 @@ function login() {
 
             if (resposta.ok) {
             mensagem.innerHTML =
-              "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+              "Login realizado com sucesso! Redirecionando para tela de Dashboard...";
 
 
                 resposta.json().then(json => {

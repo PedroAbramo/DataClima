@@ -78,7 +78,3 @@ CREATE TABLE alerta (
     CONSTRAINT fk_registro_alerta FOREIGN KEY (fkRegistro) REFERENCES registro(id),
     KEY ix_fkregistro (fkRegistro)
 );
-
-INSERT INTO empresa VALUE (1,'Dataclima','1','1','27');
-
-select*from empresa;

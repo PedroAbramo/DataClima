@@ -13,7 +13,7 @@
     <script src="./script/dashboard.js"></script>
 </head>
 
-<body onload="validarSessao(), ultimaAtualizacao()">
+<body onload="validarSessao()">
     <nav class="side-nav">
         <div class="logo">
             <a href="index.html">
@@ -132,14 +132,70 @@
         }
     }
 
-
     sensorvar = 'Sensor 1';
 
-    // Inicialização dos gráficos
-    const ctxTemperatura = document.getElementById('sensorTemperatura').getContext('2d');
-    const ctxUmidade = document.getElementById('sensorUmidade').getContext('2d');
+    var dadosSensor = []
+    var horaLabel = []
 
-    let sensorTemperatura = new Chart(ctxTemperatura, {
+    function buscarRegistrosPeriodicamente() {
+        fetch(`/datacenter/registros/${sessionStorage.SALA}`, {
+            method: "GET",
+        })
+        .then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json()
+                .then((dados) => {
+                    console.log("Dados recebidos:", dados);
+                    dadosSensor = dados;
+
+                    dadosSensor.forEach(registro => {
+                    console.log(registro.dataRegistro);
+
+                    let data = registro.dataRegistro;
+                    let valor1 = data.split('T')[0];
+                    let [ano, mes, dia] = valor1.split('-');
+                    let valor2 = data.split('T')[1];
+                    let valor3 = valor2.split('.')[0];
+                    let [hora, minuto, segundo] = valor3.split(':');
+                    if (hora < 3) {
+                        hora += 24
+                        dia -= 1
+                    }
+
+                    var registroHora = `${hora-3}:${minuto}:${segundo}`
+                    console.log("Hora do registro:", registroHora);
+                })
+                        
+                    
+                    console.log("Dados do Sensor:", dadosSensor);
+                });
+            }
+        })
+    }
+    
+    buscarRegistrosPeriodicamente()
+    setInterval(buscarRegistrosPeriodicamente, 10000)
+    
+
+
+        
+
+    
+
+
+
+
+        
+        
+
+
+
+    // Pegue as referências corretas dos canvas
+    const canvasTemperatura = document.getElementById('sensorTemperatura');
+    const canvasUmidade = document.getElementById('sensorUmidade');
+
+    // Gráfico de Temperatura
+    let sensorTemperatura = new Chart(canvasTemperatura, {
         type: 'line',
         data: {
             labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
@@ -166,7 +222,8 @@
         }
     });
 
-    let sensorUmidade = new Chart(ctxUmidade, {
+    // Gráfico de Umidade
+    let sensorUmidade = new Chart(canvasUmidade, {
         type: 'line',
         data: {
             labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
@@ -193,15 +250,12 @@
         }
     });
 
-
-window.onload = function() {
-    ultimaAtualizacao();
-    
-    setInterval(function() {
+    window.onload = function() {
         ultimaAtualizacao();
-    }, 5000)
-}
-
+        setInterval(function() {
+            ultimaAtualizacao();
+        }, 5000)
+    }
 </script>
 
 </body>

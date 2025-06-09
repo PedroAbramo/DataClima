@@ -147,6 +147,12 @@ a {
     width:80%;
     font-size: 24px;
     text-decoration: none;
+    cursor: pointer;
+}
+
+.salas:hover{
+    transform: scale(1.05);
+    transition: transform 0.2s ease;
 }
 
 .status {
