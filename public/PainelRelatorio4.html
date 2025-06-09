@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataClima - Monitoramento de Temperatura e Umidade em Data Centers</title>
+    <link rel="stylesheet" href="Estilos/dashboard4.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+    </style>
+    <script src="./script/dashboard.js"></script>
+</head>
+
+<body onload="validarSessao()">
+    <nav class="side-nav">
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/DataClima_Logo.png" class="logo" style="width: 250px;">
+            </a>
+        </div>
+        <ul class="navbar">
+            <li class="usuario"><span id="b_usuario">Admin</span></li>
+            <li class="usuario"><span id="b_datacenter">DataCenter Teste</span></li>
+            <a href="PainelGeral2.html">
+                <li class="item-menu">Visão Geral</li>
+            </a>
+            <a href="PainelEspecifico3.html">
+                <li class="item-menu">Painel Específico</li>
+            </a>
+            <a href="PainelRelatorio4.html">
+                <li class="item-menu ativo">Painel Relatório</li>
+            </a>
+        </ul>
+        <a href="https://sptech-team-wy40ngo8.atlassian.net/servicedesk/customer/portals" target="_blank"
+            class="item-menu sair Suporte">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                    d="m12,2C6.49,2,2,6.49,2,12v5c0,.55.45,1,1,1h3c.55,0,1-.45,1-1v-5c0-.55-.45-1-1-1h-1.93c.49-3.94,3.86-7,7.93-7s7.44,3.06,7.93,7h-1.93c-.55,0-1,.45-1,1v5c0,.55.45,1,1,1h2v1c0,.55-.45,1-1,1h-4c0-.55-.45-1-1-1h-4c-.55,0-1,.45-1,1v1c0,.55.45,1,1,1h9c1.65,0,3-1.35,3-3v-7c0-5.51-4.49-10-10-10Z">
+                </path>
+            </svg>
+            Suporte
+        </a>
+        <a href="login.html" class="item-menu sair">
+            <div>
+                Sair
+            </div>
+        </a>
+    </nav>
+
+    <div class="tela">
+        <div class="info">
+            <div class="relatorio">
+                <div class="titulo">
+                    <h1 id="titulo">Relatório - </h1>
+                </div>
+                <div class="ultima-att">
+                    <p>Ultima atualização:</p>
+                    <div class="div_dataHora"><span class="DataHora_select">dd/mm/yyyy - hh:mm</span></div>
+                </div>
+            </div>
+
+        </div>
+        <script>
+            titulo.innerHTML += sessionStorage.NOME_SALA;
+            const datacenters = JSON.parse(sessionStorage.DATACENTERS)
+            console.log("Data Centers disponíveis:", datacenters)
+
+            for (let i = 0; i < datacenters.length; i++) {
+                if (datacenters[i].id == sessionStorage.ID_DATACENTER) {
+                    b_datacenter.innerHTML = datacenters[i].datacenter
+                    console.log("Data Center selecionado:", datacenters[i].datacenter)
+                    break
+                }
+            }
+
+            window.onload = function () {
+                ultimaAtualizacao();
+
+                setInterval(function () {
+                    ultimaAtualizacao();
+                }, 5000)
+            }
+        </script>
+</body>
+
+</html>
+
+<script>
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+</script>
