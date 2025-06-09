@@ -53,22 +53,22 @@ const serial = async () => {
 
         if (temperatura > 32) {
             motivo.push("Temperatura muito alta");
-            tipo = "Critico"
+            tipo = "Crítico"
         } else if (temperatura < 18) {
             motivo.push("Temperatura baixa");
-            tipo = tipo === "Critico" ? "Critico" : "Alerta";
+            tipo = tipo === "Crítico" ? "Crítico" : "Alerta";
 
         }
 
         if (umidade > 55) {
             motivo.push("Umidade alta");
-            tipo = tipo === "Critico" ? "Critico" : "Alerta";
+            tipo = tipo === "Crítico" ? "Crítico" : "Alerta";
         } else if (umidade < 20) {
             motivo.push("Umidade muito baixa");
-            tipo = "Critico";
+            tipo = "Crítico";
         } else if (umidade < 40) {
             motivo.push("Umidade baixa");
-            tipo = tipo === "Critico" ? "Critico" : "Alerta";
+            tipo = tipo === "Crítico" ? "Crítico" : "Alerta";
         }
 
             const [result] = await poolBancoDados.execute(
