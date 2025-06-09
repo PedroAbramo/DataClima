@@ -103,7 +103,7 @@
                         <p>Ultima atualização:</p>
                         <div class="div_dataHora"><span class="DataHora_select">dd/mm/yyyy - hh:mm</span></div>
                     </div>
-                                 
+
                 </div>
 
                 <div class="dashboard">
@@ -119,155 +119,146 @@
                 </div>
             </div>
 
-<script>
-    titulo.innerHTML = sessionStorage.NOME_SALA;
-    const datacenters = JSON.parse(sessionStorage.DATACENTERS)
-    console.log("Data Centers disponíveis:", datacenters)
+            <script>
+                titulo.innerHTML = sessionStorage.NOME_SALA;
+                const datacenters = JSON.parse(sessionStorage.DATACENTERS)
+                console.log("Data Centers disponíveis:", datacenters)
 
-    for (let i = 0; i < datacenters.length; i++) {
-        if (datacenters[i].id == sessionStorage.ID_DATACENTER) {
-            b_datacenter.innerHTML = datacenters[i].datacenter
-            console.log("Data Center selecionado:", datacenters[i].datacenter)
-            break
-        }
-    }
-
-    sensorvar = 'Sensor 1';
-
-    var dadosSensor = []
-    var horaLabel = []
-    var temp = [];
-    var umi = [];
-
-    function buscarRegistrosPeriodicamente() {
-        fetch(`/datacenter/registros/${sessionStorage.SALA}`, {
-            method: "GET",
-        })
-        .then(function (resposta) {
-            if (resposta.ok) {
-                resposta.json()
-                .then((dados) => {
-                    console.log("Dados recebidos:", dados);
-                    dadosSensor = dados;
-
-                    dadosSensor.forEach(dados => {
-                        temp.push(dados.temperatura);
-                        console.log("Array Temperatura: " + temp)
-                    })
-
-                    dadosSensor.forEach(dados2 => {
-                        umi.push(dados2.umidade);
-                        console.log("Array umidade: " + umi)
-                    })
-
-                    dadosSensor.forEach(registro => {
-
-                    let data = registro.dataRegistro;
-                    let valor1 = data.split('T')[0];
-                    let [ano, mes, dia] = valor1.split('-');
-                    let valor2 = data.split('T')[1];
-                    let valor3 = valor2.split('.')[0];
-                    let [hora, minuto, segundo] = valor3.split(':');
-                    if (hora < 3) {
-                        hora += 24
-                        dia -= 1
+                for (let i = 0; i < datacenters.length; i++) {
+                    if (datacenters[i].id == sessionStorage.ID_DATACENTER) {
+                        b_datacenter.innerHTML = datacenters[i].datacenter
+                        console.log("Data Center selecionado:", datacenters[i].datacenter)
+                        break
                     }
-
-                    var registroHora = `${hora-3}:${minuto}:${segundo}`
-                    console.log("Hora do registro:", registroHora);
-                })
-                        
-                    
-                    console.log("Dados do Sensor:", dadosSensor);
-                });
-            }
-        })
-    }
-    
-    buscarRegistrosPeriodicamente()
-    setInterval(buscarRegistrosPeriodicamente, 10000)
-    
-
-
-        
-
-    
-
-
-
-
-        
-        
-
-
-
-    // Pegue as referências corretas dos canvas
-    const canvasTemperatura = document.getElementById('sensorTemperatura');
-    const canvasUmidade = document.getElementById('sensorUmidade');
-
-    // Gráfico de Temperatura
-    let sensorTemperatura = new Chart(canvasTemperatura, {
-        type: 'line',
-        data: {
-            labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
-            datasets: [{
-                label: 'Temperatura',
-                borderColor: '#004080', // Cor da linha (azul mais forte)
-                backgroundColor: '#66B2FF', // Cor da bolinha da linha (azul mais claro)
-                data: [22, 24, 27, 23, 20, 18],
-            }]
-        },
-        options: {
-            scales: {
-                x: {
-                    beginAtZero: true
-                },
-                y: {
-                    title: {
-                        display: true,
-                        text: '(°C)'
-                    },
-                    beginAtZero: true,
                 }
-            }
-        }
-    });
 
-    // Gráfico de Umidade
-    let sensorUmidade = new Chart(canvasUmidade, {
-        type: 'line',
-        data: {
-            labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
-            datasets: [{
-                label: 'Umidade',
-                borderColor: '#87CEEB',
-                backgroundColor: '#0056b3',
-                data: [50, 42, 37, 55, 40, 43],
-            }]
-        },
-        options: {
-            scales: {
-                x: {
-                    beginAtZero: true
-                },
-                y: {
-                    title: {
-                        display: true,
-                        text: '(%)'
-                    },
-                    beginAtZero: true,
-                },
-            },
-        }
-    });
+                sensorvar = 'Sensor 1';
 
-    window.onload = function() {
-        ultimaAtualizacao();
-        setInterval(function() {
-            ultimaAtualizacao();
-        }, 5000)
-    }
-</script>
+                var dadosSensor = []
+                var horaLabel = []
+                var temp = [];
+                var umi = [];
+
+                function buscarRegistrosPeriodicamente() {
+                    fetch(`/datacenter/registros/${sessionStorage.SALA}`, {
+                        method: "GET",
+                    })
+                        .then(function (resposta) {
+                            if (resposta.ok) {
+                                resposta.json()
+                                    .then((dados) => {
+                                        console.log("Dados recebidos:", dados);
+                                        dadosSensor = dados;
+
+                                        dadosSensor.forEach(dados => {
+                                            temp.push(dados.temperatura);
+                                            console.log("Array Temperatura: " + temp)
+                                        })
+
+                                        dadosSensor.forEach(dados2 => {
+                                            umi.push(dados2.umidade);
+                                            console.log("Array umidade: " + umi)
+                                        })
+
+                                        dadosSensor.forEach(registro => {
+
+                                            let data = registro.dataRegistro;
+                                            let valor1 = data.split('T')[0];
+                                            let [ano, mes, dia] = valor1.split('-');
+                                            let valor2 = data.split('T')[1];
+                                            let valor3 = valor2.split('.')[0];
+                                            let [hora, minuto, segundo] = valor3.split(':');
+                                            if (hora < 3) {
+                                                hora += 24
+                                                dia -= 1
+                                            }
+
+                                            var registroHora = `${hora - 3}:${minuto}:${segundo}`
+                                            console.log("Hora do registro:", registroHora);
+                                        })
+
+
+                                        console.log("Dados do Sensor:", dadosSensor);
+                                    });
+                            }
+                        })
+                }
+
+                buscarRegistrosPeriodicamente()
+                setInterval(buscarRegistrosPeriodicamente, 10000)
+
+                // Pegue as referências corretas dos canvas
+                const canvasTemperatura = document.getElementById('sensorTemperatura');
+                const canvasUmidade = document.getElementById('sensorUmidade');
+
+                function atualizarGrafico() {
+
+                    // Gráfico de Temperatura
+                    let sensorTemperatura = new Chart(canvasTemperatura, {
+                        type: 'line',
+                        data: {
+                            labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
+                            datasets: [{
+                                label: 'Temperatura',
+                                borderColor: '#004080', // Cor da linha (azul mais forte)
+                                backgroundColor: '#66B2FF', // Cor da bolinha da linha (azul mais claro)
+                                data: [temp],
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                x: {
+                                    beginAtZero: true
+                                },
+                                y: {
+                                    title: {
+                                        display: true,
+                                        text: '(°C)'
+                                    },
+                                    beginAtZero: true,
+                                }
+                            }
+                        }
+                    });
+
+                    // Gráfico de Umidade
+                    let sensorUmidade = new Chart(canvasUmidade, {
+                        type: 'line',
+                        data: {
+                            labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
+                            datasets: [{
+                                label: 'Umidade',
+                                borderColor: '#87CEEB',
+                                backgroundColor: '#0056b3',
+                                data: [umi],
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                x: {
+                                    beginAtZero: true
+                                },
+                                y: {
+                                    title: {
+                                        display: true,
+                                        text: '(%)'
+                                    },
+                                    beginAtZero: true,
+                                },
+                            },
+                        }
+                    });
+                }
+
+                window.onload = function () {
+                    ultimaAtualizacao();
+                    atualizarGrafico();
+                    setInterval(function () {
+                        ultimaAtualizacao();
+                        atualizarGrafico();
+                    }, 5000)
+                }
+            </script>
 
 </body>
 

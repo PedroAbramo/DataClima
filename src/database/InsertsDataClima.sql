@@ -13,6 +13,7 @@ INSERT INTO usuario (fkEmpresa, nome, sobrenome, telefone, email, senha) VALUES
 (2, 'Marcos', 'Pereira', '11999996666', 'marcos@climaseg.com', 'pass456'),
 (4, 'Beatriz', 'Lima', '11912345678', 'beatriz@termodata.com', 'senha789'),
 (4, 'Eduardo', 'Moraes', '11987651234', 'eduardo@termodata.com', 'senha000'),
+(6, 'Pedro', 'Cesar', '11966257298', 'pedro@sptech.school', '1234'),
 (5, 'Clara', 'Martins', '11876543210', 'clara@ecomonitor.com', 'eco123');
 
 -- DATACENTERS
@@ -58,13 +59,3 @@ INSERT INTO registro (fkSensor, temperatura, umidade, dataRegistro) VALUES
 (7, 42, 85, '2025-06-07 11:15:00'),
 (8, 46, 95, '2025-06-07 11:30:00');
 
--- ALERTAS
-INSERT INTO alerta (fkRegistro, status, tipo, motivo, data_resolucao) VALUES
-(3, 'ativo', 'Médio', 'Temperatura elevada', NULL),
-(4, 'ativo', 'Grave', 'Umidade crítica', NULL),
-(5, 'resolvido', 'Grave', 'Temperatura extrema', '2025-06-07 11:00:00'),
-(6, 'ativo', 'Leve', 'Temperatura acima do comum', NULL),
-(7, 'ativo', 'Médio', 'Umidade alta', NULL),
-(8, 'ativo', 'Grave', 'Risco de superaquecimento', NULL),
-(9, 'resolvido', 'Grave', 'Sensor próximo do limite', '2025-06-07 12:00:00'),
-(10, 'ativo', 'Grave', 'Falha de resfriamento', NULL);

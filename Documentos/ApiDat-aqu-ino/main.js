@@ -89,6 +89,7 @@ const serial = async () => {
                 await poolBancoDados.execute(
                     'INSERT INTO alerta (fkRegistro, tipo, motivo) VALUES (?, ?, ?)',
                     [idRegistro, tipo, motivo.join(', ')]
+                    
             );
         console.log("Alerta inserido no banco: ", idRegistro + ", " + tipo + ", " + motivo.join(', '));
             }
