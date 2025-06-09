@@ -282,10 +282,11 @@
                 window.onload = function () {
                     buscarRegistrosPeriodicamente();
                     ultimaAtualizacao();
-                     TemperaturaUmidadeMAXMIN(idSala);
+                    
 
                     setInterval(function () {
                         buscarRegistrosPeriodicamente();
+                        TemperaturaUmidadeMAXMIN(idSala);
                     }, 1000)
 
                     setInterval(function () {
