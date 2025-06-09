@@ -1,7 +1,6 @@
 function listarDatacenters() {
     cardDatacenter = document.getElementById("painel-datacenter")
     JSON.parse(sessionStorage.DATACENTERS).forEach(item => {
-        console.log('AAAAAAA')
         console.log(item.datacenter)
             cardDatacenter.innerHTML += `
                 <div class="lista-status" id="lista_status">
@@ -29,10 +28,8 @@ function ultimaAtualizacao(){
                         dia -= 1
                     } 
                     DataHora.forEach(span => span.innerHTML = `${dia}/${mes}/${ano} - ${hora-3}:${minuto}:${segundo}`);
-
             })
         })
-
     }
 
 function selecionarDatacenter(id) {
