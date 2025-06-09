@@ -46,7 +46,16 @@ function TemperaturaUmidadeMAXMIN(idSala){
     })
         .then(res => {
             res.json().then(json => {
-                const NumCadastro = json[0];
+                const maxmin = json[0];
+
+                valorTempMax.innerHTML = maxmin.temperaturaMax + "°C";
+
+                valorTempMin.innerHTML = maxmin.temperaturaMin + "°C";
+
+                valorHumiMax.innerHTML = maxmin.umidadeMax + "%";
+
+                valorHumiMin.innerHTML = maxmin.UmidadeMin + "%";
+
                 console.log(NumCadastro);
             })
         })
