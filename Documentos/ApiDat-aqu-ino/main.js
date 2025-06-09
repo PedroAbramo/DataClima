@@ -12,7 +12,11 @@ const serial = async () => {
     let poolBancoDados = mysql.createPool(
         {
             host: '10.18.32.68', // ip que deve ser alterado de acordo com a máquina que receberá os dados
+<<<<<<< HEAD
             user: 'insert_dataclima',
+=======
+            user: 'dono',
+>>>>>>> 2be3ceb8fda4a1a58adacbe70037e110319a7821
             password: 'Sptech#2024',
             database: 'dataclima',
             port: 3307
@@ -53,22 +57,22 @@ const serial = async () => {
 
         if (temperatura > 32) {
             motivo.push("Temperatura muito alta");
-            tipo = "Critico"
+            tipo = "Crítico"
         } else if (temperatura < 18) {
             motivo.push("Temperatura baixa");
-            tipo = tipo === "Critico" ? "Critico" : "Alerta";
+            tipo = tipo === "Crítico" ? "Crítico" : "Alerta";
 
         }
 
         if (umidade > 55) {
             motivo.push("Umidade alta");
-            tipo = tipo === "Critico" ? "Critico" : "Alerta";
+            tipo = tipo === "Crítico" ? "Crítico" : "Alerta";
         } else if (umidade < 20) {
             motivo.push("Umidade muito baixa");
-            tipo = "Critico";
+            tipo = "Crítico";
         } else if (umidade < 40) {
             motivo.push("Umidade baixa");
-            tipo = tipo === "Critico" ? "Critico" : "Alerta";
+            tipo = tipo === "Crítico" ? "Crítico" : "Alerta";
         }
 
             const [result] = await poolBancoDados.execute(
