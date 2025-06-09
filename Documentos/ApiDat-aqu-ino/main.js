@@ -12,11 +12,7 @@ const serial = async () => {
     let poolBancoDados = mysql.createPool(
         {
             host: '10.18.32.68', // ip que deve ser alterado de acordo com a máquina que receberá os dados
-<<<<<<< HEAD
-            user: 'insert_dataclima',
-=======
             user: 'dono',
->>>>>>> 2be3ceb8fda4a1a58adacbe70037e110319a7821
             password: 'Sptech#2024',
             database: 'dataclima',
             port: 3307
@@ -91,10 +87,10 @@ const serial = async () => {
 
             if (motivo.length > 0) {
                 await poolBancoDados.execute(
-                    'INSERT INTO alerta (fkRegistro, tipo, motivo) VALUES (1, ?, ?)',
+                    'INSERT INTO alerta (fkRegistro, tipo, motivo) VALUES (?, ?, ?)',
                     [idRegistro, tipo, motivo.join(', ')]
             );
-            console.log("valores inseridos no banco: ", umidade + ", " + temperatura);
+        console.log("Alerta inserido no banco: ", idRegistro + ", " + tipo + ", " + motivo.join(', '));
             }
     });
 
@@ -107,6 +103,7 @@ const serial = async () => {
 }
 
 // Função para simular leitura do Arduino
+/*
 async function simularLeituraArduino(poolBancoDados, data) {
     const valores = data.split(';');
     const temperatura = parseFloat(valores[0]);
@@ -159,7 +156,7 @@ async function simularLeituraArduino(poolBancoDados, data) {
         console.log("Alerta inserido no banco: ", idRegistro + ", " + tipo + ", " + motivo.join(', '));
         }
 }
-
+*/
 // Função principal de simulação
 /*
 const simular = async () => {
