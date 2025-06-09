@@ -136,6 +136,8 @@
 
     var dadosSensor = []
     var horaLabel = []
+    var temp = [];
+    var umi = [];
 
     function buscarRegistrosPeriodicamente() {
         fetch(`/datacenter/registros/${sessionStorage.SALA}`, {
@@ -148,8 +150,17 @@
                     console.log("Dados recebidos:", dados);
                     dadosSensor = dados;
 
+                    dadosSensor.forEach(dados => {
+                        temp.push(dados.temperatura);
+                        console.log(temp)
+                    })
+
+                    dadosSensor.forEach(dados2 => {
+                        umi.push(dados2.umidade);
+                        console.log(umi)
+                    })
+
                     dadosSensor.forEach(registro => {
-                    console.log(registro.dataRegistro);
 
                     let data = registro.dataRegistro;
                     let valor1 = data.split('T')[0];
