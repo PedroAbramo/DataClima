@@ -120,14 +120,14 @@
             </div>
 
             <script>
+
+                let idSala = sessionStorage.SALA
                 titulo.innerHTML = sessionStorage.NOME_SALA;
                 const datacenters = JSON.parse(sessionStorage.DATACENTERS)
-                console.log("Data Centers disponíveis:", datacenters)
 
                 for (let i = 0; i < datacenters.length; i++) {
                     if (datacenters[i].id == sessionStorage.ID_DATACENTER) {
                         b_datacenter.innerHTML = datacenters[i].datacenter
-                        console.log("Data Center selecionado:", datacenters[i].datacenter)
                         break
                     }
                 }
@@ -153,7 +153,6 @@
                             if (resposta.ok) {
                                 resposta.json()
                                     .then((dados) => {
-                                        console.log("Dados recebidos:", dados);
                                         dadosSensor = dados;
 
                                         temp = [];
@@ -188,8 +187,6 @@
                                         })
                                         
                                         
-                                        console.log("Hora do registro:", registroHora);
-                                        console.log("Dados do Sensor:", dadosSensor);
 
                                         criarGrafico()
                                     });
@@ -274,9 +271,11 @@
                     window.sensorUmidade.update();
                 }
 
+
                 window.onload = function () {
                     buscarRegistrosPeriodicamente();
                     ultimaAtualizacao();
+                     TemperaturaUmidadeMAXMIN(idSala);
 
                     setInterval(function () {
                         buscarRegistrosPeriodicamente();

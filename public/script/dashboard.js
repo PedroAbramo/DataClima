@@ -39,3 +39,18 @@ function selecionarDatacenter(id) {
     sessionStorage.setItem("ID_DATACENTER", id);
     window.location.href = "PainelGeral2.html";
 }
+
+
+function TemperaturaUmidadeMAXMIN(idSALA){
+
+    fetch(`/registros/TemperaturaUmidadeMAXMIN/${idSALA}`, {
+        method: "GET"
+    })
+        .then(res => {
+            res.json().then(json => {
+                const NumCadastro = json[0];
+                console.log(NumCadastro);
+            })
+        })
+
+}

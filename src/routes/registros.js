@@ -15,4 +15,8 @@ router.get("/ultimaAtualizacao", function (req, res) {
     registroController.ultimaAtualizacao(req, res);
 })
 
+router.get("/TemperaturaUmidadeMAXMIN/:idSala", function (req, res) {
+    registroController.TemperaturaUmidadeMAXMIN(req, res);
+})
+
 module.exports = router;

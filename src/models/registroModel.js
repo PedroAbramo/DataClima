@@ -39,8 +39,24 @@ function ultimaAtualizacao(){
     return database.executar(instrucao);
 }
 
+
+function TemperaturaUmidadeMAXMIN(idSala){
+    var instrucao = `
+    select
+    (SELECT temperatura FROM registro WHERE DATE(dataRegistro) = CURDATE() and fkSensor = ${idSala} ORDER BY temperatura DESC LIMIT 1) AS temperaturaMax,
+    (SELECT umidade FROM registro WHERE DATE(dataRegistro) = CURDATE() and fkSensor = ${idSala} ORDER BY umidade DESC LIMIT 1) AS umidadeMax,
+    -- Mínimos
+    (SELECT temperatura FROM registro WHERE DATE(dataRegistro) = CURDATE() and fkSensor = ${idSala} ORDER BY temperatura ASC LIMIT 1) AS temperaturaMin,
+    (SELECT umidade FROM registro WHERE DATE(dataRegistro) = CURDATE() and fkSensor = ${idSala} ORDER BY umidade ASC LIMIT 1) AS UmidadeMin;
+    
+
+`
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
 module.exports = {
     buscarUltimosRegistros,
     buscarRegistrosEmTempoReal,
-    ultimaAtualizacao
+    ultimaAtualizacao,
+    TemperaturaUmidadeMAXMIN
 }
