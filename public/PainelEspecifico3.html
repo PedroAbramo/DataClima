@@ -139,9 +139,13 @@
                 var temp = [];
                 var umi = [];
                 var sensorTemperatura;
-                var sensorUmidade
+                var sensorUmidade;
+                var registroHora = [];
 
                 function buscarRegistrosPeriodicamente() {
+
+                    console.log("Buscando os registros")
+
                     fetch(`/datacenter/registros/${sessionStorage.SALA}`, {
                         method: "GET",
                     })
@@ -154,6 +158,7 @@
 
                                         temp = [];
                                         umi = [];
+                                        registroHora = []
 
                                         dadosSensor.forEach(dados => {
                                             temp.push(dados.temperatura);
@@ -164,7 +169,6 @@
                                         })
 
                                         dadosSensor.forEach(registro => {
-
                                             let data = registro.dataRegistro;
                                             let valor1 = data.split('T')[0];
                                             let [ano, mes, dia] = valor1.split('-');
@@ -179,20 +183,23 @@
                                                 hora += 24
                                                 dia -= 1
                                             }
-
-                                            var registroHora = `${hora - 3}:${minuto}:${segundo}`
-                                            console.log("Hora do registro:", registroHora);
+                                            
+                                            registroHora.push(`${hora - 3}:${minuto}:${segundo}`)
                                         })
-
-
+                                        
+                                        
+                                        console.log("Hora do registro:", registroHora);
                                         console.log("Dados do Sensor:", dadosSensor);
+
+                                        criarGrafico()
                                     });
                             }
                         })
                 }
 
                 function criarGrafico() {
-
+                    console.log("Criando o gráfico")
+                    console.log("Array temperatura" + temp)
                     let canvasTemperatura = document.getElementById('sensorTemperatura');
                     let canvasUmidade = document.getElementById('sensorUmidade');
 
@@ -200,7 +207,7 @@
                     sensorTemperatura = new Chart(canvasTemperatura, {
                         type: 'line',
                         data: {
-                            labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00'],
+                            labels: registroHora,
                             datasets: [{
                                 label: 'Temperatura',
                                 borderColor: '#004080', // Cor da linha (azul mais forte)
@@ -211,6 +218,7 @@
                         options: {
                             scales: {
                                 x: {
+                                    reverse: true,
                                     beginAtZero: true
                                 },
                                 y: {
@@ -228,7 +236,7 @@
                     sensorUmidade = new Chart(canvasUmidade, {
                         type: 'line',
                         data: {
-                            labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00'],
+                            labels: registroHora,
                             datasets: [{
                                 label: 'Umidade',
                                 borderColor: '#87CEEB',
@@ -239,6 +247,7 @@
                         options: {
                             scales: {
                                 x: {
+                                    reverse: true,
                                     beginAtZero: true
                                 },
                                 y: {
@@ -258,6 +267,8 @@
                 function atualizarGrafico() {
                     window.sensorTemperatura.data.datasets[0].data = temp; // Atualiza os dados do primeiro dataset
                     window.sensorUmidade.data.datasets[0].data = umi; // Atualiza os dados do primeiro dataset
+                    window.sensorTemperatura.data.labels = registroHora; 
+                    window.sensorUmidade.data.labels = registroHora; 
                     // Atualiza o gráfico
                     window.sensorTemperatura.update();
                     window.sensorUmidade.update();
@@ -265,8 +276,6 @@
 
                 window.onload = function () {
                     buscarRegistrosPeriodicamente();
-                    criarGrafico();
-                    atualizarGrafico();
                     ultimaAtualizacao();
 
                     setInterval(function () {
