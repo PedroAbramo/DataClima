@@ -150,14 +150,15 @@
                                         console.log("Dados recebidos:", dados);
                                         dadosSensor = dados;
 
+                                        temp = [];
+                                        umi = [];
+
                                         dadosSensor.forEach(dados => {
                                             temp.push(dados.temperatura);
-                                            console.log("Array Temperatura: " + temp)
                                         })
 
                                         dadosSensor.forEach(dados2 => {
                                             umi.push(dados2.umidade);
-                                            console.log("Array umidade: " + umi)
                                         })
 
                                         dadosSensor.forEach(registro => {
@@ -184,14 +185,10 @@
                         })
                 }
 
-                buscarRegistrosPeriodicamente()
-                setInterval(buscarRegistrosPeriodicamente, 10000)
-
-                // Pegue as referências corretas dos canvas
-                const canvasTemperatura = document.getElementById('sensorTemperatura');
-                const canvasUmidade = document.getElementById('sensorUmidade');
-
                 function atualizarGrafico() {
+                    // Pegue as referências corretas dos canvas
+                    const canvasTemperatura = document.getElementById('sensorTemperatura');
+                    const canvasUmidade = document.getElementById('sensorUmidade');
 
                     // Gráfico de Temperatura
                     let sensorTemperatura = new Chart(canvasTemperatura, {
@@ -253,9 +250,17 @@
                 window.onload = function () {
                     ultimaAtualizacao();
                     atualizarGrafico();
+
+                    setInterval(function () {
+                        buscarRegistrosPeriodicamente();
+                    }, 1000)
+
+                    setInterval(function () {
+                        atualizarGrafico();
+                    }, 1500)
+
                     setInterval(function () {
                         ultimaAtualizacao();
-                        atualizarGrafico();
                     }, 5000)
                 }
             </script>
