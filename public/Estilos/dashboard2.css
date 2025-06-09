@@ -295,3 +295,26 @@ a {
     align-self: center;
     color: #000;
 }
+
+
+#tempSala {
+    font-weight: 500;
+}
+
+#umiSala {
+    font-weight: 500;
+}
+
+.divUmi, .divTemp {
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+}
+
+.divGeralStatus {
+    display: flex;
+    flex-direction: row;
+    justify-self: flex-end;
+    margin-left: 15%;
+    gap: 15px;
+}
