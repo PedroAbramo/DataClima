@@ -49,16 +49,45 @@ function TemperaturaUmidadeMAXMIN(idSala){
                 const maxmin = json[0];
 
                 valorTempMax.innerHTML = maxmin.temperaturaMax + "°C";
+                if (maxmin.temperaturaMax > 32) {
+                    valorTempMax.style.color = "#FF0000"; // vermelho                   
+                } else if (maxmin.temperaturaMax > 27 || maxmin.temperaturaMax < 18) {
+                    valorTempMax.style.color = "#E0E243"; // amarelo
+                } else if (maxmin.temperaturaMax <= 27 || maxmin.temperaturaMax >= 18 ) {
+                    valorTempMax.style.color = "#14EE00"; // verde
+                }
 
                 valorTempMin.innerHTML = maxmin.temperaturaMin + "°C";
+                if (maxmin.temperaturaMin > 32) {
+                    valorTempMin.style.color = "#FF0000"; // vermelho                   
+                } else if (maxmin.temperaturaMin > 27 || maxmin.temperaturaMin < 18) {
+                    valorTempMin.style.color = "#E0E243"; // amarelo
+                } else if (maxmin.temperaturaMin <= 27 || maxmin.temperaturaMin >= 18 ) {
+                    valorTempMin.style.color = "#14EE00"; // verde
+                }
 
                 valorHumiMax.innerHTML = maxmin.umidadeMax + "%";
+                if (maxmin.umidadeMax < 20) {
+                    valorHumiMax.style.color = "#FF0000"; // vermelho                   
+                } else if (maxmin.umidadeMax < 40 || maxmin.umidadeMax > 55) {
+                    valorHumiMax.style.color = "#E0E243"; // amarelo
+                } else if (maxmin.umidadeMax >= 40 || maxmin.umidadeMax <= 55 ) {
+                    valorHumiMax.style.color = "#14EE00"; // verde
+                }
 
                 valorHumiMin.innerHTML = maxmin.UmidadeMin + "%";
+                if (maxmin.UmidadeMin < 20) {
+                    valorHumiMin.style.color = "#FF0000"; // vermelho                   
+                } else if (maxmin.UmidadeMin < 40 || maxmin.UmidadeMin > 55) {
+                    valorHumiMin.style.color = "#E0E243"; // amarelo
+                } else if (maxmin.UmidadeMin >= 40 || maxmin.UmidadeMin <= 55 ) {
+                    valorHumiMin.style.color = "#14EE00"; // verde
+                }
 
                 console.log(NumCadastro);
             })
         })
+
 
 }
 
