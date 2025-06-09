@@ -52,3 +52,13 @@ function TemperaturaUmidadeMAXMIN(idSala){
         })
 
 }
+
+function listarSalas() {
+    cardSala = document.getElementById("salaselect")
+    JSON.parse(sessionStorage.SALAS).forEach(item => {
+        console.log(item.sala)
+            cardSala.innerHTML += `
+                <option value="${item.id}">${item.nome}</option>
+            `
+    });
+}

@@ -33,9 +33,7 @@
                 <li class="item-menu">Painel Relatório</li>
             </a>
             <p>Selecione a Sala:</p>
-            <select id="salaselect" name="Sala" onchange="sala()">
-                <option value="Sala 1">Sala 1</option>
-            </select>
+            <select id="salaselect" name="Sala" onchange="sala()"></select>
 
         </ul>
         <a href="https://sptech-team-wy40ngo8.atlassian.net/servicedesk/customer/portals" target="_blank"
@@ -282,6 +280,7 @@
                 window.onload = function () {
                     buscarRegistrosPeriodicamente();
                     ultimaAtualizacao();
+                    listarSalas();
                      TemperaturaUmidadeMAXMIN(idSala);
 
                     setInterval(function () {
