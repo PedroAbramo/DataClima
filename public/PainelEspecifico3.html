@@ -186,82 +186,71 @@
     
     buscarRegistrosPeriodicamente()
     setInterval(buscarRegistrosPeriodicamente, 10000)
-    
-
-
-        
-
-    
-
-
-
-
-        
-        
-
-
 
     // Pegue as referências corretas dos canvas
     const canvasTemperatura = document.getElementById('sensorTemperatura');
     const canvasUmidade = document.getElementById('sensorUmidade');
 
-    // Gráfico de Temperatura
-    let sensorTemperatura = new Chart(canvasTemperatura, {
-        type: 'line',
-        data: {
-            labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
-            datasets: [{
-                label: 'Temperatura',
-                borderColor: '#004080', // Cor da linha (azul mais forte)
-                backgroundColor: '#66B2FF', // Cor da bolinha da linha (azul mais claro)
-                data: [22, 24, 27, 23, 20, 18],
-            }]
-        },
-        options: {
-            scales: {
-                x: {
-                    beginAtZero: true
+    function atualizarGrafico() {
+
+            // Gráfico de Temperatura
+            let sensorTemperatura = new Chart(canvasTemperatura, {
+                type: 'line',
+                data: {
+                    labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
+                    datasets: [{
+                        label: 'Temperatura',
+                        borderColor: '#004080', // Cor da linha (azul mais forte)
+                        backgroundColor: '#66B2FF', // Cor da bolinha da linha (azul mais claro)
+                        data: [temp],
+                    }]
                 },
-                y: {
-                    title: {
-                        display: true,
-                        text: '(°C)'
-                    },
-                    beginAtZero: true,
+                options: {
+                    scales: {
+                        x: {
+                            beginAtZero: true
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: '(°C)'
+                            },
+                            beginAtZero: true,
+                        }
+                    }
                 }
-            }
-        }
-    });
-
-    // Gráfico de Umidade
-    let sensorUmidade = new Chart(canvasUmidade, {
-        type: 'line',
-        data: {
-            labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
-            datasets: [{
-                label: 'Umidade',
-                borderColor: '#87CEEB',
-                backgroundColor: '#0056b3',
-                data: [50, 42, 37, 55, 40, 43],
-            }]
-        },
-        options: {
-            scales: {
-                x: {
-                    beginAtZero: true
+            });
+        
+            // Gráfico de Umidade
+            let sensorUmidade = new Chart(canvasUmidade, {
+                type: 'line',
+                data: {
+                    labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
+                    datasets: [{
+                        label: 'Umidade',
+                        borderColor: '#87CEEB',
+                        backgroundColor: '#0056b3',
+                        data: [umi],
+                    }]
                 },
-                y: {
-                    title: {
-                        display: true,
-                        text: '(%)'
+                options: {
+                    scales: {
+                        x: {
+                            beginAtZero: true
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: '(%)'
+                            },
+                            beginAtZero: true,
+                        },
                     },
-                    beginAtZero: true,
-                },
-            },
-        }
-    });
-
-    window.onload = function() {
+                }
+            });
+    }
+        
+            window.onload = function() {
         ultimaAtualizacao();
         setInterval(function() {
             ultimaAtualizacao();
