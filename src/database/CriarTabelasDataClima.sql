@@ -74,7 +74,10 @@ CREATE TABLE alerta (
     data_resolucao DATETIME,
     PRIMARY KEY (id),
     CONSTRAINT chk_status CHECK(status IN('ativo', 'resolvido')),
-    CONSTRAINT chk_tipo CHECK(tipo IN('Alerta','Crítico')),
     CONSTRAINT fk_registro_alerta FOREIGN KEY (fkRegistro) REFERENCES registro(id),
     KEY ix_fkregistro (fkRegistro)
 );
+
+-- select * from registro order by id desc;
+-- select * from alerta order by id desc;
+
