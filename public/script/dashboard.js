@@ -71,3 +71,16 @@ function listarSalas() {
             `
     });
 }
+
+function trocaSala() {
+    let sala = document.getElementById("salaselect").value;
+    let salaObj = JSON.parse(sessionStorage.SALAS).find(s => s.id == sala);
+    
+    sessionStorage.setItem("SALA", sala);
+    sessionStorage.setItem("NOME_SALA", salaObj.nome);
+    
+    document.getElementById("titulo").innerHTML = salaObj.nome;
+    
+    buscarRegistrosPeriodicamente();
+    TemperaturaUmidadeMAXMIN(sala);
+}
