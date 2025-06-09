@@ -57,7 +57,9 @@ const serial = async () => {
         } else if (temperatura < 18) {
             motivo.push("Temperatura baixa");
             tipo = tipo === "Crítico" ? "Crítico" : "Alerta";
-
+        } else if (temperatura > 27) {
+            motivo.push("Temperatura alta");
+            tipo = tipo === "Crítico" ? "Crítico" : "Alerta";
         }
 
         if (umidade > 55) {
