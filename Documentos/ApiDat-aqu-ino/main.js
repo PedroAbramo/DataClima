@@ -11,7 +11,7 @@ const serial = async () => {
     // conexão com o banco de dados MySQL
     let poolBancoDados = mysql.createPool(
         {
-            host: '10.18.36.36', // ip que deve ser alterado de acordo com a máquina que receberá os dados
+            host: '10.18.32.68', // ip que deve ser alterado de acordo com a máquina que receberá os dados
             user: 'insert_dataclima',
             password: 'Sptech#2024',
             database: 'dataclima',
@@ -134,14 +134,14 @@ async function simularLeituraArduino(poolBancoDados, data) {
 
         const [result] = await poolBancoDados.execute(
             'INSERT INTO registro (fksensor, temperatura, umidade) VALUES (1, ?, ?)',
-            [temperatura2, umidade2]
+            [temperatura, umidade]
         );
         const idRegistro = result.insertId;
         await poolBancoDados.execute(
             'INSERT INTO registro (fksensor, temperatura, umidade) VALUES (2, ?, ?)',
             [temperatura2, umidade2]
         );
-        console.log("valores inseridos no banco: ", umidade2 + ", " + temperatura2);
+        console.log("valores inseridos no banco: ", umidade + ", " + temperatura);
 
 
 
@@ -155,6 +155,7 @@ async function simularLeituraArduino(poolBancoDados, data) {
 }
 
 // Função principal de simulação
+/*
 const simular = async () => {
     let poolBancoDados = mysql.createPool(
         {
@@ -168,18 +169,21 @@ const simular = async () => {
 
     const simularRepetido = async () => {
         await simularLeituraArduino(poolBancoDados, "28.5;60");
-        await simularLeituraArduino(poolBancoDados, "33;10");
-        await simularLeituraArduino(poolBancoDados, "12;90");
+        await simularLeituraArduino(poolBancoDados, "28.5;60");
+        await simularLeituraArduino(poolBancoDados, "28.5;60");
+        await simularLeituraArduino(poolBancoDados, "28.5;60");
+        await simularLeituraArduino(poolBancoDados, "28.5;60");
 
 
 
     };
 
     // Chama a função a cada 2 segundos (2000 ms)
-    setInterval(simularRepetido, 2000);
+    setInterval(simularRepetido, 100);
 };
 
-simular(); // Chama a simulação
+simular();  Chama a simulação
+*/
 
 // Comente ou remova a chamada do serial se não for usar a serial real
-// (async () => { await serial(); })();
+(async () => { await serial(); })();
