@@ -61,6 +61,8 @@
                 </div>
             </div>
 
+            
+
 
             <div id="div_sensor"></div>
             <div class="painel-salas">
@@ -115,7 +117,12 @@
             console.log("Criando sala:", sala);
             painel.innerHTML += `
                 <div class="lista-status" id="lista_status">
-                    <a onclick="mudarPainel(${sala.id}, '${sala.nome}')" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">${sala.nome}</span></a>
+                    <a onclick="mudarPainel(${sala.id}, '${sala.nome}')" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">${sala.nome}</span>
+                        <div class="divGeralStatus">
+                            <div class="divTemp"><img src="images/termometro.png" alt=""><span id="tempSala${sala.id}">25º</span></div>
+            
+                            <div class="divUmi"><img src="images/gota.png" alt=""><span id="umiSala${sala.id}">50%</span></div>
+                        </div></a>
                 </div>
             `
         }
