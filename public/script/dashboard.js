@@ -39,9 +39,9 @@ function selecionarDatacenter(id, data) {
 }
 
 
-function TemperaturaUmidadeMAXMIN(idSALA){
+function TemperaturaUmidadeMAXMIN(idSala){
 
-    fetch(`/registros/TemperaturaUmidadeMAXMIN/${idSALA}`, {
+    fetch(`/registros/TemperaturaUmidadeMAXMIN/${idSala}`, {
         method: "GET"
     })
         .then(res => {
