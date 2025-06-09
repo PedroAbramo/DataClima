@@ -185,16 +185,16 @@
                         })
                 }
 
-                function atualizarGrafico() {
-                    // Pegue as referências corretas dos canvas
-                    const canvasTemperatura = document.getElementById('sensorTemperatura');
-                    const canvasUmidade = document.getElementById('sensorUmidade');
+                function criarGrafico() {
+
+                    let canvasTemperatura = document.getElementById('sensorTemperatura');
+                    let canvasUmidade = document.getElementById('sensorUmidade');
 
                     // Gráfico de Temperatura
-                    let sensorTemperatura = new Chart(canvasTemperatura, {
+                    var sensorTemperatura = new Chart(canvasTemperatura, {
                         type: 'line',
                         data: {
-                            labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
+                            labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00'],
                             datasets: [{
                                 label: 'Temperatura',
                                 borderColor: '#004080', // Cor da linha (azul mais forte)
@@ -219,10 +219,10 @@
                     });
 
                     // Gráfico de Umidade
-                    let sensorUmidade = new Chart(canvasUmidade, {
+                    var sensorUmidade = new Chart(canvasUmidade, {
                         type: 'line',
                         data: {
-                            labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
+                            labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00'],
                             datasets: [{
                                 label: 'Umidade',
                                 borderColor: '#87CEEB',
@@ -245,11 +245,21 @@
                             },
                         }
                     });
+
+                }
+
+
+                function atualizarGrafico() {
+                    window.sensorTemperatura.data.datasets[3].data = temp; // Atualiza os dados do primeiro dataset
+                    window.sensorUmidade.data.datasets[3].data = umi; // Atualiza os dados do primeiro dataset
+                    // Atualiza o gráfico
+                    window.myChart.update();
                 }
 
                 window.onload = function () {
                     ultimaAtualizacao();
                     atualizarGrafico();
+                    criarGrafico();
 
                     setInterval(function () {
                         buscarRegistrosPeriodicamente();
