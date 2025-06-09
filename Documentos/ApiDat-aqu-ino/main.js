@@ -87,11 +87,11 @@ const serial = async () => {
 
             if (motivo.length > 0) {
                 await poolBancoDados.execute(
-                    'INSERT INTO alerta (fkRegistro, tipo, motivo) VALUES (1, ?, ?)',
+                    'INSERT INTO alerta (fkRegistro, tipo, motivo) VALUES (?, ?, ?)',
                     [idRegistro, tipo, motivo.join(', ')]
                     
             );
-            console.log("valores inseridos no banco: ", umidade + ", " + temperatura);
+        console.log("Alerta inserido no banco: ", idRegistro + ", " + tipo + ", " + motivo.join(', '));
             }
     });
 
@@ -104,6 +104,7 @@ const serial = async () => {
 }
 
 // Função para simular leitura do Arduino
+/*
 async function simularLeituraArduino(poolBancoDados, data) {
     const valores = data.split(';');
     const temperatura = parseFloat(valores[0]);
@@ -156,7 +157,7 @@ async function simularLeituraArduino(poolBancoDados, data) {
         console.log("Alerta inserido no banco: ", idRegistro + ", " + tipo + ", " + motivo.join(', '));
         }
 }
-
+*/
 // Função principal de simulação
 /*
 const simular = async () => {
