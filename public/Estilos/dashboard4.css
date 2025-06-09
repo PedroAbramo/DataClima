@@ -5,6 +5,7 @@
     font-family: "Inter", sans-serif;
     list-style-type: none;
 }
+
 body {
     height: 100vh;
     line-height: 1.6;
@@ -54,218 +55,6 @@ a {
     border-top: solid 3px #ff4e4e;
     color: #000;
 }
-.ativo {
-    background-color: #f0f0f0;
-    border-left: solid 5px gray;
-}
-.tela {
-    margin-left: 300px;
-    display: flex;
-    min-height: 100vh;
-    padding: 20px 50px;
-    flex-direction: column;
-    background-color: #e0e0e0;
-}
-.info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.resumo, .temperatura, .umidade {
-    display: flex;
-    width: 100%;
-    margin: 20px 0;
-}
-.resumo {
-    background-color: #ffffff;
-    border-radius: 15px;
-    padding: 20px;
-    justify-content: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
-    gap: 30px;
-    width: 1150px;
-    height: auto;
-}
-
-.tela .class-titulo {
-    display: flex;
-    justify-content: center;
-    padding: 0px 0px 10px 0px;
-    width: 100%;
-    border-bottom: solid 2px #000;
-}
-
-.titulo h1 {
-    font-size: 32px !important;
-    font-weight: 400;
-}
-
-.painel-salas {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 30px;
-    background: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    width: 1150px;
-    height: 670px;
-}
-
-.painel-status {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    overflow-y: auto;
-    width:80%;
-    height: 530px;
-    margin: 20px 100px 20px 100px;
-    border-radius: 10px;
-}
-
-.lista-status {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 30%;
-    width: 50%;                                                                                                                                                                                                                                           ;
-    padding: 10px;
-}
-
-.salas {
-    display: flex;
-    flex-direction: row;
-    color: black;
-    align-items: center;
-    margin: 3px 0px 10px 0px;
-    border: solid 4px #D9D9D9;
-    border-radius: 40px;
-    width:80%;
-    font-size: 24px;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.salas:hover{
-    transform: scale(1.05);
-    transition: transform 0.2s ease;
-}
-
-.status {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    display: inline-block;
-    margin-right: 10px;
-    margin-left: 10px;
-}
-
-.normal {
-    background-color: #6abc63;
-}
-
-.alerta {
-    background-color: #e0e243;
-}
-
-.critico {
-    background-color: #bc6363;
-}
-
-
-.temp-critico {
-    background: url("../icone/termometroRed.png") no-repeat;
-    background-size: contain;
-    width: 100px;
-    
-}
-
-/* PAINEL ESPECIFICO */
-
-.temperatura, .umidade {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px;
-    background: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    
-}
-
-.dados-indiv {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin-right: 20px; /* Espaço entre os valores e o gráfico */
-    order: -1;
-}
-.valores {
-    background-color: #f9f9f9;
-    display: flex;
-    flex-direction: column;
-    width: 140px;
-    height: 100px;
-    justify-content: center;
-    align-items: center;
-    font-size: 16px;
-    font-weight: 600;
-    border-radius: 10px;
-    color: #333;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
-    margin: 10px 0;
-    text-align: center;
-    
-}
-
-.valores p {
-    width: 112px;
-}
-
-#valor {
-    font-weight: 900;
-}
-.dashboard {
-    display: flex;
-    width: 100%;
-    max-width: 600px;
-    margin: auto;
-}
-.side-nav p {
-    text-align: center;
-    margin-top: 10px;
-}
-
-/* style do select de sensores */
-#sensorselect, #salaselect {
-    width: 100%;
-    max-width: 300px;
-    padding: 10px;
-    font-size: 16px;
-    font-family: 'Inter', sans-serif;
-    color: #333;
-    background-color: #f9f9f9;
-    border: 2px solid #1F4E8C;
-    border-radius: 5px;
-    outline: none; /* Não altera a cor do da borda ao selecionar um sensor, mantendo o azul 100% do tempo*/
-    cursor: pointer;
-}
-
-.ultima-att {
-    text-align: center;
-}
-
-.final-form {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-}
-
 .Suporte{
     display: flex;
     text-align: center;
@@ -282,39 +71,184 @@ a {
     border-top: none;
     color: #000;
 }
-.btn-voltar {
+.ativo {
+    background-color: #f0f0f0;
+    border-left: solid 5px gray;
+}
+.tela {
+    margin-left: 300px;
     display: flex;
-    align-self: flex-end;
-    justify-content: center !important;
-    align-items: center !important;
-    width: 25%;
-    margin: 4px #000;
+    min-height: 100vh;
+    padding: 20px 50px;
+    flex-direction: column;
+    background-color: #e0e0e0;
 }
-
-.btn-voltar a{
-    align-self: center;
-    color: #000;
-}
-
-
-#tempSala {
-    font-weight: 500;
-}
-
-#umiSala {
-    font-weight: 500;
-}
-
-.divUmi, .divTemp {
+.info {
     display: flex;
-    align-items: center;
-    justify-content: center;  
+    flex-direction: column;
+}
+.resumo, .temperatura, .umidade, .relatorio{
+    display: flex;
+    width: 100%;
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+}
+.resumo {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 20px;
+    justify-content: space-around;
 }
 
-.divGeralStatus {
+.painel-salas {
     display: flex;
     flex-direction: row;
-    justify-self: flex-end;
-    margin-left: 15%;
-    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 15px;
 }
+
+.painel-salas p {
+    text-align: center;
+    font-weight: 700;
+    font-size: 20px;
+    padding: 10px 0px 10px 0px;
+    border-bottom: solid 1px;
+}
+.painel-status {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 530px;
+    margin: 20px 100px 20px 100px;
+    background-color: #f0f0f0;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+.lista-status {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 500px;
+    padding: 10px;
+}
+.lista-status:hover{
+    transform: scale(1.05);
+    transition: transform 0.2s ease;
+}
+
+.salas {
+    color: black;
+    margin: 3px 0px 10px 10px;
+    border: solid 1px ;
+    border-radius: 40px;
+    width:115px;
+    padding: 3px 15px 3px 15px;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.status {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.normal {
+    background-color: #6abc63;
+}
+
+.alerta {
+    background-color: #e0e243;
+}
+
+.critico {
+    background-color: #bc6363;
+}
+
+/* PAINEL ESPECIFICO */
+
+.temperatura, .umidade, .relatorio{
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 15px;    
+}
+
+.dados-indiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;     
+}
+
+.dados-indiv #ultima-atualiza {
+    font-size: 15px;
+    margin-top: 15px;
+}
+
+.valores {
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    width: 140px;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 10px;
+    color: #333;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    margin: 10px 0;
+    text-align: center;
+    
+}
+.dashboard {
+    display: flex;
+    width: 100%;
+    max-width: 600px;
+    margin-right: 50px;
+}
+.side-nav p {
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* style do select de sensores */
+#sensorselect, #salaselect {
+    display: flex;
+    width: 80%;
+    max-width: 300px;
+    padding: 10px;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    color: #333;
+    background-color: #f9f9f9;
+    border: 4px solid #D9D9D9;
+    border-radius: 10px;
+    outline: none; /* Não altera a cor do da borda ao selecionar um sensor, mantendo o azul 100% do tempo*/
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    margin-left: 30px;
+    
+}
+
+/* Modificações */
+
+.titulo h1 {
+    display: flex;
+    justify-content: center;
+
+}
+
+
+

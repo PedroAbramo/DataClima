@@ -29,6 +29,9 @@
             <a href="PainelEspecifico3.html">
                 <li class="item-menu ativo">Painel Específico</li>
             </a>
+            <a href="PainelRelatorio4.html">
+                <li class="item-menu">Painel Relatório</li>
+            </a>
             <p>Selecione a Sala:</p>
             <select id="salaselect" name="Sala" onchange="sala()">
                 <option value="Sala 1">Sala 1</option>
@@ -132,8 +135,6 @@
                     }
                 }
 
-                sensorvar = 'Sensor 1';
-
                 var dadosSensor = []
                 var horaLabel = []
                 var temp = [];
@@ -177,98 +178,103 @@
 
                                             hora = parseInt(hora);
                                             dia = parseInt(dia);
-                                            
+
                                             if (hora < 3) {
                                                 hora += 24
                                                 dia -= 1
                                             }
-                                            
+
                                             registroHora.push(`${hora - 3}:${minuto}:${segundo}`)
                                         })
-                                        
-                                        
 
-                                        criarGrafico()
+                                        console.log("Hora do registro:", registroHora);
+                                        console.log("Dados do Sensor:", dadosSensor);
+
+                                        criarOuAtualizarGrafico()
                                     });
                             }
                         })
                 }
 
-                function criarGrafico() {
-                    console.log("Criando o gráfico")
-                    console.log("Array temperatura" + temp)
+                function criarOuAtualizarGrafico() {
                     let canvasTemperatura = document.getElementById('sensorTemperatura');
                     let canvasUmidade = document.getElementById('sensorUmidade');
 
-                    // Gráfico de Temperatura
-                    sensorTemperatura = new Chart(canvasTemperatura, {
-                        type: 'line',
-                        data: {
-                            labels: registroHora,
-                            datasets: [{
-                                label: 'Temperatura',
-                                borderColor: '#004080', // Cor da linha (azul mais forte)
-                                backgroundColor: '#66B2FF', // Cor da bolinha da linha (azul mais claro)
-                                data: temp,
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                x: {
-                                    reverse: true,
-                                    beginAtZero: true
-                                },
-                                y: {
-                                    title: {
-                                        display: true,
-                                        text: '(°C)'
+                    if (!sensorTemperatura) {
+                        sensorTemperatura = new Chart(canvasTemperatura, {
+                            type: 'line',
+                            data: {
+                                labels: registroHora,
+                                datasets: [{
+                                    label: 'Temperatura',
+                                    borderColor: '#004080',
+                                    backgroundColor: '#66B2FF',
+                                    data: temp
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    x: {
+                                        reverse: true,
+                                        beginAtZero: true,
+                                        ticks: {
+                                            maxRotation: 45,
+                                            minRotation: 45
+                                        },
                                     },
-                                    beginAtZero: true,
+                                    y: {
+                                        title: {
+                                            display: true,
+                                            text: '(°C)'
+                                        },
+                                        beginAtZero: true,
+                                    }
                                 }
                             }
-                        }
-                    });
+                        });
+                    } else {
+                        sensorTemperatura.data.labels = registroHora;
+                        sensorTemperatura.data.datasets[0].data = temp;
+                        sensorTemperatura.update();
+                    }
 
-                    // Gráfico de Umidade
-                    sensorUmidade = new Chart(canvasUmidade, {
-                        type: 'line',
-                        data: {
-                            labels: registroHora,
-                            datasets: [{
-                                label: 'Umidade',
-                                borderColor: '#87CEEB',
-                                backgroundColor: '#0056b3',
-                                data: umi,
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                x: {
-                                    reverse: true,
-                                    beginAtZero: true
-                                },
-                                y: {
-                                    title: {
-                                        display: true,
-                                        text: '(%)'
-                                    },
-                                    beginAtZero: true,
-                                },
+                    if (!sensorUmidade) {
+                        sensorUmidade = new Chart(canvasUmidade, {
+                            type: 'line',
+                            data: {
+                                labels: registroHora,
+                                datasets: [{
+                                    label: 'Umidade',
+                                    borderColor: '#87CEEB',
+                                    backgroundColor: '#0056b3',
+                                    data: umi,
+                                }]
                             },
-                        }
-                    });
-
-                }
-
-
-                function atualizarGrafico() {
-                    window.sensorTemperatura.data.datasets[0].data = temp; // Atualiza os dados do primeiro dataset
-                    window.sensorUmidade.data.datasets[0].data = umi; // Atualiza os dados do primeiro dataset
-                    window.sensorTemperatura.data.labels = registroHora; 
-                    window.sensorUmidade.data.labels = registroHora; 
-                    // Atualiza o gráfico
-                    window.sensorTemperatura.update();
-                    window.sensorUmidade.update();
+                            options: {
+                                scales: {
+                                    x: {
+                                        reverse: true,
+                                        beginAtZero: true,
+                                        ticks: {
+                                            maxRotation: 45,
+                                            minRotation: 45
+                                        },
+                                    },
+                                    y: {
+                                        title: {
+                                            display: true,
+                                            text: '(%)'
+                                        },
+                                        beginAtZero: true,
+                                    },
+                                },
+                            }
+                        });
+                    } else {
+                        sensorUmidade.data.labels = registroHora;
+                        sensorUmidade.data.datasets[0].data = umi;
+                        sensorUmidade.update();
+                    }
                 }
 
 
@@ -282,15 +288,10 @@
                     }, 1000)
 
                     setInterval(function () {
-                        atualizarGrafico();
-                    }, 1500)
-
-                    setInterval(function () {
                         ultimaAtualizacao();
                     }, 5000)
                 }
             </script>
-
 </body>
 
 </html>
