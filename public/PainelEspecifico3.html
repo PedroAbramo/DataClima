@@ -138,6 +138,8 @@
                 var horaLabel = []
                 var temp = [];
                 var umi = [];
+                var sensorTemperatura;
+                var sensorUmidade
 
                 function buscarRegistrosPeriodicamente() {
                     fetch(`/datacenter/registros/${sessionStorage.SALA}`, {
@@ -169,6 +171,10 @@
                                             let valor2 = data.split('T')[1];
                                             let valor3 = valor2.split('.')[0];
                                             let [hora, minuto, segundo] = valor3.split(':');
+
+                                            hora = parseInt(hora);
+                                            dia = parseInt(dia);
+                                            
                                             if (hora < 3) {
                                                 hora += 24
                                                 dia -= 1
@@ -191,7 +197,7 @@
                     let canvasUmidade = document.getElementById('sensorUmidade');
 
                     // Gráfico de Temperatura
-                    var sensorTemperatura = new Chart(canvasTemperatura, {
+                    sensorTemperatura = new Chart(canvasTemperatura, {
                         type: 'line',
                         data: {
                             labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00'],
@@ -199,7 +205,7 @@
                                 label: 'Temperatura',
                                 borderColor: '#004080', // Cor da linha (azul mais forte)
                                 backgroundColor: '#66B2FF', // Cor da bolinha da linha (azul mais claro)
-                                data: [temp],
+                                data: temp,
                             }]
                         },
                         options: {
@@ -219,7 +225,7 @@
                     });
 
                     // Gráfico de Umidade
-                    var sensorUmidade = new Chart(canvasUmidade, {
+                    sensorUmidade = new Chart(canvasUmidade, {
                         type: 'line',
                         data: {
                             labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00'],
@@ -227,7 +233,7 @@
                                 label: 'Umidade',
                                 borderColor: '#87CEEB',
                                 backgroundColor: '#0056b3',
-                                data: [umi],
+                                data: umi,
                             }]
                         },
                         options: {
@@ -250,16 +256,18 @@
 
 
                 function atualizarGrafico() {
-                    window.sensorTemperatura.data.datasets[3].data = temp; // Atualiza os dados do primeiro dataset
-                    window.sensorUmidade.data.datasets[3].data = umi; // Atualiza os dados do primeiro dataset
+                    window.sensorTemperatura.data.datasets[0].data = temp; // Atualiza os dados do primeiro dataset
+                    window.sensorUmidade.data.datasets[0].data = umi; // Atualiza os dados do primeiro dataset
                     // Atualiza o gráfico
-                    window.myChart.update();
+                    window.sensorTemperatura.update();
+                    window.sensorUmidade.update();
                 }
 
                 window.onload = function () {
-                    ultimaAtualizacao();
-                    atualizarGrafico();
+                    buscarRegistrosPeriodicamente();
                     criarGrafico();
+                    atualizarGrafico();
+                    ultimaAtualizacao();
 
                     setInterval(function () {
                         buscarRegistrosPeriodicamente();
