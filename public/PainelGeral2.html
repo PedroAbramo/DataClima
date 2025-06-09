@@ -129,6 +129,9 @@
                 </div>
             `
         }
+
+        sessionStorage.setItem("QTD_SALAS", Salas.length);
+        sessionStorage.setItem("SALAS", JSON.stringify(Salas));
     }
 
 const datacenters = JSON.parse(sessionStorage.DATACENTERS)
