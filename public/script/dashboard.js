@@ -4,7 +4,7 @@ function listarDatacenters() {
         console.log(item.datacenter)
             cardDatacenter.innerHTML += `
                 <div class="lista-status" id="lista_status">
-                    <a href="PainelGeral2.html" class="salas" onclick="selecionarDatacenter(${item.id})"><div class="status alerta"></div><span id="nomeDatacenter">${item.datacenter}</span></a>
+                    <a href="PainelGeral2.html" class="salas" onclick="selecionarDatacenter(${item.id}, '${item.datacenter}')"><div class="status alerta"></div><span id="nomeDatacenter">${item.datacenter}</span></a>
                 </div>
             `
     });
@@ -32,7 +32,8 @@ function ultimaAtualizacao(){
         })
     }
 
-function selecionarDatacenter(id) {
+function selecionarDatacenter(id, data) {
     sessionStorage.setItem("ID_DATACENTER", id);
+    sessionStorage.setItem("NOME_DATACENTER", data);
     window.location.href = "PainelGeral2.html";
 }
