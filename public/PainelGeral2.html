@@ -135,13 +135,16 @@
             let registro = Salas[i];
             console.log("Criando sala:", registro);
             painel.innerHTML += `
-                <div class="lista-status" id="lista_status">
-                    <a onclick="mudarPainel(${registro.id}, '${registro.sala}')" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">${registro.sala}</span>
-                        <div class="divGeralStatus">
-                            <div class="divTemp"><span id="iconeTemp${registro.id}"></span><span class="negrito" id="tempSala${registro.id}">${registro.ulttemperatura}º</span></div>
-                            <div class="divUmi"><span id="iconeUmi${registro.id}"></span><span class="negrito" id="umiSala${registro.id}">${registro.ultumidade}%</span></div>
-                        </div></a>
-                </div>
+    <div class="lista-status" id="lista_status">
+        <a onclick="mudarPainel(${registro.id}, '${registro.sala}')" class="salas">
+            <div class="status alerta" id="status${registro.id}"></div>
+            <span id="nomeDatacenter">${registro.sala}</span>
+            <div class="divGeralStatus">
+                <div class="divTemp"><span id="iconeTemp${registro.id}"></span><span class="negrito" id="tempSala${registro.id}">${registro.ulttemperatura}º</span></div>
+                <div class="divUmi"><span id="iconeUmi${registro.id}"></span><span class="negrito" id="umiSala${registro.id}">${registro.ultumidade}%</span></div>
+            </div>
+        </a>
+    </div>
             `
             mudarCores(registro)
             }
@@ -182,22 +185,31 @@ function ultimosRegistros() {
 }
 
 function mudarCores(registro) {
-            if (registro.ulttemperatura > 32) {
-                document.getElementById(`iconeTemp${registro.id}`).innerHTML = `<img src="images/termometro_critico.png" alt="">`;
-            } else if (registro.ulttemperatura < 18 || registro.ulttemperatura > 27) {
-                document.getElementById(`iconeTemp${registro.id}`).innerHTML = `<img src="images/termometro_alerta.png" alt="">`;
-            } else {
-                document.getElementById(`iconeTemp${registro.id}`).innerHTML = `<img src="images/termometro_normal.png" alt="">`;
-            }
-            
-            if (registro.ultumidade < 20) {
-                document.getElementById(`iconeUmi${registro.id}`).innerHTML = `<img src="images/gota_critico.png" alt="">`;
-            } else if (registro.ultumidade < 40 || registro.ultumidade > 55) {
-                document.getElementById(`iconeUmi${registro.id}`).innerHTML = `<img src="images/gota_alerta.png" alt="">`;
-            } else {
-                document.getElementById(`iconeUmi${registro.id}`).innerHTML = `<img src="images/gota_normal.png" alt="">`;
-            }
+    if (registro.ulttemperatura > 32) {
+        document.getElementById(`iconeTemp${registro.id}`).innerHTML = `<img src="images/termometro_critico.png" alt="">`
+    } else if (registro.ulttemperatura < 18 || registro.ulttemperatura > 27) {
+        document.getElementById(`iconeTemp${registro.id}`).innerHTML = `<img src="images/termometro_alerta.png" alt="">`
+    } else {
+        document.getElementById(`iconeTemp${registro.id}`).innerHTML = `<img src="images/termometro_normal.png" alt="">`
+    }
+
+    if (registro.ultumidade < 20) {
+        document.getElementById(`iconeUmi${registro.id}`).innerHTML = `<img src="images/gota_critico.png" alt="">`
+    } else if (registro.ultumidade < 40 || registro.ultumidade > 55) {
+        document.getElementById(`iconeUmi${registro.id}`).innerHTML = `<img src="images/gota_alerta.png" alt="">`
+    } else {
+        document.getElementById(`iconeUmi${registro.id}`).innerHTML = `<img src="images/gota_normal.png" alt="">`
+    }
+
+    let status = "normal"
+    if (registro.ulttemperatura > 32 || registro.ultumidade < 20) {
+        status = "critico"
+    } else if ( registro.ulttemperatura < 18 || registro.ulttemperatura > 27 || registro.ultumidade < 40 ||registro.ultumidade > 55) 
+    {status = "alerta"}
+    
+    document.getElementById(`status${registro.id}`).className = `status ${status}`
 }
+
 
 window.onload = function() {
 ultimaAtualizacao();

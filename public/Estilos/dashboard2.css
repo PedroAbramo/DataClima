@@ -164,16 +164,20 @@ a {
     margin-left: 10px;
 }
 
+.semDados {
+    background-color: blue;
+}
+
 .normal {
-    background-color: #6abc63;
+    background-color: #14EE00;
 }
 
 .alerta {
-    background-color: #e0e243;
+    background-color: #E0E243;
 }
 
 .critico {
-    background-color: #bc6363;
+    background-color: #FF0000;
 }
 
 
