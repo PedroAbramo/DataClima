@@ -84,7 +84,6 @@ function TemperaturaUmidadeMAXMIN(idSala){
                     valorHumiMin.style.color = "#14EE00"; // verde
                 }
 
-                console.log(NumCadastro);
             })
         })
 
