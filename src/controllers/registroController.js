@@ -62,10 +62,21 @@ function buscarRegistrosEmTempoReal(req, res) {
     })
     }
 
+    function exibirValoresDaSala(req, res) {
+    
+    var datacenterId = req.params.datacenterId
+
+    registroModel.exibirValoresDaSala(datacenterId)
+        .then(function(resultado) {
+            res.json(resultado);
+        })
+}
+
 module.exports = {
     buscarUltimosRegistros,
     buscarRegistrosEmTempoReal,
     ultimaAtualizacao,
     TemperaturaUmidadeMAXMIN,
+    exibirValoresDaSala,
 
 }
