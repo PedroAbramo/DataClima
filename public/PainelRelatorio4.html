@@ -63,47 +63,63 @@
         </div>
         <div class="painel-avisos" id="painelAvisos"></div>
         <div class="avisos">
-                <div class="dados-indiv">
-                    <div class="titulovalores">
-                        <p>Hoje:</p>
-                    </div>
-                    <div class="valores">
-                        <p>Dia com mais alertas</p>
-                        <strong id="diaMaisAlerta"> <span id="valorMaisAlerta">dia</span></strong>
-                    </div>
-                    <div class="ultima-att">
-                        <p>Ultima atualização:</p>
-                        <div class="div_dataHora"><span class="DataHora_select">dd/mm/yyyy - hh:mm</span></div>
-                    </div>
+            <div class="dados-indiv">
+                <div class="titulovalores">
+                    <p>Hoje:</p>
                 </div>
-                <div class="dashboard">
-                    <canvas id=""></canvas>
+                <div class="valores">
+                    <p>Dia com mais alertas</p>
+                    <strong id="diaMaisAlerta"> <span id="valorMaisAlerta">dia</span></strong>
+                </div>
+                <div class="ultima-att">
+                    <p>Ultima atualização:</p>
+                    <div class="div_dataHora"><span class="DataHora_select">dd/mm/yyyy - hh:mm</span></div>
                 </div>
             </div>
+            <div class="dashboard">
+                <canvas id=""></canvas>
+            </div>
+        </div>
     </div>
-        <script>
-            titulo.innerHTML += sessionStorage.NOME_DATACENTER;
-            const datacenters = JSON.parse(sessionStorage.DATACENTERS)
-            console.log("Data Centers disponíveis:", datacenters)
+    <script>
+        titulo.innerHTML += sessionStorage.NOME_DATACENTER;
+        const datacenters = JSON.parse(sessionStorage.DATACENTERS)
+        console.log("Data Centers disponíveis:", datacenters)
+        const idDatacenter = sessionStorage.ID_DATACENTER;
 
-            for (let i = 0; i < datacenters.length; i++) {
-                if (datacenters[i].id == sessionStorage.ID_DATACENTER) {
-                    b_datacenter.innerHTML = datacenters[i].datacenter
-                    console.log("Data Center selecionado:", datacenters[i].datacenter)
-                    break
-                }
+        for (let i = 0; i < datacenters.length; i++) {
+            if (datacenters[i].id == sessionStorage.ID_DATACENTER) {
+                b_datacenter.innerHTML = datacenters[i].datacenter
+                console.log("Data Center selecionado:", datacenters[i].datacenter)
+                break
             }
+        }
 
-            window.onload = function () {
-                listarAlertasAtivos();
+
+        function buscarRelatorio() {
+            fetch(`/relatorio/buscarRelatorioSemanal/${idDatacenter}`, {
+                method: "GET",
+            })
+                .then(response => {
+                    if (response.ok) {
+                        resposta.json()
+                            .then((dados) => {
+                                console.log("Dados do relatório:", dados);
+                            });
+                    }
+                })
+        }
+
+        window.onload = function () {
+            listarAlertasAtivos();
+            ultimaAtualizacao();
+
+            setInterval(function () {
                 ultimaAtualizacao();
-
-                setInterval(function () {
-                    ultimaAtualizacao();
-                    listarAlertasAtivos();
-                }, 5000)
-            }
-        </script>
+                listarAlertasAtivos();
+            }, 5000)
+        }
+    </script>
 </body>
 
 </html>

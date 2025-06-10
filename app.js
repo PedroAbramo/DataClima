@@ -22,6 +22,7 @@ var registrosRouter = require("./src/routes/registros");
 var salasRouter = require("./src/routes/salas");
 var empresasRouter = require("./src/routes/empresas");
 var datacenterRouter = require("./src/routes/datacenters");
+var relatorioRouter = require("./src/routes/relatorio");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -36,6 +37,7 @@ app.use("/registros", registrosRouter);
 app.use("/salas", salasRouter);
 app.use("/empresas", empresasRouter);
 app.use("/datacenter", datacenterRouter);
+app.use("/relatorio", relatorioRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
