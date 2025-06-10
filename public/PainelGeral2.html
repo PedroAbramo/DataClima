@@ -110,7 +110,7 @@
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
     var datacenterId = sessionStorage.ID_DATACENTER;
 
-    fetch(`/salas/${datacenterId}`, {
+    fetch(`/registros/exibirValoresDaSala/${datacenterId}`, {
         method: "GET",
     })
         .then(function (resposta) {
@@ -130,25 +130,17 @@
 
 
     function criarSalas(Salas) {
-
-        fetch(`/registros/exibirValoresDaSala/${datacenterId}`)
-        .then(function(res) { return res.json(); })
-        .then(function(data){
-            console.log(data)
-        })
-
         const painel = document.getElementById("painel");
 
         for (let i = 0; i < Salas.length; i++) {
-            let sala = Salas[i];
-            console.log("Criando sala:", sala);
+            let registro = Salas[i];
+            console.log("Criando sala:", registro);
             painel.innerHTML += `
                 <div class="lista-status" id="lista_status">
-                    <a onclick="mudarPainel(${sala.id}, '${sala.nome}')" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">${sala.nome}</span>
+                    <a onclick="mudarPainel(${registro.id}, '${registro.sala}')" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">${registro.sala}</span>
                         <div class="divGeralStatus">
-                            <div class="divTemp"><img src="images/termometro.png" alt=""><span id="tempSala${sala.id}">25º</span></div>
-            
-                            <div class="divUmi"><img src="images/gota.png" alt=""><span id="umiSala${sala.id}">50%</span></div>
+                            <div class="divTemp"><img src="images/termometro.png" alt=""><span id="tempSala${registro.id}">${registro.ulttemperatura}º</span></div>
+                            <div class="divUmi"><img src="images/gota.png" alt=""><span id="umiSala${registro.id}">${registro.ultumidade}%</span></div>
                         </div></a>
                 </div>
             `
@@ -176,12 +168,27 @@ function mudarPainel(sala, nome) {
     window.location.href = "PainelEspecifico3.html";
 }
 
+function ultimosRegistros() {
+        fetch(`/registros/exibirValoresDaSala/${datacenterId}`)
+        .then(function(res) { return res.json(); })
+        .then(function(data){
+            console.log(data)
+            console.log('AAAAAAAAAAAAAAAAAAAAAAA')
+            for (let i = 0; i < data.length; i++) {
+                let registro = data[i];
+                console.log("Registro:", registro);
+                document.getElementById(`tempSala${registro.id}`).innerHTML = `${registro.ulttemperatura}º`;
+                document.getElementById(`umiSala${registro.id}`).innerHTML = `${registro.ultumidade}%`;
+            }
+        })
+}
 
 window.onload = function() {
 ultimaAtualizacao();
 
 setInterval(function() {
     ultimaAtualizacao();
+    ultimosRegistros();
 }, 5000)
 }
 </script>
