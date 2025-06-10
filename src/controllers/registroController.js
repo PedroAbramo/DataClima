@@ -63,7 +63,10 @@ function buscarRegistrosEmTempoReal(req, res) {
     }
 
     function exibirValoresDaSala(req, res) {
-    registroModel.exibirValoresDaSala()
+    
+    var datacenterId = req.params.datacenterId
+
+    registroModel.exibirValoresDaSala(datacenterId)
         .then(function(resultado) {
             res.json(resultado);
         })

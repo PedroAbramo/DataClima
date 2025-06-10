@@ -131,7 +131,7 @@
 
     function criarSalas(Salas) {
 
-        fetch(`/registros/exibirValoresDaSala`)
+        fetch(`/registros/exibirValoresDaSala/${datacenterId}`)
         .then(function(res) { return res.json(); })
         .then(function(data){
             console.log(data)

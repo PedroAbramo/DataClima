@@ -55,7 +55,7 @@ function TemperaturaUmidadeMAXMIN(idSala){
     return database.executar(instrucao);
 }
 
-function exibirValoresDaSala() {
+function exibirValoresDaSala(datacenterId) {
     var instrucao = `
 select s.id,
 s.fkDatacenter,
@@ -67,7 +67,8 @@ desc limit 1) as ultumidade,
 (select dataRegistro from registro where fkSensor = se.fkSala order by dataRegistro desc limit 1) as data
 from sala s
 inner join
-sensor se on s.id = se.fkSala;
+sensor se on s.id = se.fkSala
+where fkDatacenter = ${datacenterId};
     `;
     return database.executar(instrucao);
 }
