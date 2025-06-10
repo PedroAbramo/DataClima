@@ -393,3 +393,8 @@ a {
     margin-right: 5px;
     margin-top: 50%;
 }
+
+.negrito {
+    font-weight: 500;
+    font-size: 22px;
+}
