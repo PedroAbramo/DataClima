@@ -17,17 +17,10 @@ function ultimaAtualizacao(){
     })
         .then(res => {
             res.json().then(json => {
-                let data = json[0].dataRegistro;
-                    let valor1 = data.split('T')[0];
-                    let [ano, mes, dia] = valor1.split('-');
-                    let valor2 = data.split('T')[1];
-                    let valor3 = valor2.split('.')[0];
-                    let [hora, minuto, segundo] = valor3.split(':');
-                    if (hora < 3) {
-                        hora += 24
-                        dia -= 1
-                    } 
-                    DataHora.forEach(span => span.innerHTML = `${dia}/${mes}/${ano} - ${hora-3}:${minuto}:${segundo}`);
+                let data = new Date(json[0].dataRegistro).toLocaleString('pt-BR');
+                let dataatual = data.split(', ')[0];
+                let horario = data.split(', ')[1];
+                DataHora.forEach(span => span.innerHTML = `${dataatual} - ${horario}`);
             })
         })
     }
