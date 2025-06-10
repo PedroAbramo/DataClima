@@ -160,33 +160,7 @@
             }
             }
 
-function ultimosRegistros() {
-    fetch(`/registros/exibirValoresDaSala/${datacenterId}`)
-    .then(function(res) { return res.json(); })
-    .then(function(data){
-        for (let i = 0; i < data.length; i++) {
-            let registro = data[i];
-            document.getElementById(`tempSala${registro.id}`).innerHTML = `${registro.ulttemperatura}º`;
-            document.getElementById(`umiSala${registro.id}`).innerHTML = `${registro.ultumidade}%`;
 
-            if (registro.ulttemperatura > 32) {
-                document.getElementById(`iconeTemp${registro.id}`).innerHTML = `<img src="images/termometro_critico.png" alt="">`;
-            } else if (registro.ulttemperatura < 18 || registro.ulttemperatura > 27) {
-                document.getElementById(`iconeTemp${registro.id}`).innerHTML = `<img src="images/termometro_alerta.png" alt="">`;''
-            } else {
-                document.getElementById(`iconeTemp${registro.id}`).innerHTML = `<img src="images/termometro_normal.png" alt="">`;
-            }
-
-            if (registro.ultumidade < 20) {
-                document.getElementById(`iconeUmi${registro.id}`).innerHTML = `<img src="images/gota_critico.png" alt="">`;
-            } else if (registro.ultumidade < 40 || registro.ultumidade > 55) {
-                document.getElementById(`iconeUmi${registro.id}`).innerHTML = `<img src="images/gota_alerta.png" alt="">`;
-            } else {
-                document.getElementById(`iconeUmi${registro.id}`).innerHTML = `<img src="images/gota_normal.png" alt="">`;
-            }
-        }
-    })
-}
 
 
         sessionStorage.setItem("QTD_SALAS", Salas.length);
