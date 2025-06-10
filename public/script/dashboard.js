@@ -17,17 +17,10 @@ function ultimaAtualizacao(){
     })
         .then(res => {
             res.json().then(json => {
-                let data = json[0].dataRegistro;
-                    let valor1 = data.split('T')[0];
-                    let [ano, mes, dia] = valor1.split('-');
-                    let valor2 = data.split('T')[1];
-                    let valor3 = valor2.split('.')[0];
-                    let [hora, minuto, segundo] = valor3.split(':');
-                    if (hora < 3) {
-                        hora += 24
-                        dia -= 1
-                    } 
-                    DataHora.forEach(span => span.innerHTML = `${dia}/${mes}/${ano} - ${hora-3}:${minuto}:${segundo}`);
+                let data = new Date(json[0].dataRegistro).toLocaleString('pt-BR');
+                let dataatual = data.split(', ')[0];
+                let horario = data.split(', ')[1];
+                DataHora.forEach(span => span.innerHTML = `${dataatual} - ${horario}`);
             })
         })
     }
@@ -91,34 +84,44 @@ function TemperaturaUmidadeMAXMIN(idSala){
 }
 
 function listarSalas() {
-    cardSala = document.getElementById("salaselect")
-    JSON.parse(sessionStorage.SALAS).forEach(item => {
-        console.log(item.sala)
-            cardSala.innerHTML += `
-                <option value="${item.id}">${item.nome}</option>
-            `
-    });
+    const cardSala = document.getElementById("salaselect");
+    const salas = JSON.parse(sessionStorage.SALAS);
+    for (let i = 0; i < salas.length; i++) {
+        const item = salas[i];
+        console.log(item.sala);
+        cardSala.innerHTML += `
+            <option value="${item.id}">${item.sala}</option>
+        `;
+    }
 }
 
 function listarAlertasAtivos() {
     let idDatacenter = sessionStorage.getItem("ID_DATACENTER");
-    fetch(`/alertas/listarAlertasAtivos/${idDatacenter}`, {
-        method: "GET"
-    })
-        .then(res => {
-            res.json().then(json => {
-                const alertas = json;
-                const alertaContainer = document.getElementById("alertaContainer");
-                alertaContainer.innerHTML = ''; 
-
-                alertas.forEach(alerta => {
-                    alertaContainer.innerHTML += `
-                        <div class="alerta-item">
-                            <span>${alerta.nome_sensor} - ${alerta.status}</span>
-                            <span>${alerta.dataRegistro}</span>
-                        </div>
-                    `;
-                });
-            })
+    fetch(`/alertas/listarAlertasAtivos/${idDatacenter}`)
+        .then(res => res.json())
+        .then(alertas => {
+            const alertaContainer = document.getElementById("alertaContainer");
+            if (!alertaContainer) {
+                console.error("alertaContainer não encontrado!");
+                return;
+            }
+            alertaContainer.innerHTML = '';
+            if (!Array.isArray(alertas) || alertas.length === 0) {
+                alertaContainer.innerHTML = '<div>Nenhum alerta ativo.</div>';
+                return;
+            }
+            for (let i = 0; i < alertas.length; i++) {
+                const alerta = alertas[i];
+                alertaContainer.innerHTML += `
+                    <div class="alerta-item">
+                        <span class="alerta-sensor">${alerta.nome_sensor}</span>
+                        <span class="alerta-motivo">${alerta.motivo}</span>
+                        <span class="alerta-data">${alerta.dataRegistro}</span>
+                    </div>
+                `;
+            }
         })
+        .catch(err => {
+            console.error("Erro ao buscar alertas:", err);
+        });
 }

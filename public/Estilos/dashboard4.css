@@ -164,7 +164,47 @@ a {
 }
 
 .alerta {
-    background-color: #e0e243;
+    background-color: #ffffff;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.alerta-item {
+    background-color: #ffffff;
+    border-left: 6px solid #e0e243;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(224, 226, 67, 0.08);
+    padding: 18px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 16px;
+    color: #333;
+    transition: box-shadow 0.2s;
+}
+
+.alerta-item:hover {
+    box-shadow: 0 4px 12px rgba(224, 226, 67, 0.18);
+}
+
+.alerta-item .alerta-sensor {
+    font-weight: 700;
+    color: #bc6363;
+    font-size: 17px;
+}
+
+.alerta-item .alerta-motivo {
+    font-weight: 500;
+    color: #e0a243;
+}
+
+.alerta-item .alerta-data {
+    font-size: 14px;
+    color: #888;
+    margin-top: 2px;
 }
 
 .critico {
