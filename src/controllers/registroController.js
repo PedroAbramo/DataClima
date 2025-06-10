@@ -32,7 +32,7 @@ function exibirValoresDaSala(req, res) {
 }
 
 function buscarRegistrosSala(req, res) {
-    var idSala = re.params.idSala
+    var idSala = req.params.idSala
 
     registroModel.buscarRegistrosSala(idSala)
         .then(function (resultado) {
