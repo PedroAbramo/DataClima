@@ -1,6 +1,6 @@
 var database = require("../database/config");
 
-function ultimaAtualizacao(){
+function ultimaAtualizacao() {
     var instrucao = `
     select dataRegistro from registro
     order by dataregistro desc limit 1;
@@ -11,7 +11,7 @@ function ultimaAtualizacao(){
 }
 
 
-function TemperaturaUmidadeMAXMIN(idSala){
+function TemperaturaUmidadeMAXMIN(idSala) {
     var instrucao = `
     select
     (SELECT temperatura FROM registro WHERE DATE(dataRegistro) = CURDATE() and fkSensor = ${idSala} ORDER BY temperatura DESC LIMIT 1) AS temperaturaMax,
@@ -28,17 +28,37 @@ function TemperaturaUmidadeMAXMIN(idSala){
 
 
 function buscarRegistrosSala(idSala) {
-  var instrucaoSql = `SELECT temperatura, umidade, dataRegistro 
+    var instrucaoSql = `SELECT temperatura, umidade, dataRegistro 
   FROM registro WHERE fkSensor = ${idSala} 
   ORDER BY dataRegistro DESC 
   LIMIT 10;`
 
-  console.log("Executando a instrução SQL: \n" + instrucaoSql);
-  return database.executar(instrucaoSql);
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function exibirValoresDaSala(datacenterId) {
+
+    var instrucao = `
+select s.id,
+s.fkDatacenter,
+s.nome as sala,
+(select temperatura from registro where fkSensor = se.fkSala order by dataRegistro
+desc limit 1) as ulttemperatura,
+(select umidade from registro where fkSensor = se.fkSala order by dataRegistro
+desc limit 1) as ultumidade,
+(select dataRegistro from registro where fkSensor = se.fkSala order by dataRegistro desc limit 1) as data
+from sala s
+inner join
+sensor se on s.id = se.fkSala
+where fkDatacenter = ${datacenterId};
+    `;
+    return database.executar(instrucao);
 }
 
 module.exports = {
     buscarRegistrosSala,
     ultimaAtualizacao,
-    TemperaturaUmidadeMAXMIN
+    TemperaturaUmidadeMAXMIN,
+    exibirValoresDaSala
 }

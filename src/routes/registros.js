@@ -15,4 +15,8 @@ router.get("/TemperaturaUmidadeMAXMIN/:idSala", function (req, res) {
     registroController.TemperaturaUmidadeMAXMIN(req, res);
 })
 
+router.get("/exibirValoresDaSala/:datacenterId", function (req, res) {
+    registroController.exibirValoresDaSala(req, res);
+})
+
 module.exports = router;
