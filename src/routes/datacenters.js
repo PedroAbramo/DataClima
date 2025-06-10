@@ -7,10 +7,4 @@ router.get("/:empresaId", function (req, res) {
   datacenterController.buscarDatacenterPorDatacenter(req, res);
 });
 
-router.get("/registros/:salaId", function (req, res) {
-  datacenterController.buscarRegistrosSala(req, res);
-});
-
-
-
 module.exports = router;

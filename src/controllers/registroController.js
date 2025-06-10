@@ -1,44 +1,13 @@
 var registroModel = require("../models/registroModel");
 
-function buscarUltimosRegistros(req, res) {
+function buscarRegistrosSala(req, res) {
+  var idSala = req.params.idSala;
 
-    const limite_linhas = 7;
-
-    var idSala = req.params.idSala;
-
-    console.log(`Recuperando os ultimos ${limite_linhas} registros`);
-
-    registroModel.buscarUltimosRegistros(idSala, limite_linhas).then(function (resultado) {
-        if (resultado.length > 0) {
-            res.status(200).json(resultado);
-        } else {
-            res.status(204).send("Nenhum resultado encontrado!")
-        }
-    }).catch(function (erro) {
-        console.log(erro);
-        console.log("Houve um erro ao buscar os últimos registros.", erro.sqlMessage);
-        res.status(500).json(erro.sqlMessage);
-    });
-}
-
-
-function buscarRegistrosEmTempoReal(req, res) {
-
-    var idSala = req.params.idSala;
-
-    console.log(`Recuperando registros em tempo real`);
-
-    registroModel.buscarRegistrosEmTempoReal(idSala).then(function (resultado) {
-        if (resultado.length > 0) {
-            res.status(200).json(resultado);
-        } else {
-            res.status(204).send("Nenhum resultado encontrado!")
-        }
-    }).catch(function (erro) {
-        console.log(erro);
-        console.log("Houve um erro ao buscar os últimos registros.", erro.sqlMessage);
-        res.status(500).json(erro.sqlMessage);
-    });
+  registroModel.buscarRegistrosSala(idSala).then((resultado) => {
+    if (resultado.length > 0) {
+      res.status(200).json(resultado);
+    } 
+  })
 }
 
     function ultimaAtualizacao(req, res) {
@@ -63,9 +32,7 @@ function buscarRegistrosEmTempoReal(req, res) {
     }
 
 module.exports = {
-    buscarUltimosRegistros,
-    buscarRegistrosEmTempoReal,
+    buscarRegistrosSala,
     ultimaAtualizacao,
-    TemperaturaUmidadeMAXMIN,
-
+    TemperaturaUmidadeMAXMIN
 }

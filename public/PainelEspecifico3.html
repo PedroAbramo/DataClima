@@ -96,11 +96,11 @@
                 <div class="dados-indiv">
                     <div class="valores">
                         <p>Umidade Máxima</p>
-                        <strong id="umidade-max" ><span id="valorHumiMax">0%</span></strong>
+                        <strong id="umidade-max"><span id="valorHumiMax">0%</span></strong>
                     </div>
                     <div class="valores">
                         <p>Umidade Mínima</p>
-                        <strong id="umidade-min" ><span id="valorHumiMin">0%</span></strong>
+                        <strong id="umidade-min"><span id="valorHumiMin">0%</span></strong>
                     </div>
                     <div class="ultima-att">
                         <p>Ultima atualização:</p>
@@ -148,7 +148,7 @@
 
                     console.log("Buscando os registros")
 
-                    fetch(`/datacenter/registros/${sessionStorage.SALA}`, {
+                    fetch(`/registros/buscarRegistrosSala/${idSala}`, {
                         method: "GET",
                     })
                         .then(function (resposta) {
@@ -278,12 +278,31 @@
                     }
                 }
 
+                function trocaSala() {
+                    let sala = document.getElementById("salaselect").value;
+                    let salas = JSON.parse(sessionStorage.SALAS);
+                    let salaObj = null;
+                    for (let i = 0; i < salas.length; i++) {
+                        if (salas[i].id == sala) {
+                            salaObj = salas[i];
+                            break;
+                        }
+                    }
+
+                    
+                    sessionStorage.setItem("SALA", sala);
+                    sessionStorage.setItem("NOME_SALA", salaObj.nome);
+                    document.getElementById("titulo").innerHTML = salaObj.nome;
+                    console.log("Entrei no cu do palmeiras")
+                    window.location.reload()
+                }
+
 
                 window.onload = function () {
                     buscarRegistrosPeriodicamente();
                     ultimaAtualizacao();
                     listarSalas();
-                    
+
 
                     setInterval(function () {
                         buscarRegistrosPeriodicamente();
