@@ -54,9 +54,28 @@ function TemperaturaUmidadeMAXMIN(idSala){
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
+
+function exibirValoresDaSala() {
+    var instrucao = `
+select s.id,
+s.fkDatacenter,
+s.nome as sala,
+(select temperatura from registro where fkSensor = se.fkSala order by dataRegistro
+desc limit 1) as ulttemperatura,
+(select umidade from registro where fkSensor = se.fkSala order by dataRegistro
+desc limit 1) as ultumidade,
+(select dataRegistro from registro where fkSensor = se.fkSala order by dataRegistro desc limit 1) as data
+from sala s
+inner join
+sensor se on s.id = se.fkSala;
+    `;
+    return database.executar(instrucao);
+}
+
 module.exports = {
     buscarUltimosRegistros,
     buscarRegistrosEmTempoReal,
     ultimaAtualizacao,
-    TemperaturaUmidadeMAXMIN
+    TemperaturaUmidadeMAXMIN,
+    exibirValoresDaSala
 }

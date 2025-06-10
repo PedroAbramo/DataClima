@@ -62,10 +62,18 @@ function buscarRegistrosEmTempoReal(req, res) {
     })
     }
 
+    function exibirValoresDaSala(req, res) {
+    registroModel.exibirValoresDaSala()
+        .then(function(resultado) {
+            res.json(resultado);
+        })
+}
+
 module.exports = {
     buscarUltimosRegistros,
     buscarRegistrosEmTempoReal,
     ultimaAtualizacao,
     TemperaturaUmidadeMAXMIN,
+    exibirValoresDaSala,
 
 }
