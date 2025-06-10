@@ -84,13 +84,15 @@ function TemperaturaUmidadeMAXMIN(idSala){
 }
 
 function listarSalas() {
-    cardSala = document.getElementById("salaselect")
-    JSON.parse(sessionStorage.SALAS).forEach(item => {
-        console.log(item.sala)
-            cardSala.innerHTML += `
-                <option value="${item.id}">${item.nome}</option>
-            `
-    });
+    const cardSala = document.getElementById("salaselect");
+    const salas = JSON.parse(sessionStorage.SALAS);
+    for (let i = 0; i < salas.length; i++) {
+        const item = salas[i];
+        console.log(item.sala);
+        cardSala.innerHTML += `
+            <option value="${item.id}">${item.sala}</option>
+        `;
+    }
 }
 
 function listarAlertasAtivos() {
