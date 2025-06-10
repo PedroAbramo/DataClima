@@ -9,17 +9,6 @@ function buscarDatacentersPorEmpresa(empresaId) {
   return database.executar(instrucaoSql);
 }
 
-function buscarRegistrosSala(salaId) {
-  var instrucaoSql = `SELECT temperatura, umidade, dataRegistro 
-  FROM registro WHERE fkSensor = 1 
-  ORDER BY dataRegistro DESC 
-  LIMIT 10;`
-
-  console.log("Executando a instrução SQL: \n" + instrucaoSql);
-  return database.executar(instrucaoSql);
-}
-
 module.exports = {
-  buscarDatacentersPorEmpresa,
-  buscarRegistrosSala
+  buscarDatacentersPorEmpresa
 }

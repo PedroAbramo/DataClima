@@ -16,17 +16,6 @@ function buscarDatacenterPorEmpresa(req, res) {
   });
 }
 
-function buscarRegistrosSala(req, res) {
-  var idSala = req.params.salaId;
-
-  salaModel.buscarRegistrosSala(idSala).then((resultado) => {
-    if (resultado.length > 0) {
-      res.status(200).json(resultado);
-    } 
-  })
-}
-
 module.exports = {
-  buscarDatacenterPorEmpresa,
-  buscarRegistrosSala
+  buscarDatacenterPorEmpresa
 }

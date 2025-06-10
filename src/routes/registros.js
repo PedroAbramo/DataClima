@@ -3,12 +3,8 @@ var router = express.Router();
 
 var registroController = require("../controllers/registroController");
 
-router.get("/ultimas/:idSala", function (req, res) {
-    registroController.buscarUltimosRegistros(req, res);
-});
-
-router.get("/tempo-real/:idSala", function (req, res) {
-    registroController.buscarRegistrosEmTempoReal(req, res);
+router.get("/buscarRegistrosSala/:idSala", function (req, res) {
+    registroController.buscarRegistrosSala(req, res);
 })
 
 router.get("/ultimaAtualizacao", function (req, res) {
@@ -17,6 +13,10 @@ router.get("/ultimaAtualizacao", function (req, res) {
 
 router.get("/TemperaturaUmidadeMAXMIN/:idSala", function (req, res) {
     registroController.TemperaturaUmidadeMAXMIN(req, res);
+})
+
+router.get("/exibirValoresDaSala/:datacenterId", function (req, res) {
+    registroController.exibirValoresDaSala(req, res);
 })
 
 module.exports = router;

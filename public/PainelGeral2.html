@@ -127,7 +127,15 @@
             console.log(`#ERRO: ${resposta}`);
         });
 
+
+
     function criarSalas(Salas) {
+
+        fetch(`/registros/exibirValoresDaSala/${datacenterId}`)
+        .then(function(res) { return res.json(); })
+        .then(function(data){
+            console.log(data)
+        })
 
         const painel = document.getElementById("painel");
 
