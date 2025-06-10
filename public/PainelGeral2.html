@@ -80,9 +80,6 @@
                 </div>
             </div>
 
-            
-
-
             <div id="div_sensor"></div>
             <div class="painel-salas">
                 <div class="class-titulo">
@@ -102,6 +99,8 @@
                 </div>
             </div>
         </div>
+
+        
 </body>
 
 </html>
@@ -121,13 +120,13 @@
                 } else {
                     console.error("Erro ao buscar salas:", resposta.statusText);
                 }
-            });
+            })
+
         })
+        
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
         });
-
-
 
     function criarSalas(Salas) {
         const painel = document.getElementById("painel");
@@ -139,12 +138,43 @@
                 <div class="lista-status" id="lista_status">
                     <a onclick="mudarPainel(${registro.id}, '${registro.sala}')" class="salas"><div class="status alerta"></div><span id="nomeDatacenter">${registro.sala}</span>
                         <div class="divGeralStatus">
-                            <div class="divTemp"><img src="images/termometro.png" alt=""><span id="tempSala${registro.id}">${registro.ulttemperatura}º</span></div>
-                            <div class="divUmi"><img src="images/gota.png" alt=""><span id="umiSala${registro.id}">${registro.ultumidade}%</span></div>
+                            <div class="divTemp"><span id="iconeTemp${registro.id}"></span><span id="tempSala${registro.id}">${registro.ulttemperatura}º</span></div>
+                            <div class="divUmi"><span id="iconeUmi${registro.id}"></span><span id="umiSala${registro.id}">${registro.ultumidade}%</span></div>
                         </div></a>
                 </div>
             `
+            }
+
+function ultimosRegistros() {
+    fetch(`/registros/exibirValoresDaSala/${datacenterId}`)
+    .then(function(res) { return res.json(); })
+    .then(function(data){
+        for (let i = 0; i < data.length; i++) {
+            let registro = data[i];
+            document.getElementById(`tempSala${registro.id}`).innerHTML = `${registro.ulttemperatura}º`;
+            document.getElementById(`umiSala${registro.id}`).innerHTML = `${registro.ultumidade}%`;
+
+            // Atualiza o ícone de temperatura
+            if (registro.ulttemperatura > 32) {
+                document.getElementById(`iconeTemp${registro.id}`).innerHTML = `<img src="images/termometro_critico.png" alt="">`;
+            } else if (registro.ulttemperatura < 18 || registro.ulttemperatura > 27) {
+                document.getElementById(`iconeTemp${registro.id}`).innerHTML = `<img src="images/termometro_alerta.png" alt="">`;
+            } else {
+                document.getElementById(`iconeTemp${registro.id}`).innerHTML = `<img src="images/termometro_normal.png" alt="">`;
+            }
+
+            // Atualiza o ícone de umidade
+            if (registro.ultumidade < 20) {
+                document.getElementById(`iconeUmi${registro.id}`).innerHTML = `<img src="images/gota_critico.png" alt="">`;
+            } else if (registro.ultumidade < 40 || registro.ultumidade > 55) {
+                document.getElementById(`iconeUmi${registro.id}`).innerHTML = `<img src="images/gota_alerta.png" alt="">`;
+            } else {
+                document.getElementById(`iconeUmi${registro.id}`).innerHTML = `<img src="images/gota_normal.png" alt="">`;
+            }
         }
+    })
+}
+
 
         sessionStorage.setItem("QTD_SALAS", Salas.length);
         sessionStorage.setItem("SALAS", JSON.stringify(Salas));
@@ -169,18 +199,33 @@ function mudarPainel(sala, nome) {
 }
 
 function ultimosRegistros() {
-        fetch(`/registros/exibirValoresDaSala/${datacenterId}`)
-        .then(function(res) { return res.json(); })
-        .then(function(data){
-            console.log(data)
-            console.log('AAAAAAAAAAAAAAAAAAAAAAA')
-            for (let i = 0; i < data.length; i++) {
-                let registro = data[i];
-                console.log("Registro:", registro);
-                document.getElementById(`tempSala${registro.id}`).innerHTML = `${registro.ulttemperatura}º`;
-                document.getElementById(`umiSala${registro.id}`).innerHTML = `${registro.ultumidade}%`;
+    fetch(`/registros/exibirValoresDaSala/${datacenterId}`)
+    .then(function(res) { return res.json(); })
+    .then(function(data){
+        for (let i = 0; i < data.length; i++) {
+            let registro = data[i];
+            document.getElementById(`tempSala${registro.id}`).innerHTML = `${registro.ulttemperatura}º`;
+            document.getElementById(`umiSala${registro.id}`).innerHTML = `${registro.ultumidade}%`;
+
+            // Atualiza o ícone de temperatura
+            if (registro.ulttemperatura > 32) {
+                document.getElementById(`iconeTemp${registro.id}`).innerHTML = `<img src="images/termometro_critico.png" alt="">`;
+            } else if (registro.ulttemperatura < 18 || registro.ulttemperatura > 27) {
+                document.getElementById(`iconeTemp${registro.id}`).innerHTML = `<img src="images/termometro_alerta.png" alt="">`;
+            } else {
+                document.getElementById(`iconeTemp${registro.id}`).innerHTML = `<img src="images/termometro_normal.png" alt="">`;
             }
-        })
+
+            // Atualiza o ícone de umidade
+            if (registro.ultumidade < 20) {
+                document.getElementById(`iconeUmi${registro.id}`).innerHTML = `<img src="images/gota_critico.png" alt="">`;
+            } else if (registro.ultumidade < 40 || registro.ultumidade > 55) {
+                document.getElementById(`iconeUmi${registro.id}`).innerHTML = `<img src="images/gota_alerta.png" alt="">`;
+            } else {
+                document.getElementById(`iconeUmi${registro.id}`).innerHTML = `<img src="images/gota_normal.png" alt="">`;
+            }
+        }
+    })
 }
 
 window.onload = function() {

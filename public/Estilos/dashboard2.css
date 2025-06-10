@@ -386,3 +386,10 @@ a {
     flex-direction: row;
     margin-bottom: 50%;
 }
+
+.divGeralStatus img {
+    width: auto;
+    height: 25px;
+    margin-right: 5px;
+    margin-top: 50%;
+}
