@@ -24,7 +24,8 @@ function listarAlertasAtivos(ID_DATACENTER) {
     INNER JOIN sala s ON se.fkSala = s.id
     INNER JOIN datacenter d ON s.fkDatacenter = d.id
     WHERE a.status = 'ativo' and d.id = ${ID_DATACENTER}
-    limit 100
+    ORDER BY a.id DESC
+    LIMIT 10
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

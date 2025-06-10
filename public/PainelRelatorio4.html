@@ -61,7 +61,8 @@
                 </div>
             </div>
         </div>
-        <div id="alertaContainer"></div>
+        <!-- Painel de avisos (alertas) -->
+        <div class="painel-avisos" id="painelAvisos"></div>
     </div>
         <script>
             titulo.innerHTML += sessionStorage.NOME_DATACENTER;
@@ -77,11 +78,12 @@
             }
 
             window.onload = function () {
-                listarAlertasAtivos()
+                listarAlertasAtivos();
                 ultimaAtualizacao();
 
                 setInterval(function () {
                     ultimaAtualizacao();
+                    listarAlertasAtivos();
                 }, 5000)
             }
         </script>

@@ -100,23 +100,30 @@ function listarAlertasAtivos() {
     fetch(`/alertas/listarAlertasAtivos/${idDatacenter}`)
         .then(res => res.json())
         .then(alertas => {
-            const alertaContainer = document.getElementById("alertaContainer");
-            if (!alertaContainer) {
-                console.error("alertaContainer não encontrado!");
+            const painelAvisos = document.getElementById("painelAvisos");
+            if (!painelAvisos) {
+                console.error("painelAvisos não encontrado!");
                 return;
             }
-            alertaContainer.innerHTML = '';
+            painelAvisos.innerHTML = '';
             if (!Array.isArray(alertas) || alertas.length === 0) {
-                alertaContainer.innerHTML = '<div>Nenhum alerta ativo.</div>';
+                painelAvisos.innerHTML = '<div>Nenhum alerta ativo.</div>';
                 return;
             }
+
             for (let i = 0; i < alertas.length; i++) {
                 const alerta = alertas[i];
-                alertaContainer.innerHTML += `
+                // Formatação igual à função ultimaAtualizacao
+                let data = new Date(alerta.dataRegistro).toLocaleString('pt-BR');
+                let dataatual = data.split(', ')[0];
+                let horario = data.split(', ')[1];
+                let dataFormatada = `${dataatual} - ${horario}`;
+
+                painelAvisos.innerHTML += `
                     <div class="alerta-item">
                         <span class="alerta-sensor">${alerta.nome_sensor}</span>
                         <span class="alerta-motivo">${alerta.motivo}</span>
-                        <span class="alerta-data">${alerta.dataRegistro}</span>
+                        <span class="alerta-data">${dataFormatada}</span>
                     </div>
                 `;
             }
