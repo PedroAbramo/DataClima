@@ -99,3 +99,26 @@ function listarSalas() {
             `
     });
 }
+
+function listarAlertasAtivos() {
+    let idDatacenter = sessionStorage.getItem("ID_DATACENTER");
+    fetch(`/alertas/listarAlertasAtivos/${idDatacenter}`, {
+        method: "GET"
+    })
+        .then(res => {
+            res.json().then(json => {
+                const alertas = json;
+                const alertaContainer = document.getElementById("alertaContainer");
+                alertaContainer.innerHTML = ''; 
+
+                alertas.forEach(alerta => {
+                    alertaContainer.innerHTML += `
+                        <div class="alerta-item">
+                            <span>${alerta.nome_sensor} - ${alerta.status}</span>
+                            <span>${alerta.dataRegistro}</span>
+                        </div>
+                    `;
+                });
+            })
+        })
+}
