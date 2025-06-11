@@ -11,7 +11,7 @@ const serial = async () => {
     // conexão com o banco de dados MySQL
     let poolBancoDados = mysql.createPool(
         {
-            host: '192.168.15.42', // ip que deve ser alterado de acordo com a máquina que receberá os dados
+            host: '10.18.32.62', // ip que deve ser alterado de acordo com a máquina que receberá os dados
             user: 'dono',
             password: 'Sptech#2024',
             database: 'dataclima',
@@ -179,7 +179,7 @@ const serial = async () => {
 }
 
 // Função para simular leitura do Arduino
-
+/*
 async function simularLeituraArduino(poolBancoDados, data) {
     const valores = data.split(';');
     const temperatura = parseFloat(valores[0]);
@@ -190,6 +190,7 @@ async function simularLeituraArduino(poolBancoDados, data) {
     const umidade2 = parseInt(umidade + variacao);
     let motivo = [];
     let tipo = '';
+    
 
     if (temperatura > 32) {
         motivo.push("Temperatura muito alta");
@@ -232,13 +233,14 @@ async function simularLeituraArduino(poolBancoDados, data) {
         console.log("Alerta inserido no banco: ", idRegistro + ", " + tipo + ", " + motivo.join(', '));
         }
 }
+        */
 // Função principal de simulação
-
+/*
 const simular = async () => {
     let poolBancoDados = mysql.createPool(
         {
             host: '10.18.32.62', // ip que deve ser alterado de acordo com a máquina que receberá os dados
-            user: 'dataclima',
+            user: 'dono',
             password: 'Sptech#2024',
             database: 'dataclima',
             port: 3307
@@ -252,10 +254,10 @@ const simular = async () => {
 
     // Chama a função a cada 2 segundos (2000 ms)
     setInterval(simularRepetido, 1000);
-};
+};*/
 
-simular();
+// simular();
 
 
 // Comente ou remova a chamada do serial se não for usar a serial real
-//(async () => { await serial(); })();
+(async () => { await serial(); })();
