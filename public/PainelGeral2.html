@@ -8,12 +8,14 @@
     <link rel="stylesheet" href="Estilos/dashboard2.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./script/dashboard.js"></script>
+    <script src="./script/sessao.js"></script>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
     </style>
 </head>
 
-<body onload="validarSessao()">
+<body>
     <nav class="side-nav">
         <div class="logo">
             <a href="index.html">
@@ -106,6 +108,7 @@
 </html>
 
 <script>
+    validarSessao();
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
     var datacenterId = sessionStorage.ID_DATACENTER;
 

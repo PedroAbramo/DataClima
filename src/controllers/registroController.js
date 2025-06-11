@@ -12,7 +12,11 @@ function ultimaAtualizacao(req, res) {
 function TemperaturaUmidadeMAXMIN(req, res) {
 
     var idSala = req.params.idSala;
-
+    if (idSala == undefined) {
+        res.status(400).send("Seu idSala está undefined!");
+        return;
+    }
+    
     registroModel.TemperaturaUmidadeMAXMIN(idSala).then(function (resultado) {
         res.status(200).json(resultado);
 
@@ -24,6 +28,11 @@ function TemperaturaUmidadeMAXMIN(req, res) {
 function exibirValoresDaSala(req, res) {
 
     var datacenterId = req.params.datacenterId
+    if (datacenterId == undefined) {
+        res.status(400).send("Seu datacenterId está undefined!");
+        return;
+    }
+
 
     registroModel.exibirValoresDaSala(datacenterId)
         .then(function (resultado) {
@@ -33,6 +42,10 @@ function exibirValoresDaSala(req, res) {
 
 function buscarRegistrosSala(req, res) {
     var idSala = req.params.idSala
+    if (idSala == undefined) {
+        res.status(400).send("Seu idSala está undefined!");
+        return;
+    }
 
     registroModel.buscarRegistrosSala(idSala)
         .then(function (resultado) {

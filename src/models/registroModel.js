@@ -13,14 +13,16 @@ function ultimaAtualizacao() {
 
 function TemperaturaUmidadeMAXMIN(idSala) {
     var instrucao = `
-    select
-    (SELECT temperatura FROM registro WHERE DATE(dataRegistro) = CURDATE() and fkSensor = ${idSala} ORDER BY temperatura DESC LIMIT 1) AS temperaturaMax,
-    (SELECT umidade FROM registro WHERE DATE(dataRegistro) = CURDATE() and fkSensor = ${idSala} ORDER BY umidade DESC LIMIT 1) AS umidadeMax,
-    -- Mínimos
-    (SELECT temperatura FROM registro WHERE DATE(dataRegistro) = CURDATE() and fkSensor = ${idSala} ORDER BY temperatura ASC LIMIT 1) AS temperaturaMin,
-    (SELECT umidade FROM registro WHERE DATE(dataRegistro) = CURDATE() and fkSensor = ${idSala} ORDER BY umidade ASC LIMIT 1) AS UmidadeMin;
-    
-
+    SELECT
+    (SELECT max(temperatura) FROM registro WHERE DATE(dataRegistro) = CURDATE() AND fkSensor = ${idSala}) AS temperaturaMax,
+    (SELECT dataRegistro FROM registro WHERE fkSensor = ${idSala} AND temperatura = temperaturaMax ORDER BY dataRegistro desc limit 1) AS dataTempMax,
+    (SELECT max(umidade) FROM registro WHERE DATE(dataRegistro) = CURDATE() AND fkSensor = ${idSala}) AS umidadeMax,
+    (SELECT dataRegistro FROM registro WHERE fkSensor = ${idSala} AND umidade = umidadeMax ORDER BY dataRegistro desc limit 1) AS dataUmiMax,
+    -- Valores mínimos
+    (SELECT min(temperatura) FROM registro WHERE DATE(dataRegistro) = CURDATE() AND fkSensor = ${idSala}) AS temperaturaMin,
+    (SELECT dataRegistro FROM registro WHERE fkSensor = ${idSala} AND temperatura = temperaturaMin ORDER BY dataRegistro desc limit 1) AS dataTempMin,
+    (SELECT min(umidade) FROM registro WHERE DATE(dataRegistro) = CURDATE() AND fkSensor = ${idSala}) AS umidadeMin,
+    (SELECT dataRegistro FROM registro WHERE fkSensor = ${idSala} AND umidade = umidadeMin ORDER BY dataRegistro desc limit 1) AS dataUmiMin;
 `
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

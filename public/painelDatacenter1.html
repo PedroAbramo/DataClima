@@ -14,7 +14,7 @@
     </style>
 </head>
 
-<body onload="validarSessao()">
+<body>
     <nav class="side-nav">
         <div class="logo">
             <a href="index.html">
@@ -75,6 +75,7 @@
 </html>
 
 <script>
+    validarSessao();
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
     window.onload = function () {

@@ -212,7 +212,7 @@ async function simularLeituraArduino(poolBancoDados, data) {
     }
 
         const [result] = await poolBancoDados.execute(
-            'INSERT INTO registro (fksensor, temperatura, umidade, dataRegistro) VALUES (1, ?, ?, "2025-06-04")',
+            'INSERT INTO registro (fksensor, temperatura, umidade) VALUES (1, ?, ?)',
             [temperatura, umidade]
         );
         const idRegistro = result.insertId;

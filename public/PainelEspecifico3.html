@@ -8,13 +8,14 @@
     <link rel="stylesheet" href="Estilos/dashboard3.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.1.0/dist/chartjs-plugin-annotation.min.js"></script>
+    <script src="./script/sessao.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
     </style>
     <script src="./script/dashboard.js"></script>
 </head>
 
-<body onload="validarSessao()">
+<body>
     <nav class="side-nav">
         <div class="logo">
             <a href="index.html">
@@ -71,10 +72,12 @@
                     <div class="valores">
                         <p>Temperatura Máxima</p>
                         <strong id="temp-max"> <span id="valorTempMax">-°C</span></strong>
+                        <p class="data" id="temp-max"> <span id="dataTempMax">-</span></p>
                     </div>
                     <div class="valores">
                         <p>Temperatura Mínima</p>
                         <strong id="temp-min"> <span id="valorTempMin">-°C</span></strong>
+                        <p class="data" id="temp-min"> <span id="dataTempMin">-</span></p>
                     </div>
                     <div class="ultima-att">
                         <p>Ultima atualização:</p>
@@ -104,10 +107,12 @@
                     <div class="valores">
                         <p>Umidade Máxima</p>
                         <strong id="umidade-max"><span id="valorHumiMax">-%</span></strong>
+                        <p class="data" id="umidade-max"><span id="dataHumiMax">-</span></p>
                     </div>
                     <div class="valores">
                         <p>Umidade Mínima</p>
                         <strong id="umidade-min"><span id="valorHumiMin">-%</span></strong>
+                        <p class="data" id="umidade-min"><span id="dataHumiMin">-</span></p>
                     </div>
                     <div class="ultima-att">
                         <p>Ultima atualização:</p>
@@ -130,7 +135,6 @@
             </div>
 
             <script>
-
                 let idSala = sessionStorage.SALA
                 console.log(idSala);
                 titulo.innerHTML = sessionStorage.NOME_SALA;
@@ -364,6 +368,7 @@
 
 
                 window.onload = function () {
+                    validarSessao();
                     buscarRegistrosPeriodicamente();
                     ultimaAtualizacao();
                     listarSalas();
@@ -372,11 +377,8 @@
                     setInterval(function () {
                         buscarRegistrosPeriodicamente();
                         TemperaturaUmidadeMAXMIN(idSala);
-                    }, 1000)
-
-                    setInterval(function () {
                         ultimaAtualizacao();
-                    }, 5000)
+                    }, 1000)
                 }
             </script>
 </body>

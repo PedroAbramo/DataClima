@@ -17,10 +17,8 @@ function ultimaAtualizacao(){
     })
         .then(res => {
             res.json().then(json => {
-                let data = new Date(json[0].dataRegistro).toLocaleString('pt-BR');
-                let dataatual = data.split(', ')[0];
-                let horario = data.split(', ')[1];
-                DataHora.forEach(span => span.innerHTML = `${dataatual} - ${horario}`);
+                    let dataFormatada = formatarDataHora(json[0].dataRegistro);
+                DataHora.forEach(span => span.innerHTML = `${dataFormatada}`);
             })
         })
     }
@@ -40,8 +38,12 @@ function TemperaturaUmidadeMAXMIN(idSala){
         .then(res => {
             res.json().then(json => {
                 const maxmin = json[0];
-
+                if (json[0].temperaturaMax === null || json[0].umidadeMax === null) {
+                    console.error("Dados de temperatura ou umidade não encontrados.");
+                    return;
+                }
                 valorTempMax.innerHTML = maxmin.temperaturaMax + "°C";
+                dataTempMax.innerHTML = formatarHora(maxmin.dataTempMax);
                 if (maxmin.temperaturaMax > 32) {
                     valorTempMax.style.color = "#FF0000"; // vermelho                   
                 } else if (maxmin.temperaturaMax > 27 || maxmin.temperaturaMax < 18) {
@@ -51,6 +53,7 @@ function TemperaturaUmidadeMAXMIN(idSala){
                 }
 
                 valorTempMin.innerHTML = maxmin.temperaturaMin + "°C";
+                dataTempMin.innerHTML = formatarHora(maxmin.dataTempMin);
                 if (maxmin.temperaturaMin > 32) {
                     valorTempMin.style.color = "#FF0000"; // vermelho                   
                 } else if (maxmin.temperaturaMin > 27 || maxmin.temperaturaMin < 18) {
@@ -60,6 +63,7 @@ function TemperaturaUmidadeMAXMIN(idSala){
                 }
 
                 valorHumiMax.innerHTML = maxmin.umidadeMax + "%";
+                dataHumiMax.innerHTML = formatarHora(maxmin.dataUmiMax);
                 if (maxmin.umidadeMax < 20) {
                     valorHumiMax.style.color = "#FF0000"; // vermelho                   
                 } else if (maxmin.umidadeMax < 40 || maxmin.umidadeMax > 55) {
@@ -68,12 +72,13 @@ function TemperaturaUmidadeMAXMIN(idSala){
                     valorHumiMax.style.color = "#14EE00"; // verde
                 }
 
-                valorHumiMin.innerHTML = maxmin.UmidadeMin + "%";
-                if (maxmin.UmidadeMin < 20) {
+                valorHumiMin.innerHTML = maxmin.umidadeMin + "%";
+                dataHumiMin.innerHTML = formatarHora(maxmin.dataUmiMin);
+                if (maxmin.umidadeMin < 20) {
                     valorHumiMin.style.color = "#FF0000"; // vermelho                   
-                } else if (maxmin.UmidadeMin < 40 || maxmin.UmidadeMin > 55) {
+                } else if (maxmin.umidadeMin < 40 || maxmin.umidadeMin > 55) {
                     valorHumiMin.style.color = "#E0E243"; // amarelo
-                } else if (maxmin.UmidadeMin >= 40 || maxmin.UmidadeMin <= 55 ) {
+                } else if (maxmin.umidadeMin >= 40 || maxmin.umidadeMin <= 55 ) {
                     valorHumiMin.style.color = "#14EE00"; // verde
                 }
 
@@ -114,10 +119,7 @@ function listarAlertasAtivos() {
             for (let i = 0; i < alertas.length; i++) {
                 const alerta = alertas[i];
                 // Formatação igual à função ultimaAtualizacao
-                let data = new Date(alerta.dataRegistro).toLocaleString('pt-BR');
-                let dataatual = data.split(', ')[0];
-                let horario = data.split(', ')[1];
-                let dataFormatada = `${dataatual} - ${horario}`;
+                let dataFormatada = formatarDataHora(alerta.dataRegistro);
 
                 painelAvisos.innerHTML += `
                     <div class="alerta-item">
@@ -131,4 +133,18 @@ function listarAlertasAtivos() {
         .catch(err => {
             console.error("Erro ao buscar alertas:", err);
         });
+}
+
+function formatarDataHora(valor) {
+                let data = new Date(valor).toLocaleString('pt-BR');
+                let dataatual = data.split(', ')[0];
+                let horario = data.split(', ')[1];
+                let dataFormatada = `${dataatual} - ${horario}`;
+                return dataFormatada;
+}
+
+function formatarHora(valor) {
+    let horario = new Date(valor).toLocaleTimeString('pt-BR');
+    console.log(horario);
+    return horario;
 }
