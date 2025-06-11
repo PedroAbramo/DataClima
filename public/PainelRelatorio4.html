@@ -142,6 +142,7 @@
                                 console.log("Labels semanais:", labelsSemanal);
 
                                 criarOuAtualizarGrafico()
+                                atualizarKPI();
                             });
                     }
                 })
@@ -218,6 +219,24 @@
                 relatorioSemanal.update();
             }
         }
+
+        function atualizarKPI() {
+            let maiorAlerta = 0;
+            let indiceMaior = 0;
+
+            for (let i = 0; i < valoresSemanal.length; i++) {
+                if (valoresSemanal[i] > maiorAlerta) {
+                    maiorAlerta = valoresSemanal[i];
+                    indiceMaior = i;
+                }
+            }
+
+            const diaComMaisAlerta = labelsSemanal[indiceMaior];
+            console.log("Dia com mais alertas:", diaComMaisAlerta);
+
+            document.getElementById("valorMaisAlerta").innerHTML = diaComMaisAlerta;
+        }
+
 
         window.onload = function () {
             listarAlertasAtivos();
