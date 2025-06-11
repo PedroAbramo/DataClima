@@ -237,11 +237,11 @@ async function simularLeituraArduino(poolBancoDados, data) {
 const simular = async () => {
     let poolBancoDados = mysql.createPool(
         {
-            host: 'localhost', // ip que deve ser alterado de acordo com a máquina que receberá os dados
-            user: 'aluno',
-            password: '',
+            host: '10.18.32.62', // ip que deve ser alterado de acordo com a máquina que receberá os dados
+            user: 'dataclima',
+            password: 'Sptech#2024',
             database: 'dataclima',
-            port: 3306
+            port: 3307
         }
     ).promise();
 
