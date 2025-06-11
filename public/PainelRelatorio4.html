@@ -86,6 +86,24 @@
                 <canvas id="relatorioSemanal"></canvas>
             </div>
         </div>
+        <div class="avisos" id="avisos">
+            <div class="dashboard">
+                <canvas id="relatorioDiaMaisAlerta"></canvas>
+            </div>
+            <div class="dados-indiv">
+                <div class="titulovalores">
+                    <p>Hoje:</p>
+                </div>
+                <div class="valores">
+                    <p>Dia com mais alertas</p>
+                    <strong id="diaMaisAlerta"> <span id="valorMaisAlerta">dia</span></strong>
+                </div>
+                <div class="ultima-att">
+                    <p>Última atualização:</p>
+                    <div class="div_dataHora"><span class="DataHora_select">dd/mm/yyyy - hh:mm</span></div>
+                </div>
+            </div>
+        </div>
     </div>
     <script>
         validarSessao();
@@ -93,6 +111,7 @@
         const datacenters = JSON.parse(sessionStorage.DATACENTERS)
         console.log("Data Centers disponíveis:", datacenters)
         const idDatacenter = sessionStorage.ID_DATACENTER;
+        const idSala = sessionStorage.SALA;
 
         for (let i = 0; i < datacenters.length; i++) {
             if (datacenters[i].id == sessionStorage.ID_DATACENTER) {
@@ -105,8 +124,9 @@
         var valoresSemanal = [];
         var labelsSemanal = [];
         var relatorioSemanal;
+        var relatorioDiaMaisAlerta;
 
-        function buscarRelatorio() {
+        function buscarRelatorioSemanal() {
             fetch(`/relatorio/buscarRelatorioSemanal/${idDatacenter}`, {
                 method: "GET",
             })
@@ -147,14 +167,32 @@
                                 console.log("Valores semanais:", valoresSemanal);
                                 console.log("Labels semanais:", labelsSemanal);
 
-                                criarOuAtualizarGrafico()
+                                criarOuAtualizarGraficoSemanal();
                                 atualizarKPI();
                             });
                     }
                 })
         }
 
-        function criarOuAtualizarGrafico() {
+
+
+        function buscarRelatorioDiaMaisAlerta() {
+            fetch(`/relatorio/buscarRelatorioDiaMaisAlerta/${idSala}`, {
+                method: "GET",
+            })
+                .then(response => {
+                    if (response.ok) {
+                        response.json()
+                            .then((dados) => {
+                                console.log("Dados do relatório:", dados);
+                                
+                                criarOuAtualizarGraficoDiaMaisAlerta();
+                            });
+                    }
+                })
+        }
+
+        function criarOuAtualizarGraficoSemanal() {
             let canvasRelatorio = document.getElementById('relatorioSemanal');
             if (!relatorioSemanal) {
                 relatorioSemanal = new Chart(canvasRelatorio, {
@@ -162,7 +200,7 @@
                     data: {
                         labels: labelsSemanal,
                         datasets: [{
-                            label: 'Relatório Semanal - Dias',
+                            label: 'Alertas',
                             borderColor: '#004080',
                             backgroundColor: '#1554B2',
                             borderRadius: 10,
@@ -226,6 +264,80 @@
             }
         }
 
+
+        function criarOuAtualizarGraficoDiaMaisAlerta() {
+            let canvasRelatorioDiaMaisAlerta = document.getElementById('relatorioDiaMaisAlerta');
+            if (!relatorioDiaMaisAlerta) {
+                relatorioDiaMaisAlerta = new Chart(canvasRelatorioDiaMaisAlerta, {
+                    type: 'bar',
+                    data: {
+                        labels: labelsSemanal,
+                        datasets: [{
+                            label: 'Alertas',
+                            borderColor: '#004080',
+                            backgroundColor: '#1554B2',
+                            borderRadius: 10,
+                            barPercentage: 0.6,
+                            categoryPercentage: 0.7,
+                            data: valoresSemanal
+                        }]
+                    },
+                    options: {
+                        plugins: {
+                            legend: { display: false },
+                            title: {
+                                display: true,
+                                text: 'Relatório Semanal - Dias',
+                                color: '#004080',
+                                font: {
+                                    family: 'Inter, sans-serif',
+                                    size: 22,
+                                    weight: 'bold'
+                                },
+                                padding: { top: 10, bottom: 20 }
+                            },
+                            tooltip: {
+                                backgroundColor: '#fff',
+                                titleColor: '#004080',
+                                bodyColor: '#333',
+                                borderColor: '#66B2FF',
+                                borderWidth: 1,
+                                padding: 10,
+                                caretSize: 8,
+                                cornerRadius: 8
+                            }
+                        },
+                        layout: {
+                            padding: 20
+                        },
+                        backgroundColor: '#fff',
+                        scales: {
+                            x: {
+                                reverse: true,
+                                grid: { color: '#e0e0e0' },
+                                ticks: {
+                                    color: '#333',
+                                    font: { family: 'Inter, sans-serif', size: 14, weight: 'bold' }
+                                }
+                            },
+                            y: {
+                                grid: { color: '#e0e0e0' },
+                                ticks: {
+                                    color: '#333',
+                                    font: { family: 'Inter, sans-serif', size: 14, weight: 'bold' }
+                                }
+                            }
+                        }
+                    }
+                });
+            } else {
+                relatorioDiaMaisAlerta.data.labels = labelsSemanal;
+                relatorioDiaMaisAlerta.data.datasets[0].data = valoresSemanal;
+                relatorioDiaMaisAlerta.update();
+            }
+        }
+
+
         function atualizarKPI() {
             let maiorAlerta = 0;
             let indiceMaior = 0;
@@ -246,12 +358,12 @@
 
         window.onload = function () {
             listarAlertasAtivos();
-            buscarRelatorio();
+            buscarRelatorioSemanal();
             ultimaAtualizacao();
 
             setInterval(function () {
                 ultimaAtualizacao();
-                buscarRelatorio();
+                buscarRelatorioSemanal();
                 listarAlertasAtivos();
             }, 5000)
         }

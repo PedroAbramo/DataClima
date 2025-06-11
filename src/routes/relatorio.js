@@ -7,4 +7,8 @@ router.get("/buscarRelatorioSemanal/:idDatacenter", function (req, res) {
   relatorioController.buscarRelatorioSemanal(req, res);
 });
 
+router.get("/buscarRelatorioDiaMaisAlerta/:idSala", function (req, res) {
+  relatorioController.buscarRelatorioDiaMaisAlerta(req, res);
+});
+
 module.exports = router;
