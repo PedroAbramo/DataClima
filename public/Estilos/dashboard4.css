@@ -32,6 +32,7 @@ a {
 .usuario {
     color: #555555;
     background-color: #d1d5db;
+    font-size: 18px;
     text-align: center;
     padding: 3px 13px 3px 13px;
     border-bottom: solid 1.2px #b0b0b0;

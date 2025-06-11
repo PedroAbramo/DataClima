@@ -31,6 +31,7 @@ a {
 .usuario {
     color: #555555;
     background-color: #d1d5db;
+    font-size: 18px;
     text-align: center;
     padding: 3px 13px 3px 13px;
     border-bottom: solid 1.2px #b0b0b0;
@@ -98,10 +99,6 @@ a {
     border-bottom: solid 0.06cm #d5d5d5;
 }
 
-.titulo h1 {
-    font-size: 32px !important;
-    font-weight: 400;
-}
 
 .painel-datacenter {
     display: flex;
