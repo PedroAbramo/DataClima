@@ -156,27 +156,58 @@
                     data: {
                         labels: labelsSemanal,
                         datasets: [{
-                            label: 'Relátorio Semanal - Dias',
+                            label: 'Relatório Semanal - Dias',
                             borderColor: '#004080',
-                            backgroundColor: '#66B2FF',
+                            backgroundColor: '#1554B2',
+                            borderRadius: 10,
+                            barPercentage: 0.6,
+                            categoryPercentage: 0.7,
                             data: valoresSemanal
                         }]
                     },
                     options: {
+                        plugins: {
+                            legend: { display: false },
+                            title: {
+                                display: true,
+                                text: 'Relatório Semanal - Dias',
+                                color: '#004080',
+                                font: {
+                                    family: 'Inter, sans-serif',
+                                    size: 22,
+                                    weight: 'bold'
+                                },
+                                padding: { top: 10, bottom: 20 }
+                            },
+                            tooltip: {
+                                backgroundColor: '#fff',
+                                titleColor: '#004080',
+                                bodyColor: '#333',
+                                borderColor: '#66B2FF',
+                                borderWidth: 1,
+                                padding: 10,
+                                caretSize: 8,
+                                cornerRadius: 8
+                            }
+                        },
+                        layout: {
+                            padding: 20
+                        },
+                        backgroundColor: '#fff',
                         scales: {
                             x: {
-                                reverse: true,
-                                beginAtZero: true,
+                                grid: { color: '#e0e0e0' },
                                 ticks: {
-                                    maxRotation: 45,
-                                    minRotation: 45
-                                },
+                                    color: '#333',
+                                    font: { family: 'Inter, sans-serif', size: 14, weight: 'bold' }
+                                }
                             },
                             y: {
-                                title: {
-                                    display: true,
-                                },
-                                beginAtZero: true,
+                                grid: { color: '#e0e0e0' },
+                                ticks: {
+                                    color: '#333',
+                                    font: { family: 'Inter, sans-serif', size: 14, weight: 'bold' }
+                                }
                             }
                         }
                     }
