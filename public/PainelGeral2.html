@@ -194,13 +194,31 @@ function ultimosRegistros() {
     fetch(`/registros/exibirValoresDaSala/${datacenterId}`)
     .then(function(res) { return res.json(); })
     .then(function(data){
+        let totalAlerta = 0; // Inicialize aqui!
         for (let i = 0; i < data.length; i++) {
-            let registro = data[i];
-            document.getElementById(`tempSala${registro.id}`).innerHTML = `${registro.ulttemperatura}º`;
-            document.getElementById(`umiSala${registro.id}`).innerHTML = `${registro.ultumidade}%`;
-
-            mudarCores(registro);
+            let registro = data[i]
+            // Só atualize se o elemento existir
+            let tempEl = document.getElementById(`tempSala${registro.id}`);
+            let umiEl = document.getElementById(`umiSala${registro.id}`);
+            if (tempEl && umiEl) {
+                tempEl.innerHTML = `${registro.ulttemperatura}º`
+                umiEl.innerHTML = `${registro.ultumidade}%`
+                mudarCores(registro)
+            }
+            if (
+                registro.ulttemperatura < 18 || registro.ulttemperatura > 27 ||
+                registro.ultumidade < 40 || registro.ultumidade > 55
+            ) {
+                totalAlerta++
+            }
         }
+
+        document.getElementById("alertaSala").innerText = totalAlerta
+        let percentual = 0;
+        if (data.length > 0) {
+            percentual = Math.round((totalAlerta / data.length) * 100)
+        }
+        document.getElementById("percentualSala").innerText = percentual + "%"
     })
 }
 
