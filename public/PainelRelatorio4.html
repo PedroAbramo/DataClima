@@ -120,6 +120,8 @@
 
         var valoresSemanal = [];
         var labelsSemanal = [];
+        var horaSemanal = [];
+        var totalSemanal = [];
         var relatorioSemanal;
         var relatorioDiaMaisAlerta;
 
@@ -182,7 +184,15 @@
                         response.json()
                             .then((dados) => {
                                 console.log("Dados do relatório:", dados);
-                                
+                                totalSemanal = [];
+                                horaSemanal = [];
+
+                                for(let i = 0; i < dados.length; i++) {
+                                    let total = dados[i].total_alertas;
+                                    let hora = tratarHora(dados[i].hora);
+                                    horaSemanal.push(hora);
+                                    totalSemanal.push(total);
+                                }
                                 criarOuAtualizarGraficoDiaMaisAlerta();
                             });
                     }
@@ -268,7 +278,7 @@
                 relatorioDiaMaisAlerta = new Chart(canvasRelatorioDiaMaisAlerta, {
                     type: 'bar',
                     data: {
-                        labels: labelsSemanal,
+                        labels: horaSemanal,
                         datasets: [{
                             label: 'Alertas',
                             borderColor: '#004080',
@@ -276,7 +286,7 @@
                             borderRadius: 10,
                             barPercentage: 0.6,
                             categoryPercentage: 0.7,
-                            data: valoresSemanal
+                            data: totalSemanal
                         }]
                     },
                     options: {
@@ -328,8 +338,8 @@
                     }
                 });
             } else {
-                relatorioDiaMaisAlerta.data.labels = labelsSemanal;
-                relatorioDiaMaisAlerta.data.datasets[0].data = valoresSemanal;
+                relatorioDiaMaisAlerta.data.labels = horaSemanal;
+                relatorioDiaMaisAlerta.data.datasets[0].data = totalSemanal;
                 relatorioDiaMaisAlerta.update();
             }
         }
@@ -356,11 +366,13 @@
         window.onload = function () {
             listarAlertasAtivos();
             buscarRelatorioSemanal();
+            buscarRelatorioDiaMaisAlerta();
             ultimaAtualizacao();
 
             setInterval(function () {
                 ultimaAtualizacao();
                 buscarRelatorioSemanal();
+                buscarRelatorioDiaMaisAlerta();
                 listarAlertasAtivos();
             }, 5000)
         }
