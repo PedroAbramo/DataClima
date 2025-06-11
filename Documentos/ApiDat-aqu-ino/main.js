@@ -2,11 +2,9 @@
 const serialport = require('serialport');
 const mysql = require('mysql2');
 
-// constantes para configurações
 const SERIAL_BAUD_RATE = 9600;
 const SERVIDOR_PORTA = 3300;
 
-// Função genérica para inserir dados em múltiplas salas
 async function inserirDadosSalas(poolBancoDados, temperaturaBase, umidadeBase, quantidadeSalas) {
     for (let i = 1; i <= quantidadeSalas; i++) {
         let temperatura, umidade;
@@ -14,7 +12,7 @@ async function inserirDadosSalas(poolBancoDados, temperaturaBase, umidadeBase, q
             temperatura = temperaturaBase;
             umidade = umidadeBase;
         } else if (i === 13 || i === 14) {
-            // Gera valores dentro do padrão para sensores 13 e 14
+            
             temperatura = parseFloat((Math.random() * (26 - 18) + 18).toFixed(1));
             umidade = Math.floor(Math.random() * (54 - 40 + 1) + 40);
         } else {
@@ -49,7 +47,6 @@ async function inserirDadosSalas(poolBancoDados, temperaturaBase, umidadeBase, q
             tipo = tipo === "Crítico" ? "Crítico" : "Alerta";
         }
 
-        // Insere no banco
         const [result] = await poolBancoDados.execute(
             'INSERT INTO registro (fksensor, temperatura, umidade) VALUES (?, ?, ?)',
             [i, temperatura, umidade]

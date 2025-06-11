@@ -171,6 +171,20 @@
         }
         document.getElementById("percentualSala").innerText = percentual + "%"
 
+        document.getElementById("alertaSala").innerText = totalAlerta;
+        if (totalAlerta > 1) {
+            document.getElementById("alertaSala").style.color = "red";
+        } else {
+            document.getElementById("alertaSala").style.color = "";
+        }
+
+        document.getElementById("percentualSala").innerText = percentual + "%";
+        if (percentual > 0) {
+            document.getElementById("percentualSala").style.color = "red";
+        } else {
+            document.getElementById("percentualSala").style.color = "";
+        }
+
         sessionStorage.SALA = Salas[0].id;
         sessionStorage.setItem("QTD_SALAS", Salas.length);
         sessionStorage.setItem("SALAS", JSON.stringify(Salas));
@@ -198,10 +212,10 @@ function ultimosRegistros() {
     fetch(`/registros/exibirValoresDaSala/${datacenterId}`)
     .then(function(res) { return res.json(); })
     .then(function(data){
-        let totalAlerta = 0; // Inicialize aqui!
+        let totalAlerta = 0; 
+
         for (let i = 0; i < data.length; i++) {
             let registro = data[i]
-            // Só atualize se o elemento existir
             let tempEl = document.getElementById(`tempSala${registro.id}`);
             let umiEl = document.getElementById(`umiSala${registro.id}`);
             if (tempEl && umiEl) {
