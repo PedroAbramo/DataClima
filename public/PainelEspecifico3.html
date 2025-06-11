@@ -133,6 +133,17 @@
                     <p><span style="color: #FF0000;">■</span> <b>Umidade Crítica</b> <br>Menor que 20%</p>
                 </div>
             </div>
+        <div class="avisos" id="avisos">
+            <div class="dashboard">
+                <canvas id="relatorioDiaMaisAlerta"></canvas>
+            </div>
+            <div class="dados-indiv">
+                <div class="ultima-att">
+                    <p>Última atualização:</p>
+                    <div class="div_dataHora"><span class="DataHora_select">dd/mm/yyyy - hh:mm</span></div>
+                </div>
+            </div>
+        </div>
 
             <script>
                 let idSala = sessionStorage.SALA
@@ -154,6 +165,108 @@
                 var sensorTemperatura;
                 var sensorUmidade;
                 var registroHora = [];
+            var horaSemanal = [];
+            var totalSemanal = [];
+        var relatorioDiaMaisAlerta;
+
+
+                        function buscarRelatorioDiaMaisAlerta() {
+            fetch(`/relatorio/buscarRelatorioDiaMaisAlerta/${idSala}`, {
+                method: "GET",
+            })
+                .then(response => {
+                    if (response.ok) {
+                        response.json()
+                            .then((dados) => {
+                                console.log("Dados do relatório:", dados);
+                                totalSemanal = [];
+                                horaSemanal = [];
+
+                                for(let i = 0; i < dados.length; i++) {
+                                    let total = dados[i].total_alertas;
+                                    let hora = tratarHora(dados[i].hora);
+                                    horaSemanal.push(hora);
+                                    totalSemanal.push(total);
+                                }
+                                criarOuAtualizarGraficoDiaMaisAlerta();
+                            });
+                    }
+                })
+        }
+        function criarOuAtualizarGraficoDiaMaisAlerta() {
+            let canvasRelatorioDiaMaisAlerta = document.getElementById('relatorioDiaMaisAlerta');
+            if (!relatorioDiaMaisAlerta) {
+                relatorioDiaMaisAlerta = new Chart(canvasRelatorioDiaMaisAlerta, {
+                    type: 'line',
+                    data: {
+                        labels: horaSemanal,
+                        datasets: [{
+                            label: 'Alertas',
+                            borderColor: '#004080',
+                            backgroundColor: '#1554B2',
+                            borderRadius: 10,
+                            barPercentage: 0.6,
+                            categoryPercentage: 0.7,
+                            data: totalSemanal
+                        }]
+                    },
+                    options: {
+                        plugins: {
+                            legend: { display: false },
+                            title: {
+                                display: true,
+                                text: 'Relatório - Horas com mais alertas',
+                                color: '#004080',
+                                font: {
+                                    family: 'Inter, sans-serif',
+                                    size: 22,
+                                    weight: 'bold'
+                                },
+                                padding: { top: 10, bottom: 20 }
+                            },
+                            tooltip: {
+                                backgroundColor: '#fff',
+                                titleColor: '#004080',
+                                bodyColor: '#333',
+                                borderColor: '#66B2FF',
+                                borderWidth: 1,
+                                padding: 10,
+                                caretSize: 8,
+                                cornerRadius: 8
+                            }
+                        },
+                        layout: {
+                            padding: 20
+                        },
+                        backgroundColor: '#fff',
+                        scales: {
+                            x: {
+                                reverse: false,
+                                grid: { color: '#e0e0e0' },
+                                ticks: {
+                                    color: '#333',
+                                    font: { family: 'Inter, sans-serif', size: 14, weight: 'bold' }
+                                }
+                            },
+                            y: {
+                                grid: { color: '#e0e0e0' },
+                                ticks: {
+                                    color: '#333',
+                                    font: { family: 'Inter, sans-serif', size: 14, weight: 'bold' }
+                                }
+                            }
+                        }
+                    }
+                });
+            } else {
+                relatorioDiaMaisAlerta.data.labels = horaSemanal;
+                relatorioDiaMaisAlerta.data.datasets[0].data = totalSemanal;
+                relatorioDiaMaisAlerta.update();
+            }
+        }
+
+
+
 
                 function buscarRegistrosPeriodicamente() {
 
@@ -371,6 +484,7 @@
                     validarSessao();
                     buscarRegistrosPeriodicamente();
                     ultimaAtualizacao();
+                    buscarRelatorioDiaMaisAlerta()
                     listarSalas();
 
 
@@ -378,6 +492,7 @@
                         buscarRegistrosPeriodicamente();
                         TemperaturaUmidadeMAXMIN(idSala);
                         ultimaAtualizacao();
+                        buscarRelatorioDiaMaisAlerta()
                     }, 1000)
                 }
             </script>

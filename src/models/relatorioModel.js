@@ -42,7 +42,29 @@ ORDER BY hora;
   return database.executar(instrucaoSql);
 }
 
+function buscarRelatorioDiaMaisAlertaDatacenter(idDatacenter) {
+
+  var instrucaoSql = `
+  SELECT 
+    HOUR(r.dataRegistro) AS hora,
+    COUNT(a.id) AS total_alertas
+FROM alerta a
+JOIN registro r ON a.fkRegistro = r.id
+JOIN sensor se ON r.fkSensor = se.fkSala
+JOIN sala s ON se.fkSala = s.id
+WHERE s.fkDatacenter = ${idDatacenter}
+  AND r.dataRegistro >= CURDATE() - INTERVAL 6 DAY
+  AND r.dataRegistro < CURDATE() + INTERVAL 1 DAY
+GROUP BY hora
+ORDER BY hora;
+  `;
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
 module.exports = {
   buscarRelatorioSemanal,
-  buscarRelatorioDiaMaisAlerta
+  buscarRelatorioDiaMaisAlerta,
+  buscarRelatorioDiaMaisAlertaDatacenter
 }

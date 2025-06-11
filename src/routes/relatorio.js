@@ -11,4 +11,10 @@ router.get("/buscarRelatorioDiaMaisAlerta/:idSala", function (req, res) {
   relatorioController.buscarRelatorioDiaMaisAlerta(req, res);
 });
 
+router.get("/buscarRelatorioDiaMaisAlertaDatacenter/:idDatacenter", function (req, res) {
+  relatorioController.buscarRelatorioDiaMaisAlertaDatacenter(req, res);
+});
+
+
+
 module.exports = router;
