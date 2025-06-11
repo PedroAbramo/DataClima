@@ -167,12 +167,12 @@ a {
 .relatorio-alerta {
     display: flex;
     width: 100%;
-    margin: 0 10px;
 }
 
 .painel-alertas {
-    display: grid;
+    display: flex;
     gap: 20px;
+    flex-direction: column;
     padding: 20px;
     background: #fff;
     border-radius: 15px;
@@ -346,7 +346,12 @@ a {
 .titulo h1 {
     display: flex;
     justify-content: center;
+}
 
+.titulo-alerta {
+    display: flex;
+    justify-content: center;
+    margin: 0 10px;
 }
 
 .ultima-att {
