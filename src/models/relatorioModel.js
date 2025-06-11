@@ -25,7 +25,18 @@ ORDER BY data DESC;`;
 
 function buscarRelatorioDiaMaisAlerta(idSala) {
 
-  var instrucaoSql = ``;
+  var instrucaoSql = `
+  SELECT 
+    HOUR(r.dataRegistro) AS hora,
+    COUNT(a.id) AS total_alertas
+FROM alerta a
+JOIN registro r ON a.fkRegistro = r.id
+WHERE r.fkSensor = ${idSala}
+  AND r.dataRegistro >= CURDATE() - INTERVAL 6 DAY
+  AND r.dataRegistro < CURDATE() + INTERVAL 1 DAY
+GROUP BY hora
+ORDER BY hora;
+  `;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);

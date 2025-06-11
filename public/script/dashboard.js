@@ -148,6 +148,13 @@ function formatarDataHora(valor) {
 
 function formatarHora(valor) {
     let horario = new Date(valor).toLocaleTimeString('pt-BR');
-    console.log(horario);
     return horario;
+}
+
+function tratarHora(valor) {
+    if (valor < 10) {
+        return `0${valor}:00`;
+    } else {
+        return `${valor}:00`;
+    }
 }
