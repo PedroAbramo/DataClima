@@ -164,10 +164,15 @@ a {
     background-color: #6abc63;
 }
 
-.painel-avisos {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); 
+.relatorio-alerta {
+    display: flex;
+    width: 100%;
+}
+
+.painel-alertas {
+    display: flex;
     gap: 20px;
+    flex-direction: column;
     padding: 20px;
     background: #fff;
     border-radius: 15px;
@@ -176,8 +181,23 @@ a {
     align-items: center;
     overflow-y: auto;
     width:100%;
-    height: 530px;
+    height: 700px;
     border-radius: 10px;
+    gap: 15px; 
+}
+
+.painel-avisos {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 20px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 15px;
+    justify-content: space-evenly;
+    align-items: center;
+    overflow-y: auto;
+    width:100%;
+    height: 530px;
     gap: 15px; 
 }
 
@@ -326,7 +346,12 @@ a {
 .titulo h1 {
     display: flex;
     justify-content: center;
+}
 
+.titulo-alerta {
+    display: flex;
+    justify-content: center;
+    margin: 0 10px;
 }
 
 .ultima-att {
