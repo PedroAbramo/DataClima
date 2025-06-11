@@ -7,6 +7,7 @@
     <title>DataClima - Monitoramento de Temperatura e Umidade em Data Centers</title>
     <link rel="stylesheet" href="Estilos/dashboard3.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.1.0/dist/chartjs-plugin-annotation.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
     </style>
@@ -97,7 +98,7 @@
             <!-- Umidade -->
             <div class="umidade">
                 <div class="dados-indiv">
-                     <div class="titulovalores">
+                    <div class="titulovalores">
                         <p>Hoje:</p>
                     </div>
                     <div class="valores">
@@ -223,18 +224,55 @@
                                 scales: {
                                     x: {
                                         reverse: true,
-                                        beginAtZero: true,
                                         ticks: {
                                             maxRotation: 45,
                                             minRotation: 45
-                                        },
+                                        }
                                     },
                                     y: {
+                                        beginAtZero: true,
                                         title: {
                                             display: true,
                                             text: '(°C)'
-                                        },
-                                        beginAtZero: true,
+                                        }
+                                    }
+                                },
+                                plugins: {
+                                    annotation: {
+                                        annotations: {
+                                            limiteCritico: {
+                                                type: 'line',
+                                                yMin: 32,
+                                                yMax: 32,
+                                                borderColor:  'red',
+                                                borderWidth: 2,
+                                                drawTime: 'beforeDatasetsDraw',
+                                                borderDash: [4, 4],
+                                                label: {
+                                                    display: true,
+                                                    content: 'Temperatura Crítica (32°C)',
+                                                    color: 'white',
+                                                    backgroundColor: 'red',
+                                                    position: 'start'
+                                                }
+                                            },
+                                            limiteAlerta: {
+                                                type: 'line',
+                                                yMin: 27,
+                                                yMax: 27,
+                                                borderColor: 'yellow',
+                                                borderWidth: 2,
+                                                borderDash: [4, 4],
+                                                drawTime: 'beforeDatasetsDraw',
+                                                label: {
+                                                    display: true,
+                                                    content: 'Temperatura em Alerta (27°C)',
+                                                    color: 'white',
+                                                    backgroundColor: 'yellow',
+                                                    position: 'start'
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -275,6 +313,28 @@
                                         beginAtZero: true,
                                     },
                                 },
+                                plugins: {
+                                    annotation: {
+                                        annotations: {
+                                            limiteCritico: {
+                                                type: 'line',
+                                                yMin: 20,
+                                                yMax: 20,
+                                                borderColor:  'red',
+                                                borderWidth: 2,
+                                                drawTime: 'beforeDatasetsDraw',
+                                                borderDash: [4, 4],
+                                                label: {
+                                                    display: true,
+                                                    content: 'Temperatura Crítica (32°C)',
+                                                    color: 'white',
+                                                    backgroundColor: 'red',
+                                                    position: 'start'
+                                                }
+                                            },
+                                        }
+                                    }
+                                }
                             }
                         });
                     } else {
