@@ -3,10 +3,13 @@ function listarDatacenters() {
     JSON.parse(sessionStorage.DATACENTERS).forEach(item => {
         console.log(item.datacenter)
             cardDatacenter.innerHTML += `
-                <div class="lista-status" id="lista_status">
-                    <a href="PainelGeral2.html" class="salas" onclick="selecionarDatacenter(${item.id}, '${item.datacenter}')"><div class="status alerta"></div><span id="nomeDatacenter">${item.datacenter}</span></a>
-                </div>
-            `
+                        <div class="lista-status" id="lista_status">
+                            <a href="PainelGeral2.html" class="salas" onclick="selecionarDatacenter(${item.id}, '${item.datacenter}')">
+                                <div class="status normal" id="status-dc-${item.id}"></div>
+                                <span id="nomeDatacenter">${item.datacenter}</span>
+                            </a>
+                        </div>
+        `;	
     });
 }
 

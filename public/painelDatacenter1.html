@@ -81,11 +81,29 @@
     window.onload = function () {
         ultimaAtualizacao();
         listarDatacenters();
+        dadosDatacenter();
 
 
         setInterval(function () {
             ultimaAtualizacao();
+            dadosDatacenter();
         }, 5000)
+    }
+
+    function dadosDatacenter() {
+        fetch(`/datacenter/buscarAlertas/${sessionStorage.ID_EMPRESA}`)
+            .then(response => response.json())
+            .then(data => {
+                const painelDatacenter = document.getElementById('painel-datacenter');
+
+                data.forEach(datacenter => {
+                const statusDiv = document.getElementById(`status-dc-${datacenter.id}`);
+                if (statusDiv) {
+                    statusDiv.style.background = "#FF0000";
+                }
+                });
+            })
+            .catch(error => console.error('Erro ao buscar dados do datacenter:', error));	
     }
 
 </script>
