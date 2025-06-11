@@ -11,11 +11,11 @@ const serial = async () => {
     // conexão com o banco de dados MySQL
     let poolBancoDados = mysql.createPool(
         {
-            host: 'localhost', // ip que deve ser alterado de acordo com a máquina que receberá os dados
+            host: '192.168.15.42', // ip que deve ser alterado de acordo com a máquina que receberá os dados
             user: 'dono',
-            password: '',
+            password: 'Sptech#2024',
             database: 'dataclima',
-            port: 3306
+            port: 3307
         }
     ).promise();
 
@@ -212,8 +212,8 @@ async function simularLeituraArduino(poolBancoDados, data) {
     }
 
         const [result] = await poolBancoDados.execute(
-            'INSERT INTO registro (fksensor, temperatura, umidade, dataRegistro) VALUES (1, ?, ?, ?)',
-            [temperatura, umidade, "2025-07-09"]
+            'INSERT INTO registro (fksensor, temperatura, umidade) VALUES (1, ?, ?)',
+            [temperatura, umidade]
         );
         const idRegistro = result.insertId;
         await poolBancoDados.execute(
@@ -237,11 +237,11 @@ async function simularLeituraArduino(poolBancoDados, data) {
 const simular = async () => {
     let poolBancoDados = mysql.createPool(
         {
-            host: 'localhost', // ip que deve ser alterado de acordo com a máquina que receberá os dados
-            user: 'aluno',
-            password: '',
+            host: '192.168.15.42', // ip que deve ser alterado de acordo com a máquina que receberá os dados
+            user: 'dono',
+            password: 'Sptech#2024',
             database: 'dataclima',
-            port: 3306
+            port: 3307
         }
     ).promise();
 
