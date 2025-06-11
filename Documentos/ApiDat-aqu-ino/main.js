@@ -6,6 +6,63 @@ const mysql = require('mysql2');
 const SERIAL_BAUD_RATE = 9600;
 const SERVIDOR_PORTA = 3300;
 
+// Função genérica para inserir dados em múltiplas salas
+async function inserirDadosSalas(poolBancoDados, temperaturaBase, umidadeBase, quantidadeSalas) {
+    for (let i = 1; i <= quantidadeSalas; i++) {
+        // Gere uma variação diferente para cada sala (exceto a primeira, que é o valor real)
+        let temperatura, umidade;
+        if (i === 1) {
+            temperatura = temperaturaBase;
+            umidade = umidadeBase;
+        } else {
+            const variacao = (Math.random() * 6) - 3 + (i * (Math.random() - 0.5));
+            temperatura = parseFloat((temperaturaBase + variacao).toFixed(1));
+            umidade = parseInt(umidadeBase + variacao);
+        }
+
+        // Lógica de alerta
+        let motivo = [];
+        let tipo = '';
+
+        if (temperatura > 32) {
+            motivo.push("Temperatura muito alta");
+            tipo = "Crítico";
+        } else if (temperatura < 18) {
+            motivo.push("Temperatura baixa");
+            tipo = tipo === "Crítico" ? "Crítico" : "Alerta";
+        } else if (temperatura > 27) {
+            motivo.push("Temperatura alta");
+            tipo = tipo === "Crítico" ? "Crítico" : "Alerta";
+        }
+
+        if (umidade > 55) {
+            motivo.push("Umidade alta");
+            tipo = tipo === "Crítico" ? "Crítico" : "Alerta";
+        } else if (umidade < 20) {
+            motivo.push("Umidade muito baixa");
+            tipo = "Crítico";
+        } else if (umidade < 40) {
+            motivo.push("Umidade baixa");
+            tipo = tipo === "Crítico" ? "Crítico" : "Alerta";
+        }
+
+        // Insere no banco
+        const [result] = await poolBancoDados.execute(
+            'INSERT INTO registro (fksensor, temperatura, umidade) VALUES (?, ?, ?)',
+            [i, temperatura, umidade]
+        );
+        const idRegistro = result.insertId;
+
+        if (motivo.length > 0) {
+            await poolBancoDados.execute(
+                'INSERT INTO alerta (fkRegistro, tipo, motivo) VALUES (?, ?, ?)',
+                [idRegistro, tipo, motivo.join(', ')]
+            );
+            console.log(`Alerta inserido no banco para sala ${i}:`, idRegistro, tipo, motivo.join(', '));
+        }
+    }
+}
+
 // função para comunicação serial
 const serial = async () => {
     // conexão com o banco de dados MySQL
@@ -45,219 +102,21 @@ const serial = async () => {
         const valores = data.split(';');
         const temperatura = parseFloat(valores[0]);
         const umidade = parseInt(valores[1]);
-        const variacao = Number((Math.random() * 6) - 3);
-        const variacao2 = Number((Math.random() * 10) - 5);
-        const temperatura2 = parseFloat(temperatura + variacao);
-        const umidade2 = parseInt(umidade + variacao);
-        const temperatura3 = parseFloat(temperatura + variacao2);
-        const umidade3 = parseInt(umidade + variacao2);
-        let motivo = [];
-        let tipo = '';
-        let motivo2 = [];
-        let tipo2 = '';
-        let motivo3 = [];
-        let tipo3 = '';
-
-        if (!Number.isFinite(temperatura) && !Number.isFinite(umidade)) {
+        if (!Number.isFinite(temperatura) || !Number.isFinite(umidade)) {
             console.log("Valores inválidos, zerados ou negativos, não serão inseridos no banco:", temperatura, umidade);
             return;
         }
-
-        if (temperatura > 32) {
-            motivo.push("Temperatura muito alta");
-            tipo = "Crítico"
-        } else if (temperatura < 18) {
-            motivo.push("Temperatura baixa");
-            tipo = tipo === "Crítico" ? "Crítico" : "Alerta";
-        } else if (temperatura > 27) {
-            motivo.push("Temperatura alta");
-            tipo = tipo === "Crítico" ? "Crítico" : "Alerta";
-        }
-
-        if (umidade > 55) {
-            motivo.push("Umidade alta");
-            tipo = tipo === "Crítico" ? "Crítico" : "Alerta";
-        } else if (umidade < 20) {
-            motivo.push("Umidade muito baixa");
-            tipo = "Crítico";
-        } else if (umidade < 40) {
-            motivo.push("Umidade baixa");
-            tipo = tipo === "Crítico" ? "Crítico" : "Alerta";
-        }
-
-        if (temperatura2 > 32) {
-            motivo2.push("Temperatura muito alta");
-            tipo2 = "Crítico"
-        } else if (temperatura2 < 18) {
-            motivo.push("Temperatura baixa");
-            tipo2 = tipo === "Crítico" ? "Crítico" : "Alerta";
-        } else if (temperatura2 > 27) {
-            motivo2.push("Temperatura alta");
-            tipo2 = tipo2 === "Crítico" ? "Crítico" : "Alerta";
-        }
-
-        if (umidade2 > 55) {
-            motivo2.push("Umidade alta");
-            tipo2 = tipo2 === "Crítico" ? "Crítico" : "Alerta";
-        } else if (umidade2 < 20) {
-            motivo2.push("Umidade muito baixa");
-            tipo2 = "Crítico";
-        } else if (umidade2 < 40) {
-            motivo2.push("Umidade baixa");
-            tipo2 = tipo2 === "Crítico" ? "Crítico" : "Alerta";
-        }
-
-        if (temperatura3 > 32) {
-            motivo3.push("Temperatura muito alta");
-            tipo3 = "Crítico"
-        } else if (temperatura3 < 18) {
-            motivo3.push("Temperatura baixa");
-            tipo3 = tipo3 === "Crítico" ? "Crítico" : "Alerta";
-        }
-        else if (temperatura3 > 27) {
-            motivo3.push("Temperatura alta");
-            tipo3 = tipo3 === "Crítico" ? "Crítico" : "Alerta";
-        }
-
-        if (umidade3 > 55) {
-            motivo3.push("Umidade alta");
-            tipo3 = tipo3 === "Crítico" ? "Crítico" : "Alerta";
-        } else if (umidade3 < 20) {
-            motivo3.push("Umidade muito baixa");
-            tipo3 = "Crítico";
-        } else if (umidade3 < 40) {
-            motivo3.push("Umidade baixa");
-            tipo3 = tipo3 === "Crítico" ? "Crítico" : "Alerta";
-        }
-
-
-            const [result1] = await poolBancoDados.execute(
-                'INSERT INTO registro (fksensor, temperatura, umidade) VALUES (1, ?, ?)',
-                [temperatura, umidade]
-            );
-            let idRegistro1 = result1.insertId;
-            if (motivo.length > 0) {
-                await poolBancoDados.execute(
-                    'INSERT INTO alerta (fkRegistro, tipo, motivo) VALUES (?, ?, ?)',
-                    [idRegistro1, tipo, motivo.join(', ')]
-                );
-                console.log("Alerta inserido no banco: ", idRegistro1 + ", " + tipo + ", " + motivo.join(', '));
-            }
-            const [result2] = await poolBancoDados.execute(
-                'INSERT INTO registro (fksensor, temperatura, umidade) VALUES (2, ?, ?)',
-                [temperatura2, umidade2]
-            );
-            let idRegistro2 = result2.insertId;
-            if (motivo2.length > 0) {
-                await poolBancoDados.execute(
-                    'INSERT INTO alerta (fkRegistro, tipo, motivo) VALUES (?, ?, ?)',
-                    [idRegistro2, tipo2, motivo2.join(', ')]
-                );
-                console.log("Alerta inserido no banco: ", idRegistro2 + ", " + tipo + ", " + motivo.join(', '));
-            }
-
-
-
-            const [result3] = await poolBancoDados.execute(
-                'INSERT INTO registro (fksensor, temperatura, umidade) VALUES (3, ?, ?)',
-                [temperatura3, umidade3]
-            );
-            let idRegistro3 = result3.insertId;
-            if (motivo3.length > 0) {
-                await poolBancoDados.execute(
-                    'INSERT INTO alerta (fkRegistro, tipo, motivo) VALUES (?, ?, ?)',
-                    [idRegistro3, tipo3, motivo3.join(', ')]
-                );
-                console.log("Alerta inserido no banco: ", idRegistro3 + ", " + tipo + ", " + motivo.join(', '));
-            }
-            console.log(temperatura + ", " + umidade);
-            console.log(temperatura2 + ", " + umidade2);
+        // Altere o número de salas conforme necessário
+        const quantidadeSalas = 12;
+        await inserirDadosSalas(poolBancoDados, temperatura, umidade, quantidadeSalas);
     });
     arduino.on('error', (mensagem) => {
         console.error(`Erro no arduino (Mensagem: ${mensagem}`)
     });
 }
 
-// Função para simular leitura do Arduino
-/*
-async function simularLeituraArduino(poolBancoDados, data) {
-    const valores = data.split(';');
-    const temperatura = parseFloat(valores[0]);
-    const umidade = parseInt(valores[1]);
-    const variacao = Number((Math.random() * 6) - 3);
-    const temperatura2 = parseFloat(temperatura + variacao);
-    console.log(variacao);
-    const umidade2 = parseInt(umidade + variacao);
-    let motivo = [];
-    let tipo = '';
-    
-
-    if (temperatura > 32) {
-        motivo.push("Temperatura muito alta");
-        tipo = "Crítico"
-    } else if (temperatura < 18) {
-        motivo.push("Temperatura baixa");
-        tipo = tipo === "Crítico" ? "Crítico" : "Alerta";
-
-    }
-
-    if (umidade > 55) {
-        motivo.push("Umidade alta");
-        tipo = tipo === "Crítico" ? "Crítico" : "Alerta";
-    } else if (umidade < 20) {
-        motivo.push("Umidade muito baixa");
-        tipo = "Crítico";
-    } else if (umidade < 40) {
-        motivo.push("Umidade baixa");
-        tipo = tipo === "Crítico" ? "Crítico" : "Alerta";
-    }
-
-        const [result] = await poolBancoDados.execute(
-            'INSERT INTO registro (fksensor, temperatura, umidade) VALUES (1, ?, ?)',
-            [temperatura, umidade]
-        );
-        const idRegistro = result.insertId;
-        await poolBancoDados.execute(
-            'INSERT INTO registro (fksensor, temperatura, umidade) VALUES (2, ?, ?)',
-            [temperatura2, umidade2]
-        );
-        console.log("valores inseridos no banco: ", umidade + ", " + temperatura);
-
-
-
-        if (motivo.length > 0) {
-            await poolBancoDados.execute(
-                'INSERT INTO alerta (fkRegistro, tipo, motivo) VALUES (?, ?, ?)',
-                [idRegistro, tipo, motivo.join(', ')]
-        );
-        console.log("Alerta inserido no banco: ", idRegistro + ", " + tipo + ", " + motivo.join(', '));
-        }
-}
-        */
-// Função principal de simulação
-/*
-const simular = async () => {
-    let poolBancoDados = mysql.createPool(
-        {
-            host: '10.18.32.62', // ip que deve ser alterado de acordo com a máquina que receberá os dados
-            user: 'dono',
-            password: 'Sptech#2024',
-            database: 'dataclima',
-            port: 3307
-        }
-    ).promise();
-
-    const simularRepetido = async () => {
-        await simularLeituraArduino(poolBancoDados, "28.5;60");
-        await simularLeituraArduino(poolBancoDados, "30.2;55");
-    };
-
-    // Chama a função a cada 2 segundos (2000 ms)
-    setInterval(simularRepetido, 1000);
-};*/
-
+// Comente ou remova a chamada do simular se não for usar a simulação
 // simular();
 
-
-// Comente ou remova a chamada do serial se não for usar a serial real
+// Chame a função serial para coletar dados reais do Arduino
 (async () => { await serial(); })();
