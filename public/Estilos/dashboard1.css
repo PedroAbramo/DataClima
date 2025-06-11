@@ -95,7 +95,7 @@ a {
     justify-content: center;
     padding: 0px 0px 10px 0px;
     width: 100%;
-    border-bottom: solid 2px #000;
+    border-bottom: solid 0.06cm #d5d5d5;
 }
 
 .titulo h1 {
