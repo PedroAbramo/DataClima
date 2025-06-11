@@ -9,11 +9,14 @@ const SERVIDOR_PORTA = 3300;
 // Função genérica para inserir dados em múltiplas salas
 async function inserirDadosSalas(poolBancoDados, temperaturaBase, umidadeBase, quantidadeSalas) {
     for (let i = 1; i <= quantidadeSalas; i++) {
-        // Gere uma variação diferente para cada sala (exceto a primeira, que é o valor real)
         let temperatura, umidade;
         if (i === 1) {
             temperatura = temperaturaBase;
             umidade = umidadeBase;
+        } else if (i === 13 || i === 14) {
+            // Gera valores dentro do padrão para sensores 13 e 14
+            temperatura = parseFloat((Math.random() * (26 - 18) + 18).toFixed(1));
+            umidade = Math.floor(Math.random() * (54 - 40 + 1) + 40);
         } else {
             const variacao = (Math.random() * 6) - 3 + (i * (Math.random() - 0.5));
             temperatura = parseFloat((temperaturaBase + variacao).toFixed(1));
@@ -60,6 +63,7 @@ async function inserirDadosSalas(poolBancoDados, temperaturaBase, umidadeBase, q
             );
             console.log(`Alerta inserido no banco para sala ${i}:`, idRegistro, tipo, motivo.join(', '));
         }
+        console.log(`Registro inserido: sala ${i} | temperatura: ${temperatura} | umidade: ${umidade}`);
     }
 }
 
@@ -106,8 +110,8 @@ const serial = async () => {
             console.log("Valores inválidos, zerados ou negativos, não serão inseridos no banco:", temperatura, umidade);
             return;
         }
-        // Altere o número de salas conforme necessário
-        const quantidadeSalas = 12;
+        // Alterar o número de salas conforme a quantidade
+        const quantidadeSalas = 14;
         await inserirDadosSalas(poolBancoDados, temperatura, umidade, quantidadeSalas);
     });
     arduino.on('error', (mensagem) => {
