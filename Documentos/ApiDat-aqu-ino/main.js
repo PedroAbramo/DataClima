@@ -11,11 +11,11 @@ const serial = async () => {
     // conexão com o banco de dados MySQL
     let poolBancoDados = mysql.createPool(
         {
-            host: '10.18.32.66', // ip que deve ser alterado de acordo com a máquina que receberá os dados
+            host: 'localhost', // ip que deve ser alterado de acordo com a máquina que receberá os dados
             user: 'dono',
-            password: 'Sptech#2024',
+            password: '',
             database: 'dataclima',
-            port: 3307
+            port: 3306
         }
     ).promise();
 
@@ -62,7 +62,6 @@ const serial = async () => {
             console.log("Valores inválidos, zerados ou negativos, não serão inseridos no banco:", temperatura, umidade);
             return;
         }
-        
 
         if (temperatura > 32) {
             motivo.push("Temperatura muito alta");
@@ -141,13 +140,9 @@ const serial = async () => {
                 await poolBancoDados.execute(
                     'INSERT INTO alerta (fkRegistro, tipo, motivo) VALUES (?, ?, ?)',
                     [idRegistro1, tipo, motivo.join(', ')]
-                    
                 );
                 console.log("Alerta inserido no banco: ", idRegistro1 + ", " + tipo + ", " + motivo.join(', '));
             }
-
-
-
             const [result2] = await poolBancoDados.execute(
                 'INSERT INTO registro (fksensor, temperatura, umidade) VALUES (2, ?, ?)',
                 [temperatura2, umidade2]
@@ -157,7 +152,6 @@ const serial = async () => {
                 await poolBancoDados.execute(
                     'INSERT INTO alerta (fkRegistro, tipo, motivo) VALUES (?, ?, ?)',
                     [idRegistro2, tipo2, motivo2.join(', ')]
-                    
                 );
                 console.log("Alerta inserido no banco: ", idRegistro2 + ", " + tipo + ", " + motivo.join(', '));
             }
@@ -173,30 +167,19 @@ const serial = async () => {
                 await poolBancoDados.execute(
                     'INSERT INTO alerta (fkRegistro, tipo, motivo) VALUES (?, ?, ?)',
                     [idRegistro3, tipo3, motivo3.join(', ')]
-                    
                 );
                 console.log("Alerta inserido no banco: ", idRegistro3 + ", " + tipo + ", " + motivo.join(', '));
             }
-
-
             console.log(temperatura + ", " + umidade);
             console.log(temperatura2 + ", " + umidade2);
-            
-            
-            
-
     });
-
     arduino.on('error', (mensagem) => {
         console.error(`Erro no arduino (Mensagem: ${mensagem}`)
     });
-
-
-
 }
 
 // Função para simular leitura do Arduino
-/*
+
 async function simularLeituraArduino(poolBancoDados, data) {
     const valores = data.split(';');
     const temperatura = parseFloat(valores[0]);
@@ -229,8 +212,8 @@ async function simularLeituraArduino(poolBancoDados, data) {
     }
 
         const [result] = await poolBancoDados.execute(
-            'INSERT INTO registro (fksensor, temperatura, umidade) VALUES (1, ?, ?)',
-            [temperatura, umidade]
+            'INSERT INTO registro (fksensor, temperatura, umidade, dataRegistro) VALUES (1, ?, ?, ?)',
+            [temperatura, umidade, "2025-07-09"]
         );
         const idRegistro = result.insertId;
         await poolBancoDados.execute(
@@ -249,37 +232,30 @@ async function simularLeituraArduino(poolBancoDados, data) {
         console.log("Alerta inserido no banco: ", idRegistro + ", " + tipo + ", " + motivo.join(', '));
         }
 }
-*/
 // Função principal de simulação
-/*
+
 const simular = async () => {
     let poolBancoDados = mysql.createPool(
         {
-            host: '192.168.15.42',
-            user: 'dono',
-            password: 'Sptech#2024',
+            host: 'localhost', // ip que deve ser alterado de acordo com a máquina que receberá os dados
+            user: 'aluno',
+            password: '',
             database: 'dataclima',
-            port: 3307
+            port: 3306
         }
     ).promise();
 
     const simularRepetido = async () => {
         await simularLeituraArduino(poolBancoDados, "28.5;60");
-        await simularLeituraArduino(poolBancoDados, "28.5;60");
-        await simularLeituraArduino(poolBancoDados, "28.5;60");
-        await simularLeituraArduino(poolBancoDados, "28.5;60");
-        await simularLeituraArduino(poolBancoDados, "28.5;60");
-
-
-
+        await simularLeituraArduino(poolBancoDados, "30.2;55");
     };
 
     // Chama a função a cada 2 segundos (2000 ms)
-    setInterval(simularRepetido, 100);
+    setInterval(simularRepetido, 1000);
 };
 
-simular();  Chama a simulação
-*/
+simular();
+
 
 // Comente ou remova a chamada do serial se não for usar a serial real
-(async () => { await serial(); })();
+//(async () => { await serial(); })();
