@@ -221,7 +221,7 @@
                             legend: { display: false },
                             title: {
                                 display: true,
-                                text: 'Relatório Semanal - Dias',
+                                text: 'Relatório Semanal - Dias com mais alertas',
                                 color: '#004080',
                                 font: {
                                     family: 'Inter, sans-serif',
@@ -276,7 +276,7 @@
             let canvasRelatorioDiaMaisAlerta = document.getElementById('relatorioDiaMaisAlerta');
             if (!relatorioDiaMaisAlerta) {
                 relatorioDiaMaisAlerta = new Chart(canvasRelatorioDiaMaisAlerta, {
-                    type: 'bar',
+                    type: 'line',
                     data: {
                         labels: horaSemanal,
                         datasets: [{
@@ -294,7 +294,7 @@
                             legend: { display: false },
                             title: {
                                 display: true,
-                                text: 'Relatório Semanal - Dias',
+                                text: 'Relatório - Horas com mais alertas',
                                 color: '#004080',
                                 font: {
                                     family: 'Inter, sans-serif',
@@ -320,7 +320,7 @@
                         backgroundColor: '#fff',
                         scales: {
                             x: {
-                                reverse: true,
+                                reverse: false,
                                 grid: { color: '#e0e0e0' },
                                 ticks: {
                                     color: '#333',
