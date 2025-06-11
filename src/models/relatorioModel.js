@@ -23,6 +23,15 @@ ORDER BY data DESC;`;
   return database.executar(instrucaoSql);
 }
 
+function buscarRelatorioDiaMaisAlerta(idSala) {
+
+  var instrucaoSql = ``;
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
 module.exports = {
-  buscarRelatorioSemanal
+  buscarRelatorioSemanal,
+  buscarRelatorioDiaMaisAlerta
 }
