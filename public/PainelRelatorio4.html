@@ -63,7 +63,7 @@
             </div>
         </div>
         <div class="painel-avisos" id="painelAvisos"></div>
-        <div class="avisos">
+        <div class="avisos" id="avisos">
             <div class="dados-indiv">
                 <div class="titulovalores">
                     <p>Hoje:</p>
@@ -110,7 +110,6 @@
                         response.json()
                             .then((dados) => {
                                 console.log("Dados do relatório:", dados);
-
                                 dadosSemanal = dados;
 
                                 valoresSemanal = [];
@@ -152,7 +151,6 @@
 
         function criarOuAtualizarGrafico() {
             let canvasRelatorio = document.getElementById('relatorioSemanal');
-
             if (!relatorioSemanal) {
                 relatorioSemanal = new Chart(canvasRelatorio, {
                     type: 'bar',
