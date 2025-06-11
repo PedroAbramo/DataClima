@@ -71,12 +71,12 @@
             <div class="resumo">
                 <div class="valores">
                     <p>Total de Salas em alerta:</p>
-                    <p id="valor"><span id="alertaSala">2</span></p>
+                    <p id="valor"><span id="alertaSala">-1</span></p>
                 </div>
 
                 <div class="valores">
                     <p>Porcentagem de salas em alerta:</p>
-                    <p id="valor"><span id="percentualSala">50</span></p>
+                    <p id="valor"><span id="percentualSala">-1</span></p>
                 </div>
             </div>
 
@@ -131,23 +131,42 @@
     function criarSalas(Salas) {
         const painel = document.getElementById("painel");
 
+        let totalAlerta = 0
         for (let i = 0; i < Salas.length; i++) {
             let registro = Salas[i];
             console.log("Criando sala:", registro);
+
+            
+
+            if (
+            registro.ulttemperatura < 18 || registro.ulttemperatura > 27 || registro.ultumidade < 40 || registro.ultumidade > 55) {
+            totalAlerta++
+            }
+
             painel.innerHTML += `
-    <div class="lista-status" id="lista_status">
-        <a onclick="mudarPainel(${registro.id}, '${registro.sala}')" class="salas">
-            <div class="status alerta" id="status${registro.id}"></div>
-            <span id="nomeDatacenter">${registro.sala}</span>
-            <div class="divGeralStatus">
-                <div class="divTemp"><span id="iconeTemp${registro.id}"></span><span class="negrito" id="tempSala${registro.id}">${registro.ulttemperatura}º</span></div>
-                <div class="divUmi"><span id="iconeUmi${registro.id}"></span><span class="negrito" id="umiSala${registro.id}">${registro.ultumidade}%</span></div>
+            <div class="lista-status" id="lista_status">
+                <a onclick="mudarPainel(${registro.id}, '${registro.sala}')" class="salas">
+                    <div class="status alerta" id="status${registro.id}"></div>
+                    <span id="nomeDatacenter">${registro.sala}</span>
+                    <div class="divGeralStatus">
+                        <div class="divTemp"><span id="iconeTemp${registro.id}"></span><span class="negrito" id="tempSala${registro.id}">${registro.ulttemperatura}º</span></div>
+                        <div class="divUmi"><span id="iconeUmi${registro.id}"></span><span class="negrito" id="umiSala${registro.id}">${registro.ultumidade}%</span></div>
+                    </div>
+                </a>
             </div>
-        </a>
-    </div>
             `
             mudarCores(registro)
             }
+
+        document.getElementById("alertaSala").innerText = totalAlerta
+        let percentual = 0
+        if (Salas.length > 0) {
+            percentual = Math.round((totalAlerta / Salas.length) * 100)
+        } else {
+            percentual = 0
+        }
+        document.getElementById("percentualSala").innerText = percentual + "%"
+
         sessionStorage.SALA = Salas[0].id;
         sessionStorage.setItem("QTD_SALAS", Salas.length);
         sessionStorage.setItem("SALAS", JSON.stringify(Salas));
